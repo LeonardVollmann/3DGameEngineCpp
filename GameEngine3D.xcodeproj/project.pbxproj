@@ -25,6 +25,7 @@
 /* Begin PBXFileReference section */
 		D766CCAB19E9769700DA8B1A /* GameEngine3D */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = GameEngine3D; sourceTree = BUILT_PRODUCTS_DIR; };
 		D766CCAE19E9769700DA8B1A /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		D766CCB619E979EE00DA8B1A /* math.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = math.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +59,7 @@
 			isa = PBXGroup;
 			children = (
 				D766CCAE19E9769700DA8B1A /* main.cpp */,
+				D766CCB619E979EE00DA8B1A /* math.h */,
 			);
 			path = GameEngine3D;
 			sourceTree = "<group>";
