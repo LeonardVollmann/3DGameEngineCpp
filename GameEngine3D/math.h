@@ -17,8 +17,8 @@ class Vector
 public:
     Vector() {}
     
-    inline T &operator[](unsigned int i) const { return values[i]; }
-    inline T operator[](unsigned int i) const { return values[i]; }
+    inline T &operator[](unsigned int i) const { return vector[i]; }
+    inline T operator[](unsigned int i) const { return vector[i]; }
     
     inline bool operator==(const Vector<T, D> &r) const
     {
@@ -128,7 +128,7 @@ public:
     }
 protected:
 private:
-    T *values[D];
+    T *vector[D];
 };
 
 template <typename T>
@@ -268,5 +268,85 @@ typedef Vector4<int>    Vector4i;
 typedef Vector4<long>   Vector4l;
 typedef Vector4>double> Vector4d;
 typedef Vector4<float>  Vector4f;
+
+template <typename T, unsigned int D>
+class Matrix
+{
+public:
+    inline T &operator[][](unsigned int i, unsigned int j) const { return matrix[i][j]; }
+    inline T operator[][](unsigned int i, unsigned int j) const { return matrix[i][j]; }
+    
+    inline bool operator==(const Matrix<T, D> &r) const
+    {
+        for (unsigned int i = 0; i < D; i++) {
+            for (unsigned int j = 0; j < D; j++) {
+                if (*this[i][j] != r[i][j]) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+    
+    inline bool operator!=(const Matrix<T, D> &r) const { return !this->operator==(r); }
+    
+    inline Vector<T, D> getRow(unsigned int row) const
+    {
+        Vector<T, D> result;
+        for (unsigned int i = 0; i < D; i++) {
+            result[i] = matrix[row][i];
+        }
+        return result;
+    }
+    
+    inline Vector<T, D> getCol(unsigned int col) const
+    {
+        Vector<T, D> result;
+        for (unsigned int i = 0; i < D; i++) {
+            result[i] = matrix[i][col];
+        }
+        return result;
+    }
+    
+    inline void setRow(unsigned int row, const Vector<T, D> &r)
+    {
+        for (unsigned int i = 0; i < D; i++) {
+            *this[row][i] = r[i];
+        }
+    }
+    
+    inline void setCol(unsigned int col, const Vector<T, D> &r)
+    {
+        for (unsigned int i = 0; i < D; i++) {
+            *this[i][col] = r[i];
+        }
+    }
+    
+    inline Matrix<T, D> operator*(const Matrix<T, D> &r) const
+    {
+        Matrix<T, D> result;
+        for (unsigned int i = 0; i < D; i++) {
+            for (unsigned int j = 0; j < D; j++) {
+                result[i][j] = this->getRow(i).dot(r.getCol(j));
+            }
+        }
+        return result;
+    }
+    
+    inline Matrix<T, D> operator*=(const Matrix<T, D> &r)
+    {
+        Matrix<T, D> result;
+        for (unsigned int i = 0; i < D; i++) {
+            for (unsigned int j = 0; j < D; j++) {
+                result[i][j] = this->getRow(i).dot(r.getCol(j));
+            }
+        }
+        *this = result;
+        return *this;
+    }
+protected:
+private:
+    T *matrix[D][D];
+};
 
 #endif /* defined(__GameEngine3D__math__) */
