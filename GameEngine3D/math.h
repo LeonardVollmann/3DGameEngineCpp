@@ -152,7 +152,7 @@ public:
     inline T getY() const { return values[1]; }
     
     inline void setX(const T &x) { *this[0] = x; }
-    inline void setY(const T &y) { *this[1] = y; ]
+    inline void setY(const T &y) { *this[1] = y; }
         
     inline void set(const T &x, const T &y)
     {
@@ -162,5 +162,41 @@ public:
 protected:
 private:
 };
+    
+template <typename T>
+class Vector3 : public Vector<T, 3>
+{
+public:
+    Vector3<T>() {}
+    
+    Vector3<T>(const Vector3<T> &r)
+    {
+        *this = r;
+    }
+    
+    Vector3<T>(const T &x, const T &y, const T& z)
+    {
+        *this[0] = x;
+        *this[1] = y;
+        *this[2] = z;
+    }
+    
+    inline T getX() const { return values[0]; }
+    inline T getY() const { return values[1]; }
+    inline T getZ() const { return values[2]; }
+    
+    inline void setX(const T &x) { *this[0] = x; }
+    inline void setY(const T &y) { *this[1] = y; }
+    inline void setZ(const T &z) { *this[2] = z; }
+    
+    inline void set(const T &x, const T &y, const T &z)
+    {
+        this->setX(x);
+        this->setY(y);
+        this->setZ(z);
+    }
+protected:
+private:
+}
 
 #endif /* defined(__GameEngine3D__math__) */
