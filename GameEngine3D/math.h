@@ -17,8 +17,7 @@ class Vector
 public:
     Vector() {}
     
-    inline T &operator[](unsigned int i) const { return vector[i]; }
-    inline T operator[](unsigned int i) const { return vector[i]; }
+    inline T operator[](unsigned int i) const { return values[i]; }
     
     inline bool operator==(const Vector<T, D> &r) const
     {
@@ -113,7 +112,7 @@ public:
     
     inline T length() const { return sqrt(this->lengthSquared()); }
     
-    inline Vector<T, D> normalize() const
+    inline Vector<T, D> normalized() const
     {
         return *this / this->length();
     }
@@ -128,7 +127,7 @@ public:
     }
 protected:
 private:
-    T *vector[D];
+    T values[D];
 };
 
 template <typename T>
@@ -148,8 +147,8 @@ public:
         *this[1] = y;
     }
     
-    inline T getX() const { return values[0]; }
-    inline T getY() const { return values[1]; }
+    inline T getX() const { return *this[0]; }
+    inline T getY() const { return *this[1]; }
     
     inline void setX(const T &x) { *this[0] = x; }
     inline void setY(const T &y) { *this[1] = y; }
@@ -181,9 +180,9 @@ public:
         *this[2] = z;
     }
     
-    inline T getX() const { return values[0]; }
-    inline T getY() const { return values[1]; }
-    inline T getZ() const { return values[2]; }
+    inline T getX() const { return *this[0]; }
+    inline T getY() const { return *this[1]; }
+    inline T getZ() const { return *this[2]; }
     
     inline void setX(const T &x) { *this[0] = x; }
     inline void setY(const T &y) { *this[1] = y; }
@@ -227,10 +226,10 @@ public:
         *this[3] = w;
     }
     
-    inline T getX() const { return values[0]; }
-    inline T getY() const { return values[1]; }
-    inline T getZ() const { return values[2]; }
-    inline T getW() const { return values[3]; }
+    inline T getX() const { return *this[0]; }
+    inline T getY() const { return *this[1]; }
+    inline T getZ() const { return *this[2]; }
+    inline T getW() const { return *this[3]; }
     
     inline void setX(const T &x) { *this[0] = x; }
     inline void setY(const T &y) { *this[1] = y; }
@@ -252,29 +251,28 @@ typedef Vector2<char>   Vector2c;
 typedef Vector2<short>  Vector2s;
 typedef Vector2<int>    Vector2i;
 typedef Vector2<long>   Vector2l;
-typedef Vector2>double> Vector2d;
+typedef Vector2<double> Vector2d;
 typedef Vector2<float>  Vector2f;
 
 typedef Vector3<char>   Vector3c;
 typedef Vector3<short>  Vector3s;
 typedef Vector3<int>    Vector3i;
 typedef Vector3<long>   Vector3l;
-typedef Vector3>double> Vector3d;
+typedef Vector3<double> Vector3d;
 typedef Vector3<float>  Vector3f;
 
 typedef Vector4<char>   Vector4c;
 typedef Vector4<short>  Vector4s;
 typedef Vector4<int>    Vector4i;
 typedef Vector4<long>   Vector4l;
-typedef Vector4>double> Vector4d;
+typedef Vector4<double> Vector4d;
 typedef Vector4<float>  Vector4f;
 
 template <typename T, unsigned int D>
 class Matrix
 {
 public:
-    inline T &operator[][](unsigned int i, unsigned int j) const { return matrix[i][j]; }
-    inline T operator[][](unsigned int i, unsigned int j) const { return matrix[i][j]; }
+    inline T operator[](unsigned int i) const { return matrix[i]; }
     
     inline bool operator==(const Matrix<T, D> &r) const
     {
@@ -346,7 +344,7 @@ public:
     }
 protected:
 private:
-    T *matrix[D][D];
+    T matrix[D][D];
 };
 
 #endif /* defined(__GameEngine3D__math__) */
