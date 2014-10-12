@@ -248,4 +248,25 @@ protected:
 private:
 };
 
+typedef Vector2<char>   Vector2c;
+typedef Vector2<short>  Vector2s;
+typedef Vector2<int>    Vector2i;
+typedef Vector2<long>   Vector2l;
+typedef Vector2>double> Vector2d;
+typedef Vector2<float>  Vector2f;
+
+typedef Vector3<char>   Vector3c;
+typedef Vector3<short>  Vector3s;
+typedef Vector3<int>    Vector3i;
+typedef Vector3<long>   Vector3l;
+typedef Vector3>double> Vector3d;
+typedef Vector3<float>  Vector3f;
+
+typedef Vector4<char>   Vector4c;
+typedef Vector4<short>  Vector4s;
+typedef Vector4<int>    Vector4i;
+typedef Vector4<long>   Vector4l;
+typedef Vector4>double> Vector4d;
+typedef Vector4<float>  Vector4f;
+
 #endif /* defined(__GameEngine3D__math__) */
