@@ -195,8 +195,17 @@ public:
         this->setY(y);
         this->setZ(z);
     }
+    
+    Vector3<T> cross(const Vector3<T> &r)
+    {
+        Vector3<T> result;
+        
+        result[0] = (*this[1] * r[2]) - (*this[2] * r[1]);
+        result[1] = (*this[2] * r[0]) - (*this[0] * r[2]);
+        result[2] = (*this[0] * r[1]) - (*this[1] * r[0]);
+    }
 protected:
 private:
-}
+};
 
 #endif /* defined(__GameEngine3D__math__) */
