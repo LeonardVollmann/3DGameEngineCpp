@@ -208,4 +208,44 @@ protected:
 private:
 };
 
+template <typename T>
+class Vector4 : public Vector<T, 4>
+{
+public:
+    Vector4<T>() {}
+    
+    Vector4<T>(const Vector4<T> &r)
+    {
+        *this = r;
+    }
+    
+    Vector4<T>(const T &x, const T &y, const T &z, const T &w)
+    {
+        *this[0] = x;
+        *this[1] = y;
+        *this[2] = z;
+        *this[3] = w;
+    }
+    
+    inline T getX() const { return values[0]; }
+    inline T getY() const { return values[1]; }
+    inline T getZ() const { return values[2]; }
+    inline T getW() const { return values[3]; }
+    
+    inline void setX(const T &x) { *this[0] = x; }
+    inline void setY(const T &y) { *this[1] = y; }
+    inline void setZ(const T &z) { *this[2] = z; }
+    inline void setW(const T &w) { *this[3] = w; }
+    
+    inline void set(const T &x, const T &y, const T &z, const T &w)
+    {
+        this->setX(x);
+        this->setY(y);
+        this->setZ(z);
+        this->setW(w);
+    }
+protected:
+private:
+};
+
 #endif /* defined(__GameEngine3D__math__) */
