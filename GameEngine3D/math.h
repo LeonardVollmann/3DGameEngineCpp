@@ -306,10 +306,10 @@ public:
     {
         for (unsigned int i = 0; i < D; i++) {
             for (unsigned int j = 0; j < D; j++) {
-                if (i == j) {
-                    *this[i][j] = T(1);
-                } else if (i < D - 1 && j == D - 1) {
+                if (i < D - 1 && j == D - 1) {
                     *this[i][j] = r[i];
+                } else if (i == j) {
+                    *this[i][j] = 1;
                 } else {
                     *this[i][j] = 0;
                 }
@@ -324,6 +324,10 @@ public:
             for (unsigned int j = 0; j < D; j++) {
                 if (i == j && i < D - 1) {
                     *this[i][j] = r[i];
+                } else if (i == j && i == D - 1) {
+                    *this[i][j] = 1;
+                } else {
+                    *this[i][j] = 0;
                 }
             }
         }
