@@ -288,6 +288,19 @@ public:
     
     inline bool operator!=(const Matrix<T, D> &r) const { return !this->operator==(r); }
     
+    inline Matrix<T, D> initIdentity()
+    {
+        for (unsigned int i = 0; i < D; i++) {
+            for (unsigned int j = 0; j < D; j++) {
+                if (i == j) {
+                    *this[i][j] = 1;
+                } else {
+                    *this[i][j] = 0;
+                }
+            }
+        }
+    }
+    
     inline Vector<T, D> getRow(unsigned int row) const
     {
         Vector<T, D> result;
@@ -320,6 +333,8 @@ public:
         }
     }
     
+    inline void set(unsigned int x, unsigned int y, const T &val) { *this[x][y] = val; }
+    
     inline Matrix<T, D> operator*(const Matrix<T, D> &r) const
     {
         Matrix<T, D> result;
@@ -333,14 +348,19 @@ public:
     
     inline Matrix<T, D> operator*=(const Matrix<T, D> &r)
     {
+        *this = this->operator*(r);
+        return *this;
+    }
+    
+    inline Matrix<T, D> transposed() const
+    {
         Matrix<T, D> result;
         for (unsigned int i = 0; i < D; i++) {
             for (unsigned int j = 0; j < D; j++) {
-                result[i][j] = this->getRow(i).dot(r.getCol(j));
+                result[i][j] = *this[j][i];
             }
         }
-        *this = result;
-        return *this;
+        return result;
     }
 protected:
 private:
