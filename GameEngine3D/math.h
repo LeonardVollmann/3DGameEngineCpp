@@ -299,13 +299,41 @@ public:
                 }
             }
         }
+        return *this;
+    }
+    
+    inline Matrix<T, D> initTranslation(const Vector<T, D - 1> &r)
+    {
+        for (unsigned int i = 0; i < D; i++) {
+            for (unsigned int j = 0; j < D; j++) {
+                if (i == j) {
+                    *this[i][j] = T(1);
+                } else if (i < D - 1 && j == D - 1) {
+                    *this[i][j] = r[i];
+                } else {
+                    *this[i][j] = 0;
+                }
+            }
+        }
+        return *this;
+    }
+    
+    inline Matrix<T, D> initScale(const Vector<T, D> &r)
+    {
+        for (unsigned int i = 0; i < D; i++) {
+            for (unsigned int j = 0; j < D; j++) {
+                if (i == j && i < D - 1) {
+                    *this[i][j] = r[i];
+                }
+            }
+        }
     }
     
     inline Vector<T, D> getRow(unsigned int row) const
     {
         Vector<T, D> result;
         for (unsigned int i = 0; i < D; i++) {
-            result[i] = matrix[row][i];
+            result[i] = *this[row][i];
         }
         return result;
     }
@@ -314,7 +342,7 @@ public:
     {
         Vector<T, D> result;
         for (unsigned int i = 0; i < D; i++) {
-            result[i] = matrix[i][col];
+            result[i] = *this[i][col];
         }
         return result;
     }
