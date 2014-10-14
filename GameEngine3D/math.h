@@ -11,6 +11,8 @@
 
 #define MATH_PI 3.14159265359
 
+#include <cmath>
+
 template <typename T, unsigned int D>
 class Vector
 {
@@ -474,5 +476,22 @@ typedef Matrix4<int>    Matrix4i;
 typedef Matrix4<long>   Matrix4l;
 typedef Matrix4<double> Matrix4d;
 typedef Matrix4<float>  Matrix4f;
+
+class Quaternion : public Vector4f
+{
+public:
+    Quaternion() {}
+    
+    inline Quaternion initFromAxisAngle(const Vector3f axis, float angle)
+    {
+        this->setX(axis.getX() * sinf(angle / 2));
+        this->setY(axis.getY() * sinf(angle / 2));
+        this->setZ(axis.getZ() * sinf(angle / 2));
+        this->setW(cosf(angle / 2));
+        return *this;
+    }
+protected:
+private:
+};
 
 #endif /* defined(__GameEngine3D__math__) */
