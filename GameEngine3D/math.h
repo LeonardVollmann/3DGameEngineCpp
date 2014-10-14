@@ -399,4 +399,80 @@ private:
     T matrix[D][D];
 };
 
+template <typename T>
+class Matrix3 : public Matrix<T, 3>
+{
+public:
+    Matrix3() {}
+    
+    template <unsigned int D>
+    Matrix3(const Matrix<T, D> &r)
+    {
+        if (D < 3) {
+            this->initIdentity();
+            
+            for (unsigned int i = 0; i < D; i++) {
+                for (unsigned int j = 0; j < D; j++)
+                {
+                    *this[i][j] = r[i][j];
+                }
+            }
+        } else {
+            for (unsigned int i = 0; i < 3; i++) {
+                for (unsigned int j = 0; j < 3; j++)
+                {
+                    *this[i][j] = r[i][j];
+                }
+            }
+        }
+    }
+protected:
+private:
+};
+
+template <typename T>
+class Matrix4 : public Matrix<T, 4>
+{
+public:
+    Matrix4() {}
+    
+    template <unsigned int D>
+    Matrix4(const Matrix<T, D> &r)
+    {
+        if (D < 4) {
+            this->initIdentity();
+            
+            for (unsigned int i = 0; i < D; i++) {
+                for (unsigned int j = 0; j < D; j++)
+                {
+                    *this[i][j] = r[i][j];
+                }
+            }
+        } else {
+            for (unsigned int i = 0; i < 4; i++) {
+                for (unsigned int j = 0; j < 4; j++)
+                {
+                    *this[i][j] = r[i][j];
+                }
+            }
+        }
+    }
+protected:
+private:
+};
+
+typedef Matrix3<char>   Matrix3c;
+typedef Matrix3<short>  Matrix3s;
+typedef Matrix3<int>    Matrix3i;
+typedef Matrix3<long>   Matrix3l;
+typedef Matrix3<double> Matrix3d;
+typedef Matrix3<float>  Matrix3f;
+
+typedef Matrix4<char>   Matrix4c;
+typedef Matrix4<short>  Matrix4s;
+typedef Matrix4<int>    Matrix4i;
+typedef Matrix4<long>   Matrix4l;
+typedef Matrix4<double> Matrix4d;
+typedef Matrix4<float>  Matrix4f;
+
 #endif /* defined(__GameEngine3D__math__) */
