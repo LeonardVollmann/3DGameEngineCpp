@@ -10,6 +10,8 @@
 #define __GameEngine3D__math__
 
 #define MATH_PI 3.14159265359
+#define toRadians(x) (float)((x) * (MATH_PI / 180.0f))
+#define toDegrees(x) (float)((x) * (180.0f / MATH_PI))
 
 #include <cmath>
 
@@ -20,11 +22,12 @@ public:
     Vector() {}
     
     inline T operator[](unsigned int i) const { return values[i]; }
+    inline T &operator[](unsigned int i) { return values[i]; }
     
     inline bool operator==(const Vector<T, D> &r) const
     {
         for (unsigned int i = 0; i < D; i++) {
-            if (*this[i] != r[i]) {
+            if ((*this)[i] != r[i]) {
                 return false;
             }
         }
@@ -37,7 +40,7 @@ public:
     {
         Vector<T, D> result;
         for (unsigned int i = 0; i < D; i++) {
-            result[i] = *this[i] + r[i];
+            result[i] = (*this)[i] + r[i];
         }
         return result;
     }
@@ -46,7 +49,7 @@ public:
     {
         Vector<T, D> result;
         for (unsigned int i = 0; i < D; i++) {
-            result[i] = *this[i] - r[i];
+            result[i] = (*this)[i] - r[i];
         }
         return result;
     }
@@ -55,7 +58,7 @@ public:
     {
         Vector<T, D> result;
         for (unsigned int i = 0; i < D; i++) {
-            result[i] = *this[i] * r;
+            result[i] = (*this)[i] * r;
         }
         return result;
     }
@@ -64,7 +67,7 @@ public:
     {
         Vector<T, D> result;
         for (unsigned int i = 0; i < D; i++) {
-            result[i] = *this[i] / r;
+            result[i] = (*this)[i] / r;
         }
         return result;
     }
@@ -72,7 +75,7 @@ public:
     inline Vector<T, D> &operator+=(const Vector<T, D> &r)
     {
         for (unsigned int i = 0; i < D; i++) {
-            *this[i] += r[i];
+            (*this)[i] += r[i];
         }
         return *this;
     }
@@ -80,7 +83,7 @@ public:
     inline Vector<T, D> &operator-=(const Vector<T, D> &r)
     {
         for (unsigned int i = 0; i < D; i++) {
-            *this[i] -= r[i];
+            (*this)[i] -= r[i];
         }
         return *this;
     }
@@ -88,7 +91,7 @@ public:
     inline Vector<T, D> &operator*=(const T &r)
     {
         for (unsigned int i = 0; i < D; i++) {
-            *this[i] *= r;
+            (*this)[i] *= r;
         }
         return *this;
     }
@@ -96,7 +99,7 @@ public:
     inline Vector<T, D> &operator/=(const T &r)
     {
         for (unsigned int i = 0; i < D; i++) {
-            *this[i] /= r;
+            (*this)[i] /= r;
         }
         return *this;
     }
@@ -105,12 +108,12 @@ public:
     {
         T result = 0;
         for (unsigned int i = 0; i < D; i++) {
-            result += *this[i] * r[i];
+            result += (*this)[i] * r[i];
         }
         return result;
     }
     
-    inline T lengthSquared() const { return this->dot(*this); }
+    inline T lengthSquared() const { return this->dot((*this)); }
     
     inline T length() const { return sqrt(this->lengthSquared()); }
     
@@ -123,7 +126,7 @@ public:
     {
         Vector<T, D> result;
         for (unsigned int i = 0; i < D; i++) {
-            result[i] = (1 - beta) * *this[i] + beta * r[i];
+            result[i] = (1 - beta) * (*this)[i] + beta * r[i];
         }
         return result;
     }
@@ -140,20 +143,20 @@ public:
     
     Vector2<T>(const Vector2<T> &r)
     {
-        *this = r;
+        (*this) = r;
     }
     
     Vector2<T>(const T &x, const T &y)
     {
-        *this[0] = x;
-        *this[1] = y;
+        (*this)[0] = x;
+        (*this)[1] = y;
     }
     
     inline T getX() const { return *this[0]; }
     inline T getY() const { return *this[1]; }
     
-    inline void setX(const T &x) { *this[0] = x; }
-    inline void setY(const T &y) { *this[1] = y; }
+    inline void setX(const T &x) { (*this)[0] = x; }
+    inline void setY(const T &y) { (*this)[1] = y; }
         
     inline void set(const T &x, const T &y)
     {
@@ -172,23 +175,27 @@ public:
     
     Vector3<T>(const Vector3<T> &r)
     {
-        *this = r;
+        (*this) = r;
     }
     
     Vector3<T>(const T &x, const T &y, const T& z)
     {
-        *this[0] = x;
-        *this[1] = y;
-        *this[2] = z;
+//        (*this)[0] = x;
+//        (*this)[1] = y;
+//        (*this)[2] = z;
+        
+        (*this)[0] = x;
+        (*this)[1] = y;
+        (*this)[2] = z;
     }
     
-    inline T getX() const { return *this[0]; }
-    inline T getY() const { return *this[1]; }
-    inline T getZ() const { return *this[2]; }
+    inline T getX() const { return ((*this))[0]; }
+    inline T getY() const { return ((*this))[1]; }
+    inline T getZ() const { return ((*this))[2]; }
     
-    inline void setX(const T &x) { *this[0] = x; }
-    inline void setY(const T &y) { *this[1] = y; }
-    inline void setZ(const T &z) { *this[2] = z; }
+    inline void setX(const T &x) { ((*this))[0] = x; }
+    inline void setY(const T &y) { ((*this))[1] = y; }
+    inline void setZ(const T &z) { ((*this))[2] = z; }
     
     inline void set(const T &x, const T &y, const T &z)
     {
@@ -201,9 +208,9 @@ public:
     {
         Vector3<T> result;
         
-        result[0] = (*this[1] * r[2]) - (*this[2] * r[1]);
-        result[1] = (*this[2] * r[0]) - (*this[0] * r[2]);
-        result[2] = (*this[0] * r[1]) - (*this[1] * r[0]);
+        result[0] = ((*this)[1] * r[2]) - (((*this))[2] * r[1]);
+        result[1] = ((*this)[2] * r[0]) - (((*this))[0] * r[2]);
+        result[2] = ((*this)[0] * r[1]) - (((*this))[1] * r[0]);
     }
 protected:
 private:
@@ -217,26 +224,26 @@ public:
     
     Vector4<T>(const Vector4<T> &r)
     {
-        *this = r;
+        (*this) = r;
     }
     
     Vector4<T>(const T &x, const T &y, const T &z, const T &w)
     {
-        *this[0] = x;
-        *this[1] = y;
-        *this[2] = z;
-        *this[3] = w;
+        (*this)[0] = x;
+        (*this)[1] = y;
+        (*this)[2] = z;
+        (*this)[3] = w;
     }
     
-    inline T getX() const { return *this[0]; }
-    inline T getY() const { return *this[1]; }
-    inline T getZ() const { return *this[2]; }
-    inline T getW() const { return *this[3]; }
+    inline T getX() const { return (*this)[0]; }
+    inline T getY() const { return (*this)[1]; }
+    inline T getZ() const { return (*this)[2]; }
+    inline T getW() const { return (*this)[3]; }
     
-    inline void setX(const T &x) { *this[0] = x; }
-    inline void setY(const T &y) { *this[1] = y; }
-    inline void setZ(const T &z) { *this[2] = z; }
-    inline void setW(const T &w) { *this[3] = w; }
+    inline void setX(const T &x) { (*this)[0] = x; }
+    inline void setY(const T &y) { (*this)[1] = y; }
+    inline void setZ(const T &z) { (*this)[2] = z; }
+    inline void setW(const T &w) { (*this)[3] = w; }
     
     inline void set(const T &x, const T &y, const T &z, const T &w)
     {
@@ -275,12 +282,13 @@ class Matrix
 {
 public:
     inline T operator[](unsigned int i) const { return matrix[i]; }
+    inline T &operator[](unsigned int i) { return matrix[i]; }
     
     inline bool operator==(const Matrix<T, D> &r) const
     {
         for (unsigned int i = 0; i < D; i++) {
             for (unsigned int j = 0; j < D; j++) {
-                if (*this[i][j] != r[i][j]) {
+                if ((*this)[i][j] != r[i][j]) {
                     return false;
                 }
             }
@@ -295,9 +303,9 @@ public:
         for (unsigned int i = 0; i < D; i++) {
             for (unsigned int j = 0; j < D; j++) {
                 if (i == j) {
-                    *this[i][j] = 1;
+                    (*this)[i][j] = 1;
                 } else {
-                    *this[i][j] = 0;
+                    (*this)[i][j] = 0;
                 }
             }
         }
@@ -309,11 +317,11 @@ public:
         for (unsigned int i = 0; i < D; i++) {
             for (unsigned int j = 0; j < D; j++) {
                 if (i < D - 1 && j == D - 1) {
-                    *this[i][j] = r[i];
+                    (*this)[i][j] = r[i];
                 } else if (i == j) {
-                    *this[i][j] = 1;
+                    (*this)[i][j] = 1;
                 } else {
-                    *this[i][j] = 0;
+                    (*this)[i][j] = 0;
                 }
             }
         }
@@ -325,21 +333,22 @@ public:
         for (unsigned int i = 0; i < D; i++) {
             for (unsigned int j = 0; j < D; j++) {
                 if (i == j && i < D - 1) {
-                    *this[i][j] = r[i];
+                    (*this)[i][j] = r[i];
                 } else if (i == j && i == D - 1) {
-                    *this[i][j] = 1;
+                    (*this)[i][j] = 1;
                 } else {
-                    *this[i][j] = 0;
+                    (*this)[i][j] = 0;
                 }
             }
         }
+        return *this;
     }
     
     inline Vector<T, D> getRow(unsigned int row) const
     {
         Vector<T, D> result;
         for (unsigned int i = 0; i < D; i++) {
-            result[i] = *this[row][i];
+            result[i] = (*this)[row][i];
         }
         return result;
     }
@@ -348,7 +357,7 @@ public:
     {
         Vector<T, D> result;
         for (unsigned int i = 0; i < D; i++) {
-            result[i] = *this[i][col];
+            result[i] = (*this)[i][col];
         }
         return result;
     }
@@ -356,18 +365,18 @@ public:
     inline void setRow(unsigned int row, const Vector<T, D> &r)
     {
         for (unsigned int i = 0; i < D; i++) {
-            *this[row][i] = r[i];
+            (*this)[row][i] = r[i];
         }
     }
     
     inline void setCol(unsigned int col, const Vector<T, D> &r)
     {
         for (unsigned int i = 0; i < D; i++) {
-            *this[i][col] = r[i];
+            (*this)[i][col] = r[i];
         }
     }
     
-    inline void set(unsigned int x, unsigned int y, const T &val) { *this[x][y] = val; }
+    inline void set(unsigned int x, unsigned int y, const T &val) { (*this)[x][y] = val; }
     
     inline Matrix<T, D> operator*(const Matrix<T, D> &r) const
     {
@@ -391,7 +400,7 @@ public:
         Matrix<T, D> result;
         for (unsigned int i = 0; i < D; i++) {
             for (unsigned int j = 0; j < D; j++) {
-                result[i][j] = *this[j][i];
+                result[i][j] = (*this)[j][i];
             }
         }
         return result;
@@ -416,14 +425,14 @@ public:
             for (unsigned int i = 0; i < D; i++) {
                 for (unsigned int j = 0; j < D; j++)
                 {
-                    *this[i][j] = r[i][j];
+                    (*this)[i][j] = r[i][j];
                 }
             }
         } else {
             for (unsigned int i = 0; i < 3; i++) {
                 for (unsigned int j = 0; j < 3; j++)
                 {
-                    *this[i][j] = r[i][j];
+                    (*this)[i][j] = r[i][j];
                 }
             }
         }
@@ -447,14 +456,14 @@ public:
             for (unsigned int i = 0; i < D; i++) {
                 for (unsigned int j = 0; j < D; j++)
                 {
-                    *this[i][j] = r[i][j];
+                    (*this)[i][j] = r[i][j];
                 }
             }
         } else {
             for (unsigned int i = 0; i < 4; i++) {
                 for (unsigned int j = 0; j < 4; j++)
                 {
-                    *this[i][j] = r[i][j];
+                    (*this)[i][j] = r[i][j];
                 }
             }
         }
@@ -482,14 +491,25 @@ class Quaternion : public Vector4f
 public:
     Quaternion() {}
     
+    Quaternion(const Vector3f &v, float s)
+    {
+        this->setX(v.getX());
+        this->setY(v.getY());
+        this->setZ(v.getZ());
+        this->setW(s);
+    }
+    
     inline Quaternion initFromAxisAngle(const Vector3f axis, float angle)
     {
-        this->setX(axis.getX() * sinf(angle / 2));
-        this->setY(axis.getY() * sinf(angle / 2));
-        this->setZ(axis.getZ() * sinf(angle / 2));
-        this->setW(cosf(angle / 2));
+        (*this)[0] = axis.getX() * sinf(angle / 2);
+        (*this)[1] = axis.getY() * sinf(angle / 2);
+        (*this)[2] = axis.getZ() * sinf(angle / 2);
+        (*this)[3] = cosf(angle / 2);
+        
         return *this;
     }
+    
+    inline Quaternion conjugate() { return Quaternion(Vector3f(-(*this)[0], -(*this)[1], -(*this)[2]), (*this)[3]); }
 protected:
 private:
 };
