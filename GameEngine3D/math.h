@@ -9,11 +9,13 @@
 #ifndef __GameEngine3D__math__
 #define __GameEngine3D__math__
 
-#define MATH_PI 3.14159265359
+#define MATH_PI 3.1415926535897932384626433832795
 #define toRadians(x) (float)((x) * (MATH_PI / 180.0f))
 #define toDegrees(x) (float)((x) * (180.0f / MATH_PI))
 
 #include <cmath>
+
+class Quaternion;
 
 template <typename T, unsigned int D>
 class Vector
@@ -180,10 +182,6 @@ public:
     
     Vector3<T>(const T &x, const T &y, const T& z)
     {
-//        (*this)[0] = x;
-//        (*this)[1] = y;
-//        (*this)[2] = z;
-        
         (*this)[0] = x;
         (*this)[1] = y;
         (*this)[2] = z;
@@ -211,6 +209,8 @@ public:
         result[0] = ((*this)[1] * r[2]) - (((*this))[2] * r[1]);
         result[1] = ((*this)[2] * r[0]) - (((*this))[0] * r[2]);
         result[2] = ((*this)[0] * r[1]) - (((*this))[1] * r[0]);
+        
+        return result;
     }
 protected:
 private:
@@ -256,24 +256,147 @@ protected:
 private:
 };
 
-typedef Vector2<char>   Vector2c;
-typedef Vector2<short>  Vector2s;
+class Vector3f : public Vector3<float>
+{
+public:
+    Vector3f(float x = 0, float y = 0, float z = 0)
+    {
+        (*this)[0] = x;
+        (*this)[1] = y;
+        (*this)[2] = z;
+    }
+    
+    Vector3f(const Vector3f &r)
+    {
+        (*this)[0] = r.getX();
+        (*this)[1] = r.getY();
+        (*this)[2] = r.getZ();
+    }
+    
+    inline bool operator==(const Vector3f &r) const
+    {
+        for (unsigned int i = 0; i < 3; i++) {
+            if ((*this)[i] != r[i]) {
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    inline bool operator!=(const Vector3f &r) const { return !this->operator==(r); }
+    
+    inline Vector3f operator+(const Vector3f &r) const
+    {
+        Vector3f result;
+        result.setX(getX() + r.getX());
+        result.setY(getY() + r.getY());
+        result.setZ(getZ() + r.getZ());
+        return result;
+    }
+    
+    inline Vector3f operator-(const Vector3f &r) const
+    {
+        Vector3f result;
+        result.setX(getX() - r.getX());
+        result.setY(getY() - r.getY());
+        result.setZ(getZ() - r.getZ());
+        return result;
+    }
+    
+    inline Vector3f operator*(float r) const
+    {
+        Vector3f result;
+        result.setX(getX() * r);
+        result.setY(getY() * r);
+        result.setZ(getZ() * r);
+        return result;
+    }
+    
+    inline Vector3f operator/(float r) const
+    {
+        Vector3f result;
+        result.setX(getX() / r);
+        result.setY(getY() / r);
+        result.setZ(getZ() / r);
+        return result;
+    }
+    
+    inline Vector3f operator+=(const Vector3f &r)
+    {
+        *this = this->operator+(r);
+        return *this;
+    }
+    
+    inline Vector3f operator-=(const Vector3f &r)
+    {
+        *this = this->operator-(r);
+        return *this;
+    }
+    
+    inline Vector3f operator*=(float r)
+    {
+        *this = this->operator*(r);
+        return *this;
+    }
+    
+    inline Vector3f operator/=(float r)
+    {
+        *this = this->operator/(r);
+        return *this;
+    }
+    
+    inline float dot(const Vector3f &r) const
+    {
+        float result = 0;
+        for (unsigned int i = 0; i < 3; i++) {
+            result += (*this)[i] * r[i];
+        }
+        return result;
+    }
+    
+    inline Vector3f cross(const Vector3f &r)
+    {
+        Vector3f result;
+        
+        result[0] = ((*this)[1] * r[2]) - (((*this))[2] * r[1]);
+        result[1] = ((*this)[2] * r[0]) - (((*this))[0] * r[2]);
+        result[2] = ((*this)[0] * r[1]) - (((*this))[1] * r[0]);
+        
+        return result;
+    }
+    
+    inline float lengthSquared() const { return this->dot((*this)); }
+    
+    inline float length() const { return sqrt(this->lengthSquared()); }
+    
+    inline Vector3f normalized() const
+    {
+        return *this / this->length();
+    }
+    
+    inline Vector3f lerp(const Vector3f &r, const float &beta) const
+    {
+        Vector3f result;
+        for (unsigned int i = 0; i < 3; i++) {
+            result[i] = (1 - beta) * (*this)[i] + beta * r[i];
+        }
+        return result;
+    }
+    
+    Vector3f rotate(const Quaternion &q);
+protected:
+private:
+};
+
 typedef Vector2<int>    Vector2i;
-typedef Vector2<long>   Vector2l;
 typedef Vector2<double> Vector2d;
 typedef Vector2<float>  Vector2f;
 
-typedef Vector3<char>   Vector3c;
-typedef Vector3<short>  Vector3s;
 typedef Vector3<int>    Vector3i;
-typedef Vector3<long>   Vector3l;
 typedef Vector3<double> Vector3d;
-typedef Vector3<float>  Vector3f;
+//typedef Vector3<float>  Vector3f;
 
-typedef Vector4<char>   Vector4c;
-typedef Vector4<short>  Vector4s;
 typedef Vector4<int>    Vector4i;
-typedef Vector4<long>   Vector4l;
 typedef Vector4<double> Vector4d;
 typedef Vector4<float>  Vector4f;
 
@@ -472,17 +595,11 @@ protected:
 private:
 };
 
-typedef Matrix3<char>   Matrix3c;
-typedef Matrix3<short>  Matrix3s;
 typedef Matrix3<int>    Matrix3i;
-typedef Matrix3<long>   Matrix3l;
 typedef Matrix3<double> Matrix3d;
 typedef Matrix3<float>  Matrix3f;
 
-typedef Matrix4<char>   Matrix4c;
-typedef Matrix4<short>  Matrix4s;
 typedef Matrix4<int>    Matrix4i;
-typedef Matrix4<long>   Matrix4l;
 typedef Matrix4<double> Matrix4d;
 typedef Matrix4<float>  Matrix4f;
 
@@ -491,25 +608,59 @@ class Quaternion : public Vector4f
 public:
     Quaternion() {}
     
-    Quaternion(const Vector3f &v, float s)
+    Quaternion(float x, float y, float z, float w)
     {
-        this->setX(v.getX());
-        this->setY(v.getY());
-        this->setZ(v.getZ());
-        this->setW(s);
+        this->setX(x);
+        this->setY(y);
+        this->setZ(z);
+        this->setW(w);
     }
+    
+    Quaternion(const Vector3f &v, float w) :
+        Quaternion(v.getX(), v.getY(), v.getZ(), w) {}
     
     inline Quaternion initFromAxisAngle(const Vector3f axis, float angle)
     {
-        (*this)[0] = axis.getX() * sinf(angle / 2);
-        (*this)[1] = axis.getY() * sinf(angle / 2);
-        (*this)[2] = axis.getZ() * sinf(angle / 2);
-        (*this)[3] = cosf(angle / 2);
+        const float sinHalfAngle = sinf(angle / 2);
+        const float cosHalfAngle = cosf(angle / 2);
+        
+        (*this)[0] = axis.getX() * sinHalfAngle;
+        (*this)[1] = axis.getY() * sinHalfAngle;
+        (*this)[2] = axis.getZ() * sinHalfAngle;
+        (*this)[3] = cosHalfAngle;
         
         return *this;
     }
     
-    inline Quaternion conjugate() { return Quaternion(Vector3f(-(*this)[0], -(*this)[1], -(*this)[2]), (*this)[3]); }
+    inline Vector3f getXYZ() const { return Vector3f((*this)[0], (*this)[1], (*this)[2]); }
+    
+    inline Quaternion conjugate() const { return Quaternion(Vector3f(-(*this)[0], -(*this)[1], -(*this)[2]), (*this)[3]); }
+    
+    inline Quaternion operator*(const Quaternion &r) const
+    {
+        const float _x = (getX() * r.getW()) + (getW() * r.getX()) + (getY() * r.getZ()) - (getZ() * r.getY());
+        const float _y = (getY() * r.getW()) + (getW() * r.getY()) + (getZ() * r.getX()) - (getX() * r.getZ());
+        const float _z = (getZ() * r.getW()) + (getW() * r.getZ()) + (getX() * r.getY()) - (getY() * r.getX());
+        const float _w = (getW() * r.getW()) - (getX() * r.getX()) - (getY() * r.getY()) - (getZ() * r.getZ());
+        
+        return Quaternion(_x, _y, _z, _w);
+    }
+
+    inline Quaternion operator*(const Vector3f &v) const
+    {
+        const float _x =  (getW() * v.getX()) + (getY() * v.getZ()) - (getZ() * v.getY());
+        const float _y =  (getW() * v.getY()) + (getZ() * v.getX()) - (getX() * v.getZ());
+        const float _z =  (getW() * v.getZ()) + (getX() * v.getY()) - (getY() * v.getX());
+        const float _w = -(getX() * v.getX()) - (getY() * v.getY()) - (getZ() * v.getZ());
+        
+        return Quaternion(_x, _y, _z, _w);
+    }
+    
+    inline Quaternion operator*=(const Quaternion &r)
+    {
+        *this = this->operator*(r);
+        return *this;
+    }
 protected:
 private:
 };

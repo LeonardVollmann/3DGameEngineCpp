@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D766CCAF19E9769700DA8B1A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D766CCAE19E9769700DA8B1A /* main.cpp */; };
+		D7BA516019EFD5FD003D092E /* math.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D7BA515F19EFD5FD003D092E /* math.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -26,6 +27,7 @@
 		D766CCAB19E9769700DA8B1A /* GameEngine3D */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = GameEngine3D; sourceTree = BUILT_PRODUCTS_DIR; };
 		D766CCAE19E9769700DA8B1A /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		D766CCB619E979EE00DA8B1A /* math.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = math.h; sourceTree = "<group>"; };
+		D7BA515F19EFD5FD003D092E /* math.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = math.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 			children = (
 				D766CCAE19E9769700DA8B1A /* main.cpp */,
 				D766CCB619E979EE00DA8B1A /* math.h */,
+				D7BA515F19EFD5FD003D092E /* math.cpp */,
 			);
 			path = GameEngine3D;
 			sourceTree = "<group>";
@@ -121,6 +124,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D766CCAF19E9769700DA8B1A /* main.cpp in Sources */,
+				D7BA516019EFD5FD003D092E /* math.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -234,6 +238,7 @@
 				D766CCB419E9769700DA8B1A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
