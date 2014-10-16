@@ -451,7 +451,7 @@ public:
         return *this;
     }
     
-    inline Matrix<T, D> initScale(const Vector<T, D> &r)
+    inline Matrix<T, D> initScale(const Vector<T, D - 1> &r)
     {
         for (unsigned int i = 0; i < D; i++) {
             for (unsigned int j = 0; j < D; j++) {
@@ -559,6 +559,22 @@ public:
                 }
             }
         }
+    }
+    
+    inline Matrix3<T> initRotation(const Vector3<T> &v, float angle)
+    {
+        const float sinAngle = sinf(angle);
+        const float cosAngle = cosf(angle);
+        
+        const float xsqr = v.getX() * v.getX();
+        const float ysqr = v.getY() * v.getY();
+        const float zsqr = v.getZ() * v.getZ();
+        
+        (*this)[0][0] = cosAngle + xsqr * (1 - cosAngle); (*this)[0][1] = v.getX() * v.getY() * (1 - cosAngle) - v.getZ() * sinAngle; (*this)[0][2] = v.getX() * v.getZ() * (1 - cosAngle) + v.getY() * sinAngle;
+        (*this)[1][0] = v.getY() * v.getX() * (1 - cosAngle) + v.getU() * sinAngle; (*this)[1][1] = cosAngle + ysqr * (1 - cosAngle); (*this)[1][2] = v.getY() * v.getZ() * (1 - cosAngle) - v.getX() * sinAngle;
+        (*this)[2][0]  = v.getZ() * v.getX() * (1 - cosAngle) - v.getY() * sinAngle; (*this)[2][1] = v.getZ() * v.getY() * (1 - cosAngle) + v.getX() * sinAngle; (*this)[2][2] = cosAngle + zsqr * (1 - cosAngle);
+        
+        return *this;
     }
 protected:
 private:
