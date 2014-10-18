@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		D766CCAF19E9769700DA8B1A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D766CCAE19E9769700DA8B1A /* main.cpp */; };
 		D7BA516019EFD5FD003D092E /* math.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D7BA515F19EFD5FD003D092E /* math.cpp */; };
+		D7D7CC6319F2766400839843 /* window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D7D7CC6119F2766400839843 /* window.cpp */; };
+		D7D7CC6719F2991000839843 /* libGLEW.1.10.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D7D7CC6619F2991000839843 /* libGLEW.1.10.0.dylib */; };
+		D7D7CC6919F2996D00839843 /* libSDL2-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D7D7CC6819F2996D00839843 /* libSDL2-2.0.0.dylib */; };
+		D7D7CC6B19F2A52300839843 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7D7CC6A19F2A52300839843 /* OpenGL.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,6 +32,11 @@
 		D766CCAE19E9769700DA8B1A /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		D766CCB619E979EE00DA8B1A /* math.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = math.h; sourceTree = "<group>"; };
 		D7BA515F19EFD5FD003D092E /* math.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = math.cpp; sourceTree = "<group>"; };
+		D7D7CC6119F2766400839843 /* window.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = window.cpp; sourceTree = "<group>"; };
+		D7D7CC6219F2766400839843 /* window.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = window.h; sourceTree = "<group>"; };
+		D7D7CC6619F2991000839843 /* libGLEW.1.10.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libGLEW.1.10.0.dylib; path = ../../../../../../usr/local/Cellar/glew/1.10.0/lib/libGLEW.1.10.0.dylib; sourceTree = "<group>"; };
+		D7D7CC6819F2996D00839843 /* libSDL2-2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libSDL2-2.0.0.dylib"; path = "../../../../../../usr/local/Cellar/sdl2/2.0.3/lib/libSDL2-2.0.0.dylib"; sourceTree = "<group>"; };
+		D7D7CC6A19F2A52300839843 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +44,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D7D7CC6B19F2A52300839843 /* OpenGL.framework in Frameworks */,
+				D7D7CC6919F2996D00839843 /* libSDL2-2.0.0.dylib in Frameworks */,
+				D7D7CC6719F2991000839843 /* libGLEW.1.10.0.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +56,9 @@
 		D766CCA219E9769700DA8B1A = {
 			isa = PBXGroup;
 			children = (
+				D7D7CC6A19F2A52300839843 /* OpenGL.framework */,
+				D7D7CC6819F2996D00839843 /* libSDL2-2.0.0.dylib */,
+				D7D7CC6619F2991000839843 /* libGLEW.1.10.0.dylib */,
 				D766CCAD19E9769700DA8B1A /* GameEngine3D */,
 				D766CCAC19E9769700DA8B1A /* Products */,
 			);
@@ -61,6 +76,8 @@
 			isa = PBXGroup;
 			children = (
 				D766CCAE19E9769700DA8B1A /* main.cpp */,
+				D7D7CC6119F2766400839843 /* window.cpp */,
+				D7D7CC6219F2766400839843 /* window.h */,
 				D766CCB619E979EE00DA8B1A /* math.h */,
 				D7BA515F19EFD5FD003D092E /* math.cpp */,
 			);
@@ -123,6 +140,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D7D7CC6319F2766400839843 /* window.cpp in Sources */,
 				D766CCAF19E9769700DA8B1A /* main.cpp in Sources */,
 				D7BA516019EFD5FD003D092E /* math.cpp in Sources */,
 			);
@@ -208,6 +226,13 @@
 		D766CCB319E9769700DA8B1A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				HEADER_SEARCH_PATHS = /usr/local/include;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/Cellar/glfw3/3.0.4/lib,
+					/usr/local/Cellar/glew/1.10.0/lib,
+					/usr/local/Cellar/sdl2/2.0.3/lib,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -215,6 +240,13 @@
 		D766CCB419E9769700DA8B1A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				HEADER_SEARCH_PATHS = /usr/local/include;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/Cellar/glfw3/3.0.4/lib,
+					/usr/local/Cellar/glew/1.10.0/lib,
+					/usr/local/Cellar/sdl2/2.0.3/lib,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
