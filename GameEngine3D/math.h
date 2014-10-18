@@ -404,8 +404,8 @@ template <typename T, unsigned int D>
 class Matrix
 {
 public:
-    inline T operator[](unsigned int i) const { return matrix[i]; }
-    inline T &operator[](unsigned int i) { return matrix[i]; }
+    inline const T *operator[](unsigned int i) const { return matrix[i]; }
+    inline T *operator[](unsigned int i) { return matrix[i]; }
     
     inline bool operator==(const Matrix<T, D> &r) const
     {
@@ -635,6 +635,44 @@ public:
     Quaternion(const Vector3f &v, float w) :
         Quaternion(v.getX(), v.getY(), v.getZ(), w) {}
     
+    Quaternion(const Matrix3f &m)
+    {
+        const float trace = m[0][0] + m[1][1] + m[2][2];
+        
+        if (trace > 0.0f) {
+            const float s = sqrtf(trace + 1.0f);
+            setW(s * 0.5f);
+            
+            const float t = 0.5f / s;
+            setX((m[2][1] - m[1][2]) * t);
+            setY((m[0][2] - m[2][0]) * t);
+            setZ((m[1][0] - m[0][1]) * t);
+        } else {
+            int i = 0;
+            if (m[1][1] > m[0][0]) { i = 1; }
+            if (m[2][2] > m[i][i]) { i = 2; }
+            
+            static const int NEXT[3] = { 1, 2, 0 };
+            int j = NEXT[i];
+            int k = NEXT[j];
+            
+            float s = sqrtf((m[i][j] - (m[j][j] + m[k][k])) + 1.0f);
+            
+            (*this)[i] = s * 0.5f;
+            
+            float t;
+            if (s != 0.0f) {
+                t = 0.5f / s;
+            } else {
+                t = s;
+            }
+            
+            setW((m[k][j] - m[j][k]) * t);
+            (*this)[j] = (m[j][i] + m[i][j]) * t;
+            (*this)[k] = (m[k][i] + m[i][k]) * t;
+        }
+    }
+    
     inline Quaternion initFromAxisAngle(const Vector3f axis, float angle)
     {
         const float sinHalfAngle = sinf(angle / 2);
@@ -676,6 +714,21 @@ public:
     {
         *this = this->operator*(r);
         return *this;
+    }
+    
+    inline Matrix3f toRotationMatrix() const
+    {
+        Matrix3f m;
+        
+        const float xsqr2 = this->getX() * this->getX() * 2;
+        const float ysqr2 = this->getY() * this->getY() * 2;
+        const float zsqr2 = this->getZ() * this->getZ() * 2;
+        
+        m.set(0, 0, 1 - ysqr2 - zsqr2); m.set(0, 1, 2 * getX() * getY() + 2 * getZ() * getW()); m.set(0, 2, 2 * getX() * getZ() - 2 * getY() * getW());
+        m.set(1, 0, 2 * getX() * getY() - 2 * getZ() * getW()); m.set(1, 1, 1 - xsqr2 - zsqr2); m.set(1, 2, 2 * getY() * getZ() + 2 * getX() * getW());
+        m.set(2, 0, 2 * getX() * getZ() + 2 * getY() * getW()); m.set(2, 1, 2 * getY() * getZ() - 2 * getX() * getW()); m.set(2, 2, 1 - xsqr2 - ysqr2);
+        
+        return m;
     }
 protected:
 private:
