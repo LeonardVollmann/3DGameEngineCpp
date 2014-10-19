@@ -9,8 +9,12 @@
 #ifndef __GameEngine3D__window__
 #define __GameEngine3D__window__
 
+#include "input.h"
+
 #include <string>
 #include <SDL2/SDL.h>
+
+class Input;
 
 class Window
 {
@@ -21,19 +25,23 @@ public:
     void update();
     void clear(float r, float g, float b, float a);
     
-    inline bool isClosed() const               { return m_closed; }
+    inline bool isClosed()               const { return m_closed; }
     inline const std::string &getTitle() const { return m_title; }
-    inline unsigned int getWidth() const       { return m_width; }
-    inline unsigned int getHeight() const      { return m_height; }
-    inline float getAspectRatio() const        { return (float)m_width / (float)m_height; }
+    inline unsigned int getWidth()       const { return m_width; }
+    inline unsigned int getHeight()      const { return m_height; }
+    inline float getAspectRatio()        const { return (float)m_width / (float)m_height; }
+    inline SDL_Window *getWindow()       const { return m_window; }
+    inline const Input &getInput()       const { return m_input; }
 protected:
 private:
-    std::string m_title;
+    std::string  m_title;
     unsigned int m_width;
     unsigned int m_height;
     
-    SDL_Window *m_window;
+    SDL_Window   *m_window;
     SDL_GLContext m_glContext;
+    
+    Input m_input;
     
     bool m_closed;
 };
