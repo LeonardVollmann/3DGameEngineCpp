@@ -398,7 +398,7 @@ public:
     inline void setMouseUp(unsigned int index, bool value)     { m_mouseUps[index] = value; }
     inline void setMousePosition(int x, int y)                 { m_mouseX = x; m_mouseY = y; }
     
-    void setMouseVisible(bool value);
+    void setMouseVisible(bool value) const;
 protected:
 private:
     bool    m_keys[NUM_KEYS];
