@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D757EC9219FABA1E00666E18 /* core_engine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D757EC9019FABA1E00666E18 /* core_engine.cpp */; };
 		D766CCAF19E9769700DA8B1A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D766CCAE19E9769700DA8B1A /* main.cpp */; };
 		D7BA516019EFD5FD003D092E /* math.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D7BA515F19EFD5FD003D092E /* math.cpp */; };
+		D7D66DFD19F582A600BF522C /* mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D7D66DFB19F582A600BF522C /* mesh.cpp */; };
 		D7D7CC6319F2766400839843 /* window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D7D7CC6119F2766400839843 /* window.cpp */; };
 		D7D7CC6719F2991000839843 /* libGLEW.1.10.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D7D7CC6619F2991000839843 /* libGLEW.1.10.0.dylib */; };
 		D7D7CC6919F2996D00839843 /* libSDL2-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D7D7CC6819F2996D00839843 /* libSDL2-2.0.0.dylib */; };
@@ -29,10 +31,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		D757EC9019FABA1E00666E18 /* core_engine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = core_engine.cpp; sourceTree = "<group>"; };
+		D757EC9119FABA1E00666E18 /* core_engine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = core_engine.h; sourceTree = "<group>"; };
 		D766CCAB19E9769700DA8B1A /* GameEngine3D */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = GameEngine3D; sourceTree = BUILT_PRODUCTS_DIR; };
 		D766CCAE19E9769700DA8B1A /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		D766CCB619E979EE00DA8B1A /* math.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = math.h; sourceTree = "<group>"; };
+		D7ABB3B719FACB2900DBCC08 /* time.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = time.h; sourceTree = "<group>"; };
 		D7BA515F19EFD5FD003D092E /* math.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = math.cpp; sourceTree = "<group>"; };
+		D7D66DFB19F582A600BF522C /* mesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mesh.cpp; sourceTree = "<group>"; };
+		D7D66DFC19F582A600BF522C /* mesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mesh.h; sourceTree = "<group>"; };
 		D7D7CC6119F2766400839843 /* window.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = window.cpp; sourceTree = "<group>"; };
 		D7D7CC6219F2766400839843 /* window.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = window.h; sourceTree = "<group>"; };
 		D7D7CC6619F2991000839843 /* libGLEW.1.10.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libGLEW.1.10.0.dylib; path = ../../../../../../usr/local/Cellar/glew/1.10.0/lib/libGLEW.1.10.0.dylib; sourceTree = "<group>"; };
@@ -78,12 +85,17 @@
 		D766CCAD19E9769700DA8B1A /* GameEngine3D */ = {
 			isa = PBXGroup;
 			children = (
+				D757EC9019FABA1E00666E18 /* core_engine.cpp */,
 				D7D7CC6C19F2B79500839843 /* input.cpp */,
 				D766CCAE19E9769700DA8B1A /* main.cpp */,
 				D7BA515F19EFD5FD003D092E /* math.cpp */,
+				D7D66DFB19F582A600BF522C /* mesh.cpp */,
 				D7D7CC6119F2766400839843 /* window.cpp */,
+				D757EC9119FABA1E00666E18 /* core_engine.h */,
 				D7D7CC6D19F2B79500839843 /* input.h */,
 				D766CCB619E979EE00DA8B1A /* math.h */,
+				D7D66DFC19F582A600BF522C /* mesh.h */,
+				D7ABB3B719FACB2900DBCC08 /* time.h */,
 				D7D7CC6219F2766400839843 /* window.h */,
 			);
 			path = GameEngine3D;
@@ -147,7 +159,9 @@
 			files = (
 				D7D7CC6319F2766400839843 /* window.cpp in Sources */,
 				D766CCAF19E9769700DA8B1A /* main.cpp in Sources */,
+				D757EC9219FABA1E00666E18 /* core_engine.cpp in Sources */,
 				D7D7CC6E19F2B79500839843 /* input.cpp in Sources */,
+				D7D66DFD19F582A600BF522C /* mesh.cpp in Sources */,
 				D7BA516019EFD5FD003D092E /* math.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

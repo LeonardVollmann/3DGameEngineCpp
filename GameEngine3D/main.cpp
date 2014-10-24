@@ -9,21 +9,14 @@
 #include "math.h"
 #include "window.h"
 #include "input.h"
+#include "core_engine.h"
 
 #include <iostream>
 #include <GL/glew.h>
 
 int main(int argc, const char * argv[]) {
     Window window = Window("3D Game Engine", 800, 600);
-    window.getInput().setMouseVisible(false);
-    while (!window.isClosed()) {
-        window.clear(1, 0, 1, 1);
-        window.update();
-//        if (window.getInput().getKey(Input::KEY_A)) {
-//            std::cout << "Pressed A!" << std::endl;
-//        }
-        std::cout << window.getInput().getMousePosition()[0] << ", " << window.getInput().getMousePosition()[1] << std::endl;
-        window.getInput().warpMouse(400, 300);
-    }
+    CoreEngine engine = CoreEngine(60, &window);
+    engine.start();
     return 0;
 }
