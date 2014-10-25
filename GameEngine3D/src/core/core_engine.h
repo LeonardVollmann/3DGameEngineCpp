@@ -11,7 +11,6 @@
 
 #include "window.h"
 #include "rendering_engine.h"
-#include "mesh.h"
 
 class CoreEngine
 {

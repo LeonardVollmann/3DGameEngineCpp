@@ -7,55 +7,56 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D7ABB3F419FBACED00DBCC08 /* core_engine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D7ABB3E619FBACED00DBCC08 /* core_engine.cpp */; };
-		D7ABB3F519FBACED00DBCC08 /* input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D7ABB3E819FBACED00DBCC08 /* input.cpp */; };
 		D7ABB3F619FBACED00DBCC08 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D7ABB3EA19FBACED00DBCC08 /* main.cpp */; };
-		D7ABB3F719FBACED00DBCC08 /* math.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D7ABB3EB19FBACED00DBCC08 /* math.cpp */; };
-		D7ABB3F819FBACED00DBCC08 /* mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D7ABB3ED19FBACED00DBCC08 /* mesh.cpp */; };
-		D7ABB3F919FBACED00DBCC08 /* shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D7ABB3EF19FBACED00DBCC08 /* shader.cpp */; };
-		D7ABB3FA19FBACED00DBCC08 /* window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D7ABB3F219FBACED00DBCC08 /* window.cpp */; };
-		D7ABB40619FBB89500DBCC08 /* basicShader.fs in CopyFiles */ = {isa = PBXBuildFile; fileRef = D7ABB3FD19FBACF600DBCC08 /* basicShader.fs */; };
-		D7ABB40719FBB89500DBCC08 /* basicShader.vs in CopyFiles */ = {isa = PBXBuildFile; fileRef = D7ABB3FE19FBACF600DBCC08 /* basicShader.vs */; };
-		D7ABB40A19FBBD3900DBCC08 /* rendering_engine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D7ABB40819FBBD3900DBCC08 /* rendering_engine.cpp */; };
+		D7ABB40619FBB89500DBCC08 /* basicShader.fs in Copy Files */ = {isa = PBXBuildFile; fileRef = D7ABB3FD19FBACF600DBCC08 /* basicShader.fs */; };
+		D7ABB40719FBB89500DBCC08 /* basicShader.vs in Copy Files */ = {isa = PBXBuildFile; fileRef = D7ABB3FE19FBACF600DBCC08 /* basicShader.vs */; };
+		D7ABB42319FBD73100DBCC08 /* core_engine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D7ABB41219FBD73100DBCC08 /* core_engine.cpp */; };
+		D7ABB42419FBD73100DBCC08 /* input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D7ABB41419FBD73100DBCC08 /* input.cpp */; };
+		D7ABB42519FBD73100DBCC08 /* math.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D7ABB41619FBD73100DBCC08 /* math.cpp */; };
+		D7ABB42619FBD73100DBCC08 /* mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D7ABB41B19FBD73100DBCC08 /* mesh.cpp */; };
+		D7ABB42719FBD73100DBCC08 /* rendering_engine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D7ABB41D19FBD73100DBCC08 /* rendering_engine.cpp */; };
+		D7ABB42819FBD73100DBCC08 /* shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D7ABB41F19FBD73100DBCC08 /* shader.cpp */; };
+		D7ABB42919FBD73100DBCC08 /* window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D7ABB42119FBD73100DBCC08 /* window.cpp */; };
 		D7D7CC6719F2991000839843 /* libGLEW.1.10.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D7D7CC6619F2991000839843 /* libGLEW.1.10.0.dylib */; };
 		D7D7CC6919F2996D00839843 /* libSDL2-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D7D7CC6819F2996D00839843 /* libSDL2-2.0.0.dylib */; };
 		D7D7CC6B19F2A52300839843 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7D7CC6A19F2A52300839843 /* OpenGL.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		D7ABB40519FBB88100DBCC08 /* CopyFiles */ = {
+		D7ABB40519FBB88100DBCC08 /* Copy Files */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = ./res;
 			dstSubfolderSpec = 7;
 			files = (
-				D7ABB40619FBB89500DBCC08 /* basicShader.fs in CopyFiles */,
-				D7ABB40719FBB89500DBCC08 /* basicShader.vs in CopyFiles */,
+				D7ABB40619FBB89500DBCC08 /* basicShader.fs in Copy Files */,
+				D7ABB40719FBB89500DBCC08 /* basicShader.vs in Copy Files */,
 			);
+			name = "Copy Files";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		D766CCAB19E9769700DA8B1A /* GameEngine3D */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = GameEngine3D; sourceTree = BUILT_PRODUCTS_DIR; };
-		D7ABB3E619FBACED00DBCC08 /* core_engine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = core_engine.cpp; sourceTree = "<group>"; };
-		D7ABB3E719FBACED00DBCC08 /* core_engine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = core_engine.h; sourceTree = "<group>"; };
-		D7ABB3E819FBACED00DBCC08 /* input.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = input.cpp; sourceTree = "<group>"; };
-		D7ABB3E919FBACED00DBCC08 /* input.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = input.h; sourceTree = "<group>"; };
 		D7ABB3EA19FBACED00DBCC08 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		D7ABB3EB19FBACED00DBCC08 /* math.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = math.cpp; sourceTree = "<group>"; };
-		D7ABB3EC19FBACED00DBCC08 /* math.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = math.h; sourceTree = "<group>"; };
-		D7ABB3ED19FBACED00DBCC08 /* mesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mesh.cpp; sourceTree = "<group>"; };
-		D7ABB3EE19FBACED00DBCC08 /* mesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mesh.h; sourceTree = "<group>"; };
-		D7ABB3EF19FBACED00DBCC08 /* shader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = shader.cpp; sourceTree = "<group>"; };
-		D7ABB3F019FBACED00DBCC08 /* shader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shader.h; sourceTree = "<group>"; };
-		D7ABB3F119FBACED00DBCC08 /* time.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = time.h; sourceTree = "<group>"; };
-		D7ABB3F219FBACED00DBCC08 /* window.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = window.cpp; sourceTree = "<group>"; };
-		D7ABB3F319FBACED00DBCC08 /* window.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = window.h; sourceTree = "<group>"; };
 		D7ABB3FD19FBACF600DBCC08 /* basicShader.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = basicShader.fs; sourceTree = "<group>"; };
 		D7ABB3FE19FBACF600DBCC08 /* basicShader.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = basicShader.vs; sourceTree = "<group>"; };
-		D7ABB40819FBBD3900DBCC08 /* rendering_engine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rendering_engine.cpp; sourceTree = "<group>"; };
-		D7ABB40919FBBD3900DBCC08 /* rendering_engine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rendering_engine.h; sourceTree = "<group>"; };
+		D7ABB41219FBD73100DBCC08 /* core_engine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = core_engine.cpp; sourceTree = "<group>"; };
+		D7ABB41319FBD73100DBCC08 /* core_engine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = core_engine.h; sourceTree = "<group>"; };
+		D7ABB41419FBD73100DBCC08 /* input.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = input.cpp; sourceTree = "<group>"; };
+		D7ABB41519FBD73100DBCC08 /* input.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = input.h; sourceTree = "<group>"; };
+		D7ABB41619FBD73100DBCC08 /* math.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = math.cpp; sourceTree = "<group>"; };
+		D7ABB41719FBD73100DBCC08 /* math.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = math.h; sourceTree = "<group>"; };
+		D7ABB41819FBD73100DBCC08 /* time.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = time.h; sourceTree = "<group>"; };
+		D7ABB41B19FBD73100DBCC08 /* mesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mesh.cpp; sourceTree = "<group>"; };
+		D7ABB41C19FBD73100DBCC08 /* mesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mesh.h; sourceTree = "<group>"; };
+		D7ABB41D19FBD73100DBCC08 /* rendering_engine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rendering_engine.cpp; sourceTree = "<group>"; };
+		D7ABB41E19FBD73100DBCC08 /* rendering_engine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rendering_engine.h; sourceTree = "<group>"; };
+		D7ABB41F19FBD73100DBCC08 /* shader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = shader.cpp; sourceTree = "<group>"; };
+		D7ABB42019FBD73100DBCC08 /* shader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shader.h; sourceTree = "<group>"; };
+		D7ABB42119FBD73100DBCC08 /* window.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = window.cpp; sourceTree = "<group>"; };
+		D7ABB42219FBD73100DBCC08 /* window.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = window.h; sourceTree = "<group>"; };
 		D7D7CC6619F2991000839843 /* libGLEW.1.10.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libGLEW.1.10.0.dylib; path = ../../../../../../usr/local/Cellar/glew/1.10.0/lib/libGLEW.1.10.0.dylib; sourceTree = "<group>"; };
 		D7D7CC6819F2996D00839843 /* libSDL2-2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libSDL2-2.0.0.dylib"; path = "../../../../../../usr/local/Cellar/sdl2/2.0.3/lib/libSDL2-2.0.0.dylib"; sourceTree = "<group>"; };
 		D7D7CC6A19F2A52300839843 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
@@ -106,22 +107,10 @@
 		D7ABB3E519FBACED00DBCC08 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				D7ABB3E619FBACED00DBCC08 /* core_engine.cpp */,
-				D7ABB3E819FBACED00DBCC08 /* input.cpp */,
+				D7ABB41119FBD73100DBCC08 /* core */,
+				D7ABB41919FBD73100DBCC08 /* physics */,
+				D7ABB41A19FBD73100DBCC08 /* rendering */,
 				D7ABB3EA19FBACED00DBCC08 /* main.cpp */,
-				D7ABB3EB19FBACED00DBCC08 /* math.cpp */,
-				D7ABB3ED19FBACED00DBCC08 /* mesh.cpp */,
-				D7ABB40819FBBD3900DBCC08 /* rendering_engine.cpp */,
-				D7ABB3EF19FBACED00DBCC08 /* shader.cpp */,
-				D7ABB3F219FBACED00DBCC08 /* window.cpp */,
-				D7ABB3E719FBACED00DBCC08 /* core_engine.h */,
-				D7ABB3E919FBACED00DBCC08 /* input.h */,
-				D7ABB3EC19FBACED00DBCC08 /* math.h */,
-				D7ABB3EE19FBACED00DBCC08 /* mesh.h */,
-				D7ABB40919FBBD3900DBCC08 /* rendering_engine.h */,
-				D7ABB3F019FBACED00DBCC08 /* shader.h */,
-				D7ABB3F119FBACED00DBCC08 /* time.h */,
-				D7ABB3F319FBACED00DBCC08 /* window.h */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -143,6 +132,42 @@
 			path = shaders;
 			sourceTree = "<group>";
 		};
+		D7ABB41119FBD73100DBCC08 /* core */ = {
+			isa = PBXGroup;
+			children = (
+				D7ABB41219FBD73100DBCC08 /* core_engine.cpp */,
+				D7ABB41319FBD73100DBCC08 /* core_engine.h */,
+				D7ABB41419FBD73100DBCC08 /* input.cpp */,
+				D7ABB41519FBD73100DBCC08 /* input.h */,
+				D7ABB41619FBD73100DBCC08 /* math.cpp */,
+				D7ABB41719FBD73100DBCC08 /* math.h */,
+				D7ABB41819FBD73100DBCC08 /* time.h */,
+			);
+			path = core;
+			sourceTree = "<group>";
+		};
+		D7ABB41919FBD73100DBCC08 /* physics */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = physics;
+			sourceTree = "<group>";
+		};
+		D7ABB41A19FBD73100DBCC08 /* rendering */ = {
+			isa = PBXGroup;
+			children = (
+				D7ABB41B19FBD73100DBCC08 /* mesh.cpp */,
+				D7ABB41C19FBD73100DBCC08 /* mesh.h */,
+				D7ABB41D19FBD73100DBCC08 /* rendering_engine.cpp */,
+				D7ABB41E19FBD73100DBCC08 /* rendering_engine.h */,
+				D7ABB41F19FBD73100DBCC08 /* shader.cpp */,
+				D7ABB42019FBD73100DBCC08 /* shader.h */,
+				D7ABB42119FBD73100DBCC08 /* window.cpp */,
+				D7ABB42219FBD73100DBCC08 /* window.h */,
+			);
+			path = rendering;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -152,7 +177,7 @@
 			buildPhases = (
 				D766CCA719E9769700DA8B1A /* Sources */,
 				D766CCA819E9769700DA8B1A /* Frameworks */,
-				D7ABB40519FBB88100DBCC08 /* CopyFiles */,
+				D7ABB40519FBB88100DBCC08 /* Copy Files */,
 			);
 			buildRules = (
 			);
@@ -199,14 +224,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D7ABB40A19FBBD3900DBCC08 /* rendering_engine.cpp in Sources */,
-				D7ABB3F919FBACED00DBCC08 /* shader.cpp in Sources */,
-				D7ABB3F519FBACED00DBCC08 /* input.cpp in Sources */,
-				D7ABB3F419FBACED00DBCC08 /* core_engine.cpp in Sources */,
-				D7ABB3FA19FBACED00DBCC08 /* window.cpp in Sources */,
+				D7ABB42819FBD73100DBCC08 /* shader.cpp in Sources */,
+				D7ABB42319FBD73100DBCC08 /* core_engine.cpp in Sources */,
 				D7ABB3F619FBACED00DBCC08 /* main.cpp in Sources */,
-				D7ABB3F819FBACED00DBCC08 /* mesh.cpp in Sources */,
-				D7ABB3F719FBACED00DBCC08 /* math.cpp in Sources */,
+				D7ABB42919FBD73100DBCC08 /* window.cpp in Sources */,
+				D7ABB42419FBD73100DBCC08 /* input.cpp in Sources */,
+				D7ABB42619FBD73100DBCC08 /* mesh.cpp in Sources */,
+				D7ABB42719FBD73100DBCC08 /* rendering_engine.cpp in Sources */,
+				D7ABB42519FBD73100DBCC08 /* math.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
