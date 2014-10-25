@@ -11,10 +11,11 @@
 
 #include <iostream>
 
-CoreEngine::CoreEngine(double fps, Window *window) :
+CoreEngine::CoreEngine(double fps, Window *window, RenderingEngine *renderingEngine) :
     m_frameTime(1.0 / fps),
     m_running(false),
-    m_window(window)
+    m_window(window),
+    m_renderingEngine(renderingEngine)
 {}
 
 void CoreEngine::start()
@@ -22,7 +23,7 @@ void CoreEngine::start()
     m_running = true;
     
     unsigned int frames = 0;
-    double frameCounterTime = 0;
+    double frameCounterTime = 0.0;
     double time_0 = Time::getTime();
     double time_1;
     double delta;
@@ -32,7 +33,7 @@ void CoreEngine::start()
             stop();
             continue;
         }
-        
+
         time_1 = Time::getTime();
         delta = time_1 - time_0;
         time_0 = time_1;
@@ -70,5 +71,7 @@ void CoreEngine::update()
 
 void CoreEngine::render()
 {
+    m_window->clear(0.0f, 0.0f, 0.0f, 1.0f);
+    
     m_window->update();
 }
