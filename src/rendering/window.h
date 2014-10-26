@@ -9,7 +9,7 @@
 #ifndef __GameEngine3D__window__
 #define __GameEngine3D__window__
 
-#include "input.h"
+#include "../core/input.h"
 
 #include <string>
 #include <SDL2/SDL.h>

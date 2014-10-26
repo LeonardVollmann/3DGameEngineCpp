@@ -59,6 +59,7 @@ Mesh::~Mesh()
 void Mesh::draw() const
 {
     glBindVertexArray(m_vertexArrayObject);
-//    glBindBuffer(GL_ARRAY_BUFFER, m_vertexArrayBuffers[BUFFER_INDEX]);
-    glDrawElements(GL_TRIANGLES, 1, GL_UNSIGNED_INT, m_model.getIndicesByPointer());
+    glBindBuffer(GL_ARRAY_BUFFER, m_vertexArrayBuffers[BUFFER_INDEX]);
+//    glDrawElements(GL_TRIANGLES, 1, GL_UNSIGNED_INT, m_model.getIndicesByPointer());
+	glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0);
 }

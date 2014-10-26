@@ -7,7 +7,7 @@
 //
 
 #include "input.h"
-#include "window.h"
+#include "../rendering/window.h"
 
 #include <SDL2/SDL.h>
 

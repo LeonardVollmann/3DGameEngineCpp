@@ -6,6 +6,50 @@
 
 #IncludeRegexTransform: 
 
+/Users/Leonard/Documents/Programming/C++/GameEngine3D/src/./core/core_engine.h
+../rendering/window.h
+/Users/Leonard/Documents/Programming/C++/GameEngine3D/src/./rendering/window.h
+../rendering/rendering_engine.h
+/Users/Leonard/Documents/Programming/C++/GameEngine3D/src/./rendering/rendering_engine.h
+
+/Users/Leonard/Documents/Programming/C++/GameEngine3D/src/./core/input.h
+math.h
+/Users/Leonard/Documents/Programming/C++/GameEngine3D/src/./core/math.h
+
+/Users/Leonard/Documents/Programming/C++/GameEngine3D/src/./core/math.h
+cmath
+-
+
+/Users/Leonard/Documents/Programming/C++/GameEngine3D/src/./rendering/mesh.h
+../core/math.h
+/Users/Leonard/Documents/Programming/C++/GameEngine3D/src/./core/math.h
+shader.h
+/Users/Leonard/Documents/Programming/C++/GameEngine3D/src/./rendering/shader.h
+GL/glew.h
+-
+vector
+-
+
+/Users/Leonard/Documents/Programming/C++/GameEngine3D/src/./rendering/rendering_engine.h
+mesh.h
+/Users/Leonard/Documents/Programming/C++/GameEngine3D/src/./rendering/mesh.h
+shader.h
+/Users/Leonard/Documents/Programming/C++/GameEngine3D/src/./rendering/shader.h
+
+/Users/Leonard/Documents/Programming/C++/GameEngine3D/src/./rendering/shader.h
+string
+-
+GL/glew.h
+-
+
+/Users/Leonard/Documents/Programming/C++/GameEngine3D/src/./rendering/window.h
+../core/input.h
+/Users/Leonard/Documents/Programming/C++/GameEngine3D/src/./core/input.h
+string
+-
+SDL2/SDL.h
+-
+
 /Users/Leonard/Documents/Programming/C++/GameEngine3D/src/core/core_engine.cpp
 core_engine.h
 /Users/Leonard/Documents/Programming/C++/GameEngine3D/src/core/core_engine.h
@@ -15,24 +59,12 @@ iostream
 -
 
 /Users/Leonard/Documents/Programming/C++/GameEngine3D/src/core/core_engine.h
-window.h
-/Users/Leonard/Documents/Programming/C++/GameEngine3D/src/core/window.h
-rendering_engine.h
-/Users/Leonard/Documents/Programming/C++/GameEngine3D/src/core/rendering_engine.h
-
-/Users/Leonard/Documents/Programming/C++/GameEngine3D/src/core/input.cpp
-input.h
-/Users/Leonard/Documents/Programming/C++/GameEngine3D/src/core/input.h
-window.h
-/Users/Leonard/Documents/Programming/C++/GameEngine3D/src/core/window.h
-SDL2/SDL.h
--
+../rendering/window.h
+/Users/Leonard/Documents/Programming/C++/GameEngine3D/src/rendering/window.h
+../rendering/rendering_engine.h
+/Users/Leonard/Documents/Programming/C++/GameEngine3D/src/rendering/rendering_engine.h
 
 /Users/Leonard/Documents/Programming/C++/GameEngine3D/src/core/input.h
-math.h
-/Users/Leonard/Documents/Programming/C++/GameEngine3D/src/core/math.h
-
-/Users/Leonard/Documents/Programming/C++/GameEngine3D/src/core/math.cpp
 math.h
 /Users/Leonard/Documents/Programming/C++/GameEngine3D/src/core/math.h
 
@@ -45,16 +77,16 @@ chrono
 -
 
 /Users/Leonard/Documents/Programming/C++/GameEngine3D/src/main.cpp
-math.h
-/Users/Leonard/Documents/Programming/C++/GameEngine3D/src/math.h
-window.h
-/Users/Leonard/Documents/Programming/C++/GameEngine3D/src/window.h
-input.h
-/Users/Leonard/Documents/Programming/C++/GameEngine3D/src/input.h
-core_engine.h
-/Users/Leonard/Documents/Programming/C++/GameEngine3D/src/core_engine.h
-shader.h
-/Users/Leonard/Documents/Programming/C++/GameEngine3D/src/shader.h
+./core/math.h
+/Users/Leonard/Documents/Programming/C++/GameEngine3D/src/./core/math.h
+./core/input.h
+/Users/Leonard/Documents/Programming/C++/GameEngine3D/src/./core/input.h
+./core/core_engine.h
+/Users/Leonard/Documents/Programming/C++/GameEngine3D/src/./core/core_engine.h
+./rendering/shader.h
+/Users/Leonard/Documents/Programming/C++/GameEngine3D/src/./rendering/shader.h
+./rendering/window.h
+/Users/Leonard/Documents/Programming/C++/GameEngine3D/src/./rendering/window.h
 iostream
 -
 GL/glew.h
@@ -65,8 +97,8 @@ mesh.h
 /Users/Leonard/Documents/Programming/C++/GameEngine3D/src/rendering/mesh.h
 
 /Users/Leonard/Documents/Programming/C++/GameEngine3D/src/rendering/mesh.h
-math.h
-/Users/Leonard/Documents/Programming/C++/GameEngine3D/src/rendering/math.h
+../core/math.h
+/Users/Leonard/Documents/Programming/C++/GameEngine3D/src/core/math.h
 shader.h
 /Users/Leonard/Documents/Programming/C++/GameEngine3D/src/rendering/shader.h
 GL/glew.h
@@ -98,17 +130,9 @@ string
 GL/glew.h
 -
 
-/Users/Leonard/Documents/Programming/C++/GameEngine3D/src/rendering/window.cpp
-window.h
 /Users/Leonard/Documents/Programming/C++/GameEngine3D/src/rendering/window.h
-GL/glew.h
--
-iostream
--
-
-/Users/Leonard/Documents/Programming/C++/GameEngine3D/src/rendering/window.h
-input.h
-/Users/Leonard/Documents/Programming/C++/GameEngine3D/src/rendering/input.h
+../core/input.h
+/Users/Leonard/Documents/Programming/C++/GameEngine3D/src/core/input.h
 string
 -
 SDL2/SDL.h

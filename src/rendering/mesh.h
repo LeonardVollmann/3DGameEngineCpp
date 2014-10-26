@@ -9,7 +9,7 @@
 #ifndef __GameEngine3D__mesh__
 #define __GameEngine3D__mesh__
 
-#include "math.h"
+#include "../core/math.h"
 #include "shader.h"
 
 #include <GL/glew.h>
@@ -23,10 +23,10 @@ public:
     void addVertex(const Vector3f &vertex);
     void addFace(const Vector3i &indices);
     
-    inline const std::vector<Vector3f> &getVertices()             const { return m_vertices; }
-    inline const std::vector<unsigned int> &getIndices()          const { return m_indices; }
-    inline const Vector3f *getVerticesByPointer()    const { return &m_vertices[0]; }
-    inline const unsigned int *getIndicesByPointer() const { return &m_indices[0]; }
+    inline const std::vector<Vector3f> &getVertices()    const { return m_vertices; }
+    inline const std::vector<unsigned int> &getIndices() const { return m_indices; }
+    inline const Vector3f *getVerticesByPointer()        const { return &m_vertices[0]; }
+    inline const unsigned int *getIndicesByPointer() 	 const { return &m_indices[0]; }
 protected:
 private:
     std::vector<Vector3f> m_vertices;

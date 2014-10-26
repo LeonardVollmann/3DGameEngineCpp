@@ -9,8 +9,8 @@
 #ifndef __GameEngine3D__core_engine__
 #define __GameEngine3D__core_engine__
 
-#include "window.h"
-#include "rendering_engine.h"
+#include "../rendering/window.h"
+#include "../rendering/rendering_engine.h"
 
 class CoreEngine
 {

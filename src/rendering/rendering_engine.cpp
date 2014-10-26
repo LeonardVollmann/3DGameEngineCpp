@@ -9,7 +9,7 @@
 #include "rendering_engine.h"
 
 RenderingEngine::RenderingEngine() :
-    m_basicShader(Shader("./res/basicShader"))
+    m_basicShader(Shader("./res/shaders/basicShader"))
 {}
 
 void RenderingEngine::render(const Mesh &mesh)
