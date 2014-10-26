@@ -8,6 +8,7 @@
 
 #include "core_engine.h"
 #include "time.h"
+#include "math.h"
 
 #include <iostream>
 
@@ -20,6 +21,13 @@ CoreEngine::CoreEngine(double fps, Window *window, RenderingEngine *renderingEng
 
 void CoreEngine::start()
 {
+    IndexedModel model = IndexedModel();
+    model.addVertex(Vector3f(0.0f, 0.5f, 0.0f));
+    model.addVertex(Vector3f(-0.5f, -0.5f, 0.0f));
+    model.addVertex(Vector3f(0.5f, -0.5f, 0.0f));
+    model.addFace(Vector3i(0, 1, 2));
+    m_testMesh = Mesh(model);
+
     m_running = true;
     
     unsigned int frames = 0;
@@ -73,5 +81,7 @@ void CoreEngine::render()
 {
     m_window->clear(0.0f, 0.0f, 0.0f, 1.0f);
     
+    m_renderingEngine->render(m_testMesh);
+
     m_window->update();
 }

@@ -9,11 +9,11 @@
 #include "rendering_engine.h"
 
 RenderingEngine::RenderingEngine() :
-    m_basicShader(Shader("./res/shaders/basicShader"))
+    m_basicShader("./res/shaders/basicShader")
 {}
 
 void RenderingEngine::render(const Mesh &mesh)
 {
-    m_basicShader.bind();
+	m_basicShader.bind();
     mesh.draw();
 }

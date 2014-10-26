@@ -35,31 +35,32 @@ Mesh::Mesh(IndexedModel indexedModel) :
     m_model(indexedModel)
 {
     glGenVertexArrays(1, &m_vertexArrayObject);
+    glBindVertexArray(m_vertexArrayObject);
+
     glGenBuffers(NUM_BUFFERS, m_vertexArrayBuffers);
     
     glBindBuffer(GL_ARRAY_BUFFER, m_vertexArrayBuffers[BUFFER_VERTEX]);
-    glBufferData(GL_ARRAY_BUFFER, m_model.getVertices().size() * sizeof(Vector3f), m_model.getVerticesByPointer(), GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, m_model.getNumVertices() * sizeof(Vector3f), m_model.getVerticesByPointer(), GL_STATIC_DRAW);
 
     glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void *)0);
     
-    glBindBuffer(GL_ARRAY_BUFFER, m_vertexArrayBuffers[BUFFER_INDEX]);
-    glBufferData(GL_ARRAY_BUFFER, m_model.getIndices().size() * sizeof(unsigned int), m_model.getIndicesByPointer(), GL_STATIC_DRAW);
-    
-    glEnableVertexAttribArray(1);
-    glVertexAttribPointer(0, 1, GL_UNSIGNED_INT, GL_FALSE, 0, 0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_vertexArrayBuffers[BUFFER_INDEX]);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, m_model.getNumIndices() * sizeof(unsigned int), m_model.getIndicesByPointer(), GL_STATIC_DRAW);
 }
 
-Mesh::~Mesh()
-{
-    glDeleteBuffers(NUM_BUFFERS, m_vertexArrayBuffers);
-    glDeleteVertexArrays(1, &m_vertexArrayObject);
-}
+// Mesh::~Mesh()
+// {
+//     std::cout << "Mesh destructor was called" << std::endl;
+
+//     glDeleteBuffers(NUM_BUFFERS, m_vertexArrayBuffers);
+//     glDeleteVertexArrays(1, &m_vertexArrayObject);
+// }
 
 void Mesh::draw() const
 {
     glBindVertexArray(m_vertexArrayObject);
-    glBindBuffer(GL_ARRAY_BUFFER, m_vertexArrayBuffers[BUFFER_INDEX]);
-//    glDrawElements(GL_TRIANGLES, 1, GL_UNSIGNED_INT, m_model.getIndicesByPointer());
-	glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_vertexArrayBuffers[BUFFER_INDEX]);
+    // glDrawElements(GL_TRIANGLES, m_model.getNumIndices(), GL_UNSIGNED_INT, m_model.getIndicesByPointer());
+	glDrawElements(GL_TRIANGLES, m_model.getNumIndices(), GL_UNSIGNED_INT, 0);
 }

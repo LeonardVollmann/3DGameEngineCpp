@@ -29,6 +29,8 @@ private:
     
     Window *m_window;
     RenderingEngine *m_renderingEngine;
+
+    Mesh m_testMesh;
     
     void update();
     void render();

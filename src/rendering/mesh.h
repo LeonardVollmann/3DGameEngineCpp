@@ -27,6 +27,8 @@ public:
     inline const std::vector<unsigned int> &getIndices() const { return m_indices; }
     inline const Vector3f *getVerticesByPointer()        const { return &m_vertices[0]; }
     inline const unsigned int *getIndicesByPointer() 	 const { return &m_indices[0]; }
+    inline unsigned int getNumVertices()                 const { return m_numVertices; }
+    inline unsigned int getNumIndices()                  const { return m_numIndices; }
 protected:
 private:
     std::vector<Vector3f> m_vertices;
@@ -40,11 +42,12 @@ class Mesh
 {
 public:
     Mesh(IndexedModel model = IndexedModel());
-    virtual ~Mesh();
+    // virtual ~Mesh();
     
     void draw() const;
     
     inline const IndexedModel &getModel() { return m_model; }
+
     inline void setModel(const IndexedModel &model) { m_model = model; }
 protected:
 private:
