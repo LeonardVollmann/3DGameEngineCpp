@@ -18,8 +18,8 @@ Shader::Shader(const std::string &fileName)
     
     glBindAttribLocation(m_program, 0, "position");
     
-    m_shaders[0] = createShader(loadShader(fileName + ".vs"), GL_VERTEX_SHADER);
-    m_shaders[1] = createShader(loadShader(fileName + ".fs"), GL_FRAGMENT_SHADER);
+    m_shaders[0] = createShader(loadShader("./res/shaders/" + fileName + ".vs"), GL_VERTEX_SHADER);
+    m_shaders[1] = createShader(loadShader("./res/shaders/" + fileName + ".fs"), GL_FRAGMENT_SHADER);
     
     for (unsigned int i = 0; i < NUM_SHADERS; i++) {
         glAttachShader(m_program, m_shaders[i]);
@@ -47,6 +47,40 @@ void Shader::bind() const
     glUseProgram(m_program);
 }
 
+void Shader::addUniform(const std::string &uniform)
+{
+    GLint location = glGetUniformLocation(m_program, uniform.c_str());
+
+    m_uniforms.insert(std::pair<std::string, GLint>(uniform, location));
+}
+
+void Shader::setUniformInteger(const std::string &uniform, int value)
+{
+    glUniform1i(m_uniforms[uniform], value);
+}
+
+void Shader::setUniformFloat(const std::string &uniform, float value)
+{
+    glUniform1f(m_uniforms[uniform], value);
+}
+
+void Shader::setUniformVector3f(const std::string &uniform, const Vector3f &value)
+{
+    glUniform3f(m_uniforms[uniform], value.getX(), value.getY(), value.getZ());
+}
+
+void Shader::setUniformMatrix4f(const std::string &uniform, const Matrix4f &value)
+{
+    GLfloat matrix[16];
+    for (unsigned int i = 0; i < 4; i++) {
+        for (unsigned int j = 0; j < 4; j++) {
+            matrix[4 * i + j] = (GLfloat)value[i][j];
+        }
+    }
+
+    glUniformMatrix4fv(m_uniforms[uniform], 1, true, matrix);
+}
+
 std::string Shader::loadShader(const std::string& fileName)
 {
     std::ifstream file;
@@ -63,7 +97,6 @@ std::string Shader::loadShader(const std::string& fileName)
     } else {
         std::cerr << "Unable to load shader: " << fileName << std::endl;
     }
-
 
     return output;
 }

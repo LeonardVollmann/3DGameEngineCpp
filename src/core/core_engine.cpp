@@ -74,7 +74,7 @@ void CoreEngine::stop()
 
 void CoreEngine::update()
 {
-
+    m_renderingEngine->update();
 }
 
 void CoreEngine::render()

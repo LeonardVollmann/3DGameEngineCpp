@@ -9,8 +9,18 @@
 #include "rendering_engine.h"
 
 RenderingEngine::RenderingEngine() :
-    m_basicShader("./res/shaders/basicShader")
-{}
+    m_basicShader("basicShader")
+{
+	m_basicShader.addUniform("uniformFloat");
+}
+
+float temp = 0.0f;
+
+void RenderingEngine::update()
+{
+	temp += 0.01f;
+	m_basicShader.setUniformFloat("uniformFloat", fabs(sinf(temp)));
+}
 
 void RenderingEngine::render(const Mesh &mesh)
 {

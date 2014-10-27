@@ -172,6 +172,7 @@ CMakeFiles/3D_Game_Engine.dir/src/rendering/rendering_engine.cpp.o: src/renderin
 CMakeFiles/3D_Game_Engine.dir/src/rendering/rendering_engine.cpp.o: src/rendering/shader.h
 CMakeFiles/3D_Game_Engine.dir/src/rendering/rendering_engine.cpp.o: /usr/local/include/GL/glew.h
 
+CMakeFiles/3D_Game_Engine.dir/src/rendering/shader.cpp.o: src/core/math.h
 CMakeFiles/3D_Game_Engine.dir/src/rendering/shader.cpp.o: src/rendering/shader.cpp
 CMakeFiles/3D_Game_Engine.dir/src/rendering/shader.cpp.o: src/rendering/shader.h
 CMakeFiles/3D_Game_Engine.dir/src/rendering/shader.cpp.o: /usr/local/include/GL/glew.h
