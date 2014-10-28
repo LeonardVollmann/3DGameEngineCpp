@@ -1,5 +1,5 @@
 #!/bin/bash
 
-mv ./build/res .
+./clean.sh
 git add -A
 git commit
