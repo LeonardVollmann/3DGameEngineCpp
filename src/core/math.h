@@ -114,6 +114,16 @@ public:
         }
         return result;
     }
+
+    inline Vector<T, D> abs() const
+    {
+        Vector<T, D> result;
+        for (unsigned int i = 0; i < D; i++)
+        {
+            result[i] = (T)fabs((*this)[i]);
+        }
+        return result;
+    }
     
     inline T lengthSquared() const { return this->dot((*this)); }
     
@@ -364,6 +374,8 @@ public:
         
         return result;
     }
+
+    inline Vector3f abs() const { return Vector3f(fabs(getX()), fabs(getY()), fabs(getZ())); }
     
     inline float lengthSquared() const { return this->dot((*this)); }
     
@@ -622,7 +634,13 @@ typedef Matrix4<float>  Matrix4f;
 class Quaternion : public Vector4f
 {
 public:
-    Quaternion() {}
+    Quaternion()
+    {
+        this->setX(0);
+        this->setY(0);
+        this->setZ(0);
+        this->setW(1);
+    }
     
     Quaternion(float x, float y, float z, float w)
     {
