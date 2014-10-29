@@ -11,6 +11,7 @@
 
 #include "mesh.h"
 #include "shader.h"
+#include "camera.h"
 
 class RenderingEngine
 {
@@ -22,6 +23,8 @@ public:
 protected:
 private:
     Shader m_basicShader;
+
+    Camera m_camera;
 };
 
 #endif /* defined(__GameEngine3D__rendering_engine__) */

@@ -210,6 +210,30 @@ src/main.cpp.s:
 	$(MAKE) -f CMakeFiles/3D_Game_Engine.dir/build.make CMakeFiles/3D_Game_Engine.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+src/rendering/camera.o: src/rendering/camera.cpp.o
+.PHONY : src/rendering/camera.o
+
+# target to build an object file
+src/rendering/camera.cpp.o:
+	$(MAKE) -f CMakeFiles/3D_Game_Engine.dir/build.make CMakeFiles/3D_Game_Engine.dir/src/rendering/camera.cpp.o
+.PHONY : src/rendering/camera.cpp.o
+
+src/rendering/camera.i: src/rendering/camera.cpp.i
+.PHONY : src/rendering/camera.i
+
+# target to preprocess a source file
+src/rendering/camera.cpp.i:
+	$(MAKE) -f CMakeFiles/3D_Game_Engine.dir/build.make CMakeFiles/3D_Game_Engine.dir/src/rendering/camera.cpp.i
+.PHONY : src/rendering/camera.cpp.i
+
+src/rendering/camera.s: src/rendering/camera.cpp.s
+.PHONY : src/rendering/camera.s
+
+# target to generate assembly for a file
+src/rendering/camera.cpp.s:
+	$(MAKE) -f CMakeFiles/3D_Game_Engine.dir/build.make CMakeFiles/3D_Game_Engine.dir/src/rendering/camera.cpp.s
+.PHONY : src/rendering/camera.cpp.s
+
 src/rendering/mesh.o: src/rendering/mesh.cpp.o
 .PHONY : src/rendering/mesh.o
 
@@ -327,6 +351,9 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/rendering/camera.o"
+	@echo "... src/rendering/camera.i"
+	@echo "... src/rendering/camera.s"
 	@echo "... src/rendering/mesh.o"
 	@echo "... src/rendering/mesh.i"
 	@echo "... src/rendering/mesh.s"

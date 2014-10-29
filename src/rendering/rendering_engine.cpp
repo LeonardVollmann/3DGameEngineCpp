@@ -11,10 +11,12 @@
 #include "../core/math.h"
 
 RenderingEngine::RenderingEngine() :
-    m_basicShader("basicShader")
+    m_basicShader("basicShader"),
+    m_camera(Vector3f(0.0f, 0.0f, 0.0f), Vector3f(0.0f, 0.0f, 1.0f), Vector3f(0.0f, 1.0f, 0.0f), 70.0f, 800.0f / 600.0f, 0.1f, 1000.0f)
 {
 	m_basicShader.addUniform("uniformFloat");
 	m_basicShader.addUniform("transform");
+	m_basicShader.addUniform("projection");
 }
 
 float counter = 0.0f;
@@ -27,9 +29,9 @@ void RenderingEngine::update()
 	counter += 0.01f;
 	temp = fabs(sinf(counter));
 	sinCounter = sinf(counter);
-	transform.setScale(Vector3f(sinCounter, sinCounter, sinCounter).abs());
-	transform.setTranslation(Vector3f(sinCounter, 0.0f, 0.0f));
-	// transform.setRotation(Quaternion(Vector3f(0.0f, 0.0f, 1.0f), sinCounter));
+	// transform.setScale(Vector3f(sinCounter, sinCounter, sinCounter).abs());
+	transform.setTranslation(Vector3f(sinf(counter * 2), 0.0f, fabs(sinCounter)));
+	// transform.setRotation(Quaternion(Vector3f(0.0f, 0.0f, 1.0f), sinCounter));s
 }
 
 void RenderingEngine::render(const Mesh &mesh)
@@ -37,5 +39,6 @@ void RenderingEngine::render(const Mesh &mesh)
 	m_basicShader.bind();
 	m_basicShader.setUniformFloat("uniformFloat", temp);
 	m_basicShader.setUniformMatrix4f("transform", transform.getTransformation());
+	m_basicShader.setUniformMatrix4f("projection", m_camera.getProjection());
     mesh.draw();
 }

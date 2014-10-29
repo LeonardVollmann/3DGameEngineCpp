@@ -364,7 +364,7 @@ public:
         return result;
     }
     
-    inline Vector3f cross(const Vector3f &r)
+    inline Vector3f cross(const Vector3f &r) const
     {
         Vector3f result;
         
@@ -623,13 +623,81 @@ protected:
 private:
 };
 
+class Matrix4f : public Matrix4<float>
+{
+public:
+    Matrix4f() {}
+    
+    template <unsigned int D>
+    Matrix4f(const Matrix<float, D> &r)
+    {
+        if (D < 4) {
+            this->initIdentity();
+            
+            for (unsigned int i = 0; i < D; i++) {
+                for (unsigned int j = 0; j < D; j++)
+                {
+                    (*this)[i][j] = r[i][j];
+                }
+            }
+        } else {
+            for (unsigned int i = 0; i < 4; i++) {
+                for (unsigned int j = 0; j < 4; j++)
+                {
+                    (*this)[i][j] = r[i][j];
+                }
+            }
+        }
+    }
+
+    inline Matrix4f initProjection(float fov, float aspect, float zNear, float zFar)
+    {
+        float tanHalfFOV = tanf(toRadians(fov) / 2);
+        float zRange = zNear - zFar;
+        
+        this->initIdentity();
+
+        (*this)[0][0] = 1.0f / (tanHalfFOV * aspect);
+        (*this)[1][1] = 1.0f / tanHalfFOV;
+        (*this)[2][2] = (-zNear -zFar) / zRange;
+        (*this)[2][3] = 2 * zFar * zNear / zRange;
+        (*this)[3][2] = 1;
+        
+        return *this;
+    }
+
+    // inline Matrix4f initPerspective(const Vector3f &pos, const Vector3f &forward, const Vector3f &up)
+    // {
+    //     const Vector3f right = forward.cross(up).normalized();
+
+    //     this->initIdentity();
+
+    //     (*this)[0][0] = right.getX();
+    //     (*this)[1][0] = right.getY();
+    //     (*this)[2][0] = right.getZ();
+    //     (*this)[0][1] = up.getX();
+    //     (*this)[1][1] = up.getY();
+    //     (*this)[2][1] = up.getZ();
+    //     (*this)[0][2] = -forward.getX();
+    //     (*this)[1][2] = -forward.getY();
+    //     (*this)[2][2] = -forward.getZ();
+    //     (*this)[3][0] = -right.dot(eyePos);
+    //     (*this)[3][1] = -up.dot(eyePos);
+    //     (*this)[3][2] = forward.dot(eyePos);
+
+    //     return *this;
+    // }
+protected:
+private:
+};
+
 typedef Matrix3<int>    Matrix3i;
 typedef Matrix3<double> Matrix3d;
 typedef Matrix3<float>  Matrix3f;
 
 typedef Matrix4<int>    Matrix4i;
 typedef Matrix4<double> Matrix4d;
-typedef Matrix4<float>  Matrix4f;
+// typedef Matrix4<float>  Matrix4f;
 
 class Quaternion : public Vector4f
 {
