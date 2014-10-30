@@ -588,6 +588,15 @@ public:
         
         return *this;
     }
+
+	inline Matrix3<T> initRotationFromDirectionVectors(const Vector3<T> &r, const Vector3<T> &u, const Vector3<T> &f)
+	{
+		(*this)[0][0] = r.getX(); (*this)[0][1] = r.getY(); (*this)[0][2] = r.getZ();
+		(*this)[1][0] = u.getX(); (*this)[1][1] = u.getY(); (*this)[1][2] = u.getZ();
+		(*this)[2][0] = f.getX(); (*this)[2][1] = f.getY(); (*this)[2][2] = f.getZ();
+
+		return *this;
+	}
 protected:
 private:
 };
@@ -622,6 +631,10 @@ public:
 protected:
 private:
 };
+
+typedef Matrix3<int>    Matrix3i;
+typedef Matrix3<double> Matrix3d;
+typedef Matrix3<float>  Matrix3f;
 
 class Matrix4f : public Matrix4<float>
 {
@@ -666,34 +679,20 @@ public:
         return *this;
     }
 
-    // inline Matrix4f initPerspective(const Vector3f &pos, const Vector3f &forward, const Vector3f &up)
-    // {
-    //     const Vector3f right = forward.cross(up).normalized();
+    inline Matrix4f initView(const Vector3f &pos, const Vector3f &forward, const Vector3f &up)
+    {
+		Vector3f f = forward;
+		Vector3f r = up.cross(forward);
+		Vector3f u = f.cross(r);
+		
+        Matrix4f translation = Matrix4f().initTranslation(pos * -1);
+        Matrix4f rotation = Matrix4f(Matrix3f().initRotationFromDirectionVectors(r, u, f));
 
-    //     this->initIdentity();
-
-    //     (*this)[0][0] = right.getX();
-    //     (*this)[1][0] = right.getY();
-    //     (*this)[2][0] = right.getZ();
-    //     (*this)[0][1] = up.getX();
-    //     (*this)[1][1] = up.getY();
-    //     (*this)[2][1] = up.getZ();
-    //     (*this)[0][2] = -forward.getX();
-    //     (*this)[1][2] = -forward.getY();
-    //     (*this)[2][2] = -forward.getZ();
-    //     (*this)[3][0] = -right.dot(eyePos);
-    //     (*this)[3][1] = -up.dot(eyePos);
-    //     (*this)[3][2] = forward.dot(eyePos);
-
-    //     return *this;
-    // }
+		return translation * rotation;
+    }
 protected:
 private:
 };
-
-typedef Matrix3<int>    Matrix3i;
-typedef Matrix3<double> Matrix3d;
-typedef Matrix3<float>  Matrix3f;
 
 typedef Matrix4<int>    Matrix4i;
 typedef Matrix4<double> Matrix4d;

@@ -15,3 +15,9 @@ Camera::Camera(const Vector3f &pos, const Vector3f &forward, const Vector3f &up,
 {
 	setProjection(fov, aspect, zNear, zFar);
 }
+
+const Matrix4f Camera::getViewProjection() const
+{
+	Matrix4f view = Matrix4f().initView(m_pos, m_forward, m_up);
+	return m_projection * view;
+}
