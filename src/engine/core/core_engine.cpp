@@ -12,22 +12,18 @@
 
 #include <iostream>
 
-CoreEngine::CoreEngine(double fps, Window *window, RenderingEngine *renderingEngine) :
+CoreEngine::CoreEngine(double fps, Window *window, RenderingEngine *renderingEngine, Game *game) :
     m_frameTime(1.0 / fps),
     m_running(false),
     m_window(window),
-    m_renderingEngine(renderingEngine)
-{}
+    m_renderingEngine(renderingEngine),
+	m_game(game)
+{
+	m_game->setEngine(this);
+}
 
 void CoreEngine::start()
 {
-    IndexedModel model = IndexedModel();
-    model.addVertex(Vector3f(0.0f, 0.5f, 0.0f));
-    model.addVertex(Vector3f(-0.5f, -0.5f, 0.0f));
-    model.addVertex(Vector3f(0.5f, -0.5f, 0.0f));
-    model.addFace(Vector3i(0, 1, 2));
-    m_testMesh = Mesh(model);
-
     m_running = true;
     
     unsigned int frames = 0;
@@ -74,14 +70,14 @@ void CoreEngine::stop()
 
 void CoreEngine::update()
 {
-    m_renderingEngine->update();
+    m_game->update();
 }
 
 void CoreEngine::render()
 {
     m_window->clear(0.0f, 0.0f, 0.0f, 1.0f);
     
-    m_renderingEngine->render(m_testMesh);
-
+    m_game->render(m_renderingEngine);
+	
     m_window->update();
 }

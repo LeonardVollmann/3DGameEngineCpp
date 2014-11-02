@@ -387,9 +387,10 @@ public:
     inline bool getMouseUp(unsigned int index)     const { return m_mouseUps[index]; }
     inline Vector2f getMousePosition()             const { return Vector2f((float)m_mouseX, (float)m_mouseY); }
 
-    void warpMouse (int x, int y) const;
+    void warpMouse(int x, int y) const;
 
-    inline void setWindow(Window *window) { m_window = window; }
+	inline void warpMouse(const Vector2f &pos)				   { warpMouse(pos.getX(), pos.getY()); }
+    inline void setWindow(Window *window) 					   { m_window = window; }
     inline void setKey(unsigned int index, bool value)         { m_keys[index] = value; }
     inline void setKeyDown(unsigned int index, bool value)     { m_keyDowns[index] = value; }
     inline void setKeyUp(unsigned int index, bool value)       { m_keyUps[index] = value; }

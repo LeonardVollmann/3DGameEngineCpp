@@ -1,0 +1,3 @@
+- Easier vector construction + defaults (1, 0, xAxis, yAxis, zAxis)
+- Matrix defaults (identity...)
+- Quaternion defaults

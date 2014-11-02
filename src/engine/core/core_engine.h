@@ -11,11 +11,12 @@
 
 #include "../rendering/window.h"
 #include "../rendering/rendering_engine.h"
+#include "game.h"
 
 class CoreEngine
 {
 public:
-    CoreEngine(double fps, Window *window, RenderingEngine *renderingEngine);
+    CoreEngine(double fps, Window *window, RenderingEngine *renderingEngine, Game *game);
     
     void start();
     void stop();
@@ -29,9 +30,8 @@ private:
     
     Window *m_window;
     RenderingEngine *m_renderingEngine;
-
-    Mesh m_testMesh;
-    
+	Game *m_game;
+ 
     void update();
     void render();
 };

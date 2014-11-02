@@ -22,7 +22,7 @@ class Vector
 {
 public:
     Vector() {}
-    
+	
     inline T operator[](unsigned int i) const { return values[i]; }
     inline T &operator[](unsigned int i) { return values[i]; }
     
@@ -38,7 +38,7 @@ public:
     
     inline bool operator!=(const Vector<T, D> &r) const { return !this->operator==(r); }
     
-    inline Vector<T, D> &operator+(const Vector<T, D> &r) const
+    inline Vector<T, D> operator+(const Vector<T, D> &r) const
     {
         Vector<T, D> result;
         for (unsigned int i = 0; i < D; i++) {
@@ -47,7 +47,7 @@ public:
         return result;
     }
     
-    inline Vector<T, D> &operator-(const Vector<T, D> &r) const
+    inline Vector<T, D> operator-(const Vector<T, D> &r) const
     {
         Vector<T, D> result;
         for (unsigned int i = 0; i < D; i++) {
@@ -56,7 +56,7 @@ public:
         return result;
     }
     
-    inline Vector<T, D> &operator*(const T &r) const
+    inline Vector<T, D> operator*(const T &r) const
     {
         Vector<T, D> result;
         for (unsigned int i = 0; i < D; i++) {
@@ -65,7 +65,7 @@ public:
         return result;
     }
 
-    inline Vector<T, D> &operator/(const T &r) const
+    inline Vector<T, D> operator/(const T &r) const
     {
         Vector<T, D> result;
         for (unsigned int i = 0; i < D; i++) {
@@ -74,7 +74,7 @@ public:
         return result;
     }
     
-    inline Vector<T, D> &operator+=(const Vector<T, D> &r)
+    inline Vector<T, D> operator+=(const Vector<T, D> &r)
     {
         for (unsigned int i = 0; i < D; i++) {
             (*this)[i] += r[i];
@@ -82,7 +82,7 @@ public:
         return *this;
     }
     
-    inline Vector<T, D> &operator-=(const Vector<T, D> &r)
+    inline Vector<T, D> operator-=(const Vector<T, D> &r)
     {
         for (unsigned int i = 0; i < D; i++) {
             (*this)[i] -= r[i];
@@ -90,7 +90,7 @@ public:
         return *this;
     }
     
-    inline Vector<T, D> &operator*=(const T &r)
+    inline Vector<T, D> operator*=(const T &r)
     {
         for (unsigned int i = 0; i < D; i++) {
             (*this)[i] *= r;
@@ -98,7 +98,7 @@ public:
         return *this;
     }
     
-    inline Vector<T, D> &operator/=(const T &r)
+    inline Vector<T, D> operator/=(const T &r)
     {
         for (unsigned int i = 0; i < D; i++) {
             (*this)[i] /= r;
@@ -163,13 +163,19 @@ public:
         (*this)[0] = x;
         (*this)[1] = y;
     }
+
+	Vector2<T>(const Vector<T, 2> &r)
+	{
+		(*this)[0] = r[0];
+		(*this)[1] = r[1];
+	}
     
-    inline T getX() const { return *this[0]; }
-    inline T getY() const { return *this[1]; }
+    inline T getX() const { return (*this)[0]; }
+    inline T getY() const { return (*this)[1]; }
     
     inline void setX(const T &x) { (*this)[0] = x; }
     inline void setY(const T &y) { (*this)[1] = y; }
-        
+
     inline void set(const T &x, const T &y)
     {
         this->setX(x);

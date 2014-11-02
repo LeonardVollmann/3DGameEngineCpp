@@ -18,7 +18,6 @@ class RenderingEngine
 public:
     RenderingEngine();
     
-    void update();
     void render(const Mesh &mesh);
 protected:
 private:
