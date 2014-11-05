@@ -1,5 +1,5 @@
-#ifndef __GameEngine3D__time__
-#define __GameEngine3D__time__
+#ifndef TIME_H
+#define TIME_H
 
 #include <chrono>
 
@@ -13,4 +13,4 @@ namespace Time
     }
 }
 
-#endif /* defined(__GameEngine3D__time__) */
+#endif

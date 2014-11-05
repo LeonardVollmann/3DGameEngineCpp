@@ -1,5 +1,5 @@
-#ifndef __GameEngine3D__mesh__
-#define __GameEngine3D__mesh__
+#ifndef MESH_H
+#define MESH_H
 
 #include "../core/math.h"
 #include "shader.h"
@@ -56,4 +56,4 @@ private:
     IndexedModel m_model;
 };
 
-#endif /* defined(__GameEngine3D__mesh__) */
+#endif

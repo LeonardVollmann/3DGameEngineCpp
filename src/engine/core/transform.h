@@ -1,5 +1,5 @@
-#ifndef __GameEngine3D__transform__
-#define __GameEngine3D__transform__
+#ifndef TRANSFORM_H
+#define TRANSFORM_H
 
 #include "math.h"
 
@@ -34,4 +34,4 @@ private:
 	Quaternion m_rotation;
 };
 
-#endif /* defined(__GameEngine3D__transform__) */
+#endif

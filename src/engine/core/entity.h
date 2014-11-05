@@ -1,5 +1,5 @@
-#ifndef __GameEngine3D__entity__
-#define __GameEngine3D__entity__
+#ifndef ENTITY_H
+#define ENTITY_H
 
 #include "transform.h"
 //#include "core_engine.h"
@@ -33,4 +33,4 @@ protected:
 private:
 };
 
-#endif /* defined(__GameEngine3D__entity__) */
+#endif

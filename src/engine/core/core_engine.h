@@ -1,5 +1,5 @@
-#ifndef __GameEngine3D__core_engine__
-#define __GameEngine3D__core_engine__
+#ifndef CORE_ENGINE_H
+#define CORE_ENGINE_H
 
 #include "../rendering/window.h"
 #include "../rendering/rendering_engine.h"
@@ -28,4 +28,4 @@ private:
     void render();
 };
 
-#endif /* defined(__GameEngine3D__core_engine__) */
+#endif

@@ -1,5 +1,5 @@
-#ifndef __GameEngine3D__camera__
-#define __GameEngine3D__camera__
+#ifndef CAMERA_H
+#define CAMERA_H
 
 #include "../core/math.h"
 #include "../core/input.h"
@@ -41,4 +41,4 @@ private:
 	Matrix4f m_projection;
 };
 
-#endif /* defined(__GameEngine3D__camera__) */
+#endif

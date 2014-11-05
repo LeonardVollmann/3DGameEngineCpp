@@ -1,5 +1,5 @@
-#ifndef __GameEngine3D__rendering_engine__
-#define __GameEngine3D__rendering_engine__
+#ifndef RENDERING_ENGINE_H
+#define RENDERING_ENGINE_H
 
 #include "mesh.h"
 #include "shader.h"
@@ -18,4 +18,4 @@ private:
     Camera m_camera;
 };
 
-#endif /* defined(__GameEngine3D__rendering_engine__) */
+#endif

@@ -1,5 +1,5 @@
-#ifndef __GameEngine3D__test_game__
-#define __GameEngine3D__test_game__
+#ifndef TEST_GAME_H
+#define TEST_GAME_H
 
 #include "../engine/core/game.h"
 #include "../engine/core/core_engine.h"
@@ -24,4 +24,4 @@ private:
 	Transform m_testTransform;
 };
 
-#endif /* defined(__GameEngine3D__test_game__) */
+#endif

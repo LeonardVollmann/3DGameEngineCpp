@@ -1,5 +1,5 @@
-#ifndef __GameEngine3D__window__
-#define __GameEngine3D__window__
+#ifndef WINDOW_H
+#define WINDOW_H
 
 #include "../core/input.h"
 
@@ -38,4 +38,4 @@ private:
     bool m_closed;
 };
 
-#endif /* defined(__GameEngine3D__window__) */
+#endif

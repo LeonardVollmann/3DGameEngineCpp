@@ -1,5 +1,5 @@
-#ifndef __GameEngine3D__shader__
-#define __GameEngine3D__shader__
+#ifndef SHADER_H
+#define SHADER_H
 
 #include "../core/math.h"
 
@@ -34,4 +34,4 @@ private:
     std::map<std::string, GLint> m_uniforms;
 };
 
-#endif /* defined(__GameEngine3D__shader__) */
+#endif

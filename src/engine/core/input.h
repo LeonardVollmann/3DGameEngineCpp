@@ -1,5 +1,5 @@
-#ifndef __GameEngine3D__input__
-#define __GameEngine3D__input__
+#ifndef INPUT_H
+#define INPUT_H
 
 #include "math.h"
 
@@ -405,4 +405,4 @@ private:
     Window  *m_window;
 };
 
-#endif /* defined(__GameEngine3D__input__) */
+#endif

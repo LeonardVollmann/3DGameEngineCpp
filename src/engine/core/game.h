@@ -1,5 +1,5 @@
-#ifndef __GameEngine3D__game__
-#define __GameEngine3D__game__
+#ifndef GAME_H
+#define GAME_H
 
 #include "entity.h"
 #include "../rendering/camera.h"
@@ -26,4 +26,4 @@ protected:
 private:
 };
 
-#endif /* defined(__GameEngine3D__game__) */
+#endif
