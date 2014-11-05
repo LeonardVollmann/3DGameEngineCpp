@@ -1,11 +1,3 @@
-//
-//  camera.h
-//  GameEngine3D
-//
-//  Created by Leonard Vollmann on 28/10/14.
-//  Copyright (c) 2014 Leonard Vollmann. All rights reserved.
-//
-
 #ifndef __GameEngine3D__camera__
 #define __GameEngine3D__camera__
 

@@ -1,11 +1,3 @@
-//
-//  mesh.cpp
-//  GameEngine3D
-//
-//  Created by Leonard Vollmann on 20/10/14.
-//  Copyright (c) 2014 Leonard Vollmann. All rights reserved.
-//
-
 #include "mesh.h"
 
 IndexedModel::IndexedModel(const std::vector<Vector3f> &vertices, const std::vector<unsigned int> &indices) :

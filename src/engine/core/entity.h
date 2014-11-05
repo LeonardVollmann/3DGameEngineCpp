@@ -1,11 +1,3 @@
-//
-//  entity.h
-//  GameEngine3D
-//
-//  Created by Leonard Vollmann on 31/10/14.
-//  Copyright (c) 2014 Leonard Vollmann. All rights reserved.
-//
-
 #ifndef __GameEngine3D__entity__
 #define __GameEngine3D__entity__
 

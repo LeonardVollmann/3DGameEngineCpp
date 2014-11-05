@@ -1,11 +1,3 @@
-//
-//  entity.cpp
-//  GameEngine3D
-//
-//  Created by Leonard Vollmann on 31/10/14.
-//  Copyright (c) 2014 Leonard Vollmann. All rights reserved.
-//
-
 #include "entity.h"
 
 Entity::Entity(const Transform &transform) :

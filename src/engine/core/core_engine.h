@@ -1,11 +1,3 @@
-//
-//  core_engine.h
-//  GameEngine3D
-//
-//  Created by Leonard Vollmann on 24/10/14.
-//  Copyright (c) 2014 Leonard Vollmann. All rights reserved.
-//
-
 #ifndef __GameEngine3D__core_engine__
 #define __GameEngine3D__core_engine__
 

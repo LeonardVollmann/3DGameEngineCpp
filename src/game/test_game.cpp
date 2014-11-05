@@ -1,11 +1,3 @@
-//
-//  test_game.cpp
-//  GameEngine3D
-//
-//  Created by Leonard Vollmann on 01/11/14.
-//  Copyright (c) 2014 Leonard Vollmann. All rights reserved.
-//
-
 #include "test_game.h"
 
 #include "../engine/rendering/camera.h"

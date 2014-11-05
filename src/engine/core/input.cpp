@@ -1,11 +1,3 @@
-//
-//  input.cpp
-//  GameEngine3D
-//
-//  Created by Leonard Vollmann on 18/10/14.
-//  Copyright (c) 2014 Leonard Vollmann. All rights reserved.
-//
-
 #include "input.h"
 #include "../rendering/window.h"
 

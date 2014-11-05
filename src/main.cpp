@@ -1,11 +1,3 @@
-//
-//  main.cpp
-//  GameEngine3D
-//
-//  Created by Leonard Vollmann on 11/10/14.
-//  Copyright (c) 2014 Leonard Vollmann. All rights reserved.
-//
-
 #include "engine/core/core_engine.h"
 #include "engine/rendering/window.h"
 #include "engine/rendering/rendering_engine.h"

@@ -1,11 +1,3 @@
-//
-//  mesh.h
-//  GameEngine3D
-//
-//  Created by Leonard Vollmann on 20/10/14.
-//  Copyright (c) 2014 Leonard Vollmann. All rights reserved.
-//
-
 #ifndef __GameEngine3D__mesh__
 #define __GameEngine3D__mesh__
 
