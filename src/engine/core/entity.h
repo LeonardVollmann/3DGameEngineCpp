@@ -19,6 +19,8 @@
 
 #include "transform.h"
 //#include "core_engine.h"
+#include "input.h"
+#include "component.h"
 
 #include <vector>
 
@@ -29,23 +31,25 @@ class Entity
 public:
 	Entity(const Transform &transform = Transform());
 
-	void processInputAll();
-	void updateAll();
+	void processInputAll(const Input &input);
+	void updateAll(float delta);
 	void renderAll();
 
-	void addChild(Entity *child);
+	void addChild(Entity &child);
+	void addComponent(Component &component);
 
 	void setEngine(CoreEngine *engine);
 protected:
-	void processInput() {}
-	void update() {}
+	void processInput(const Input &input) {}
+	void update(float delta) {}
 	void render() {}
 
 	Transform m_transform;
 	
 	CoreEngine *m_engine;
 
-	std::vector<Entity*> m_children;
+	std::vector<Entity> m_children;
+	std::vector<Component> m_components;
 private:
 };
 

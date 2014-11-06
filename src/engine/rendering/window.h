@@ -39,7 +39,7 @@ public:
     inline unsigned int getHeight()      const { return m_height; }
     inline float getAspectRatio()        const { return (float)m_width / (float)m_height; }
     inline SDL_Window *getWindow()       const { return m_window; }
-    inline const Input &getInput()       const { return m_input; }
+    inline Input &getInput()       		 { return m_input; }
 protected:
 private:
     std::string  m_title;

@@ -14,36 +14,29 @@
  * limitations under the License.
  */
 
-#ifndef GAME_H
-#define GAME_H
+#ifndef COMPONENT_H
+#define COMPONENT_H
 
-#include "entity.h"
-#include "../rendering/camera.h"
-#include "../rendering/rendering_engine.h"
+#include "input.h"
+//#include "core_engine.h"
+//#include "entity.h"
 
+class Entity;
 class CoreEngine;
 
-class Game
+class Component
 {
 public:
-	Game() {}
+	virtual void processInput(const Input &input) {};
+	virtual void update(float delta) {};
+	virtual void render() {};
 
-	virtual void processInput(Input &input) = 0;
-	virtual void update() = 0;
-	virtual void render(RenderingEngine *renderingEngine) = 0;
-
-	inline void add(Entity entity)
-	{
-		m_root.addChild(entity);
-	}
-
+	inline void setParent(Entity *parent) { m_parent = parent; }
 	inline void setEngine(CoreEngine *engine) { m_engine = engine; }
 protected:
-	CoreEngine *m_engine;
-
-	Camera m_camera;
-	Entity m_root;
 private:
+	Entity *m_parent;
+	CoreEngine *m_engine;
 };
 
 #endif

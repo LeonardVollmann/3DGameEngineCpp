@@ -17,6 +17,7 @@
 #include "test_game.h"
 
 #include "../engine/rendering/camera.h"
+#include "../engine/core/component.h"
 
 #include <cmath>
 
@@ -30,6 +31,8 @@ TestGame::TestGame()
 	m_testMesh = Mesh(model);
 
 	m_camera = Camera();
+
+	add(Entity());
 }
 
 TestGame::~TestGame()

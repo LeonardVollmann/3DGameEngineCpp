@@ -78,6 +78,7 @@ void CoreEngine::stop()
 
 void CoreEngine::update()
 {
+	m_game->processInput(m_window->getInput());
     m_game->update();
 }
 

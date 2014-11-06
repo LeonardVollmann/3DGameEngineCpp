@@ -19,34 +19,52 @@
 Entity::Entity(const Transform &transform) :
 	m_transform(transform) {}
 
-void Entity::addChild(Entity *child)
+void Entity::addChild(Entity &child)
 {
-	child->setEngine(m_engine);
+	child.setEngine(m_engine);
 	m_children.push_back(child);
 }
 
-void Entity::processInputAll()
+void Entity::addComponent(Component &component)
 {
-	for (Entity *child : m_children) {
-		child->processInputAll();
-	}
-
-	processInput();
+	component.setEngine(m_engine);
+	m_components.push_back(component);
 }
 
-void Entity::updateAll()
+void Entity::processInputAll(const Input &input)
 {
-	for (Entity *child : m_children) {
-		child->updateAll();
+	for (Entity child : m_children) {
+		child.processInputAll(input);
 	}
 
-	update();
+	for (Component component : m_components) {
+		component.processInput(input);
+	}
+	
+	processInput(input);
+}
+
+void Entity::updateAll(float delta)
+{
+	for (Entity child : m_children) {
+		child.updateAll(delta);
+	}
+
+	for (Component component : m_components) {
+		component.update(delta);
+	}
+
+	update(delta);
 }
 
 void Entity::renderAll()
 {
-	for (Entity *child : m_children) {
-		child->renderAll();
+	for (Entity child : m_children) {
+		child.renderAll();
+	}
+
+	for (Component component : m_components) {
+		component.render();
 	}
 	
 	render();
@@ -54,8 +72,8 @@ void Entity::renderAll()
 
 void Entity::setEngine(CoreEngine *engine)
 {
-	for (Entity *child : m_children) {
-		child->setEngine(engine);
+	for (Entity child : m_children) {
+		child.setEngine(engine);
 	}
 
 	m_engine = engine;
