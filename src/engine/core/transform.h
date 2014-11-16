@@ -22,12 +22,12 @@
 class Transform
 {
 public:
-	Transform(const Vector3f &scale = Vector3f(1.0f, 1.0f, 1.0f), const Vector3f &translation = Vector3f(), const Quaternion &rotation = Quaternion()) :
-		m_scale(scale),	
+	Transform(const Vector3f &scale = Vector3f(1.0f, 1.0f, 1.0f), const Vector3f &translation = Vector3f(0.0f, 0.0f, 0.0f), const Quaternion &rotation = Quaternion()) :
+		m_scale(scale),
 		m_translation(translation),
 		m_rotation(rotation) {}
 
-	inline Matrix4f getTransformation()
+	inline Matrix4f getTransformation() const
 	{
 		Matrix4f scale = Matrix4f().initScale(m_scale);
 		Matrix4f translation = Matrix4f().initTranslation(m_translation);
@@ -36,9 +36,9 @@ public:
 		return rotation * translation * scale;
 	}
 
-	inline const Vector3f &getScale() { return m_scale; }
-	inline const Vector3f &getTranslation() { return m_translation; }
-	inline const Quaternion &getRotation() { return m_rotation; }
+	inline const Vector3f &getScale() const { return m_scale; }
+	inline const Vector3f &getTranslation() const { return m_translation; }
+	inline const Quaternion &getRotation() const { return m_rotation; }
 
 	inline void setScale(const Vector3f &scale) { m_scale = scale; }
 	inline void setTranslation(const Vector3f &translation) { m_translation = translation; }

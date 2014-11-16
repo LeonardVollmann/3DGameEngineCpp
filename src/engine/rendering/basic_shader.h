@@ -14,32 +14,23 @@
  * limitations under the License.
  */
 
-#ifndef TEST_GAME_H
-#define TEST_GAME_H
+#ifndef BASIC_SHADER_H
+#define BASIC_SHADER_H
 
-#include "../engine/core/game.h"
-#include "../engine/core/core_engine.h"
-#include "../engine/core/entity.h"
-#include "../engine/core/input.h"
-#include "../engine/rendering/camera.h"
-#include "../engine/rendering/mesh.h"
-#include "../engine/rendering/rendering_engine.h"
+#include "shader.h"
+#include "camera.h"
+#include "../core/transform.h"
 
-class TestGame : public Game
+class RenderingEngine;
+
+class BasicShader : public Shader
 {
 public:
-	TestGame();
-	virtual ~TestGame();
-
-	void init();
+	BasicShader();
 	
-	virtual void processInput(Input &input);
-	virtual void update();
-	virtual void render(RenderingEngine *renderingEngine);
+	virtual void updateUniforms(const Transform &transform, const RenderingEngine &renderingEngine, const Camera &camera) const;
 protected:
 private:
-	Mesh m_testMesh;
-	Transform m_testTransform;
-	
 };
+
 #endif

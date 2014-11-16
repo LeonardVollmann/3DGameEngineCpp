@@ -30,6 +30,7 @@ public:
     void stop();
     
     inline RenderingEngine *getRenderingEngine() { return m_renderingEngine; }
+    inline Window *getWindow() { return m_window; }
 protected:
 private:
     double m_frameTime;

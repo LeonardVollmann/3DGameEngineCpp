@@ -20,6 +20,7 @@
 #include "input.h"
 //#include "core_engine.h"
 //#include "entity.h"
+#include "../rendering/rendering_engine.h"
 
 class Entity;
 class CoreEngine;
@@ -27,16 +28,21 @@ class CoreEngine;
 class Component
 {
 public:
+	Component() {}
+	virtual ~Component() {}
+	
 	virtual void processInput(const Input &input) {};
 	virtual void update(float delta) {};
-	virtual void render() {};
+	virtual void render(const Shader &shader, const RenderingEngine &renderingEngine, const Camera &camera) {};
+
+	inline const Transform &getTransform() const { return m_parent->getTransform(); }
 
 	inline void setParent(Entity *parent) { m_parent = parent; }
 	inline void setEngine(CoreEngine *engine) { m_engine = engine; }
 protected:
-private:
 	Entity *m_parent;
 	CoreEngine *m_engine;
+private:
 };
 
 #endif

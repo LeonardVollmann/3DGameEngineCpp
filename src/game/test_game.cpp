@@ -18,10 +18,19 @@
 
 #include "../engine/rendering/camera.h"
 #include "../engine/core/component.h"
+#include "../engine/components/mesh_renderer.h"
 
 #include <cmath>
 
 TestGame::TestGame()
+{}
+
+TestGame::~TestGame()
+{
+	delete m_camera;
+}
+
+void TestGame::init()
 {
 	IndexedModel model = IndexedModel();
 	model.addVertex(Vector3f( 0.0f,  0.5f, 0.0f));
@@ -30,18 +39,14 @@ TestGame::TestGame()
 	model.addFace(Vector3i(0, 1, 2));
 	m_testMesh = Mesh(model);
 
-	m_camera = Camera();
+	m_camera = new Camera(Vector3f(0.0f, 0.0f, 0.0f), Vector3f(0.0f, 0.0f, 1.0f), Vector3f(0.0f, 1.0f, 0.0f), 70.0f, m_engine->getWindow()->getAspectRatio(), 0.1f, 1000.0f);
+	m_engine->getRenderingEngine()->setCamera(m_camera);
 
-	add(Entity());
+	add((new Entity())->addComponent(new MeshRenderer(m_testMesh)));
 }
-
-TestGame::~TestGame()
-{}
 
 void TestGame::processInput(Input &input)
-{
-	
-}
+{}
 
 float counter = 0.0f;
 float sinCounter;
@@ -58,5 +63,5 @@ void TestGame::update()
 
 void TestGame::render(RenderingEngine *renderingEngine)
 {
-	renderingEngine->render(m_testMesh);
+	renderingEngine->render(m_root);
 }

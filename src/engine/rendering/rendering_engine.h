@@ -19,19 +19,23 @@
 
 #include "mesh.h"
 #include "shader.h"
+#include "basic_shader.h"
 #include "camera.h"
+#include "../core/entity.h"
 
 class RenderingEngine
 {
 public:
     RenderingEngine();
-    
-    void render(const Mesh &mesh);
+
+	inline void setCamera(Camera *camera) { m_camera = camera; }
+
+    void render(const Entity &object) const;
 protected:
 private:
-    Shader m_basicShader;
-
-    Camera m_camera;
+    BasicShader m_basicShader;
+	
+    Camera *m_camera;
 };
 
 #endif

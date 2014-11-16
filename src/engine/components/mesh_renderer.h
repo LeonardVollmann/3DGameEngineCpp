@@ -14,32 +14,25 @@
  * limitations under the License.
  */
 
-#ifndef TEST_GAME_H
-#define TEST_GAME_H
+#ifndef MESH_RENDERER_H
+#define MESH_RENDERER_H
 
-#include "../engine/core/game.h"
-#include "../engine/core/core_engine.h"
-#include "../engine/core/entity.h"
-#include "../engine/core/input.h"
-#include "../engine/rendering/camera.h"
-#include "../engine/rendering/mesh.h"
-#include "../engine/rendering/rendering_engine.h"
+#include "../core/component.h"
+#include "../rendering/mesh.h"
+#include "../rendering/rendering_engine.h"
 
-class TestGame : public Game
+class MeshRenderer : public Component
 {
 public:
-	TestGame();
-	virtual ~TestGame();
+	MeshRenderer(const Mesh &mesh);
 
-	void init();
-	
-	virtual void processInput(Input &input);
-	virtual void update();
-	virtual void render(RenderingEngine *renderingEngine);
+	virtual void render(const Shader &shader, const RenderingEngine &renderingEngine, const Camera &camera);
+
+	inline const Mesh &getMesh() const { return m_mesh; }
+	inline void setMesh(const Mesh &mesh) { m_mesh = mesh; }
 protected:
 private:
-	Mesh m_testMesh;
-	Transform m_testTransform;
-	
+	Mesh m_mesh;
 };
+
 #endif

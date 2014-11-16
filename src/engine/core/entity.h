@@ -20,36 +20,45 @@
 #include "transform.h"
 //#include "core_engine.h"
 #include "input.h"
-#include "component.h"
+//#include "../rendering/rendering_engine.h"
+#include "../rendering/shader.h"
 
 #include <vector>
 
 class CoreEngine;
+class RenderingEngine;
+class Component;
 
 class Entity
 {
 public:
-	Entity(const Transform &transform = Transform());
+	Entity(const Transform &transform = Transform()) :
+		m_transform(transform) {}
+
+    virtual ~Entity();
 
 	void processInputAll(const Input &input);
 	void updateAll(float delta);
-	void renderAll();
+	void renderAll(const Shader &shader, const RenderingEngine &renderingEngine, const Camera &camera) const;
 
-	void addChild(Entity &child);
-	void addComponent(Component &component);
+	Entity *addChild(Entity *child);
+	Entity *addComponent(Component *component);
 
 	void setEngine(CoreEngine *engine);
+
+	inline const Transform &getTransform() const { return m_transform; }
+	// inline Transform *getTransform() { return &m_transform; }
 protected:
 	void processInput(const Input &input) {}
 	void update(float delta) {}
-	void render() {}
+	void render() const {}
 
 	Transform m_transform;
 	
 	CoreEngine *m_engine;
 
-	std::vector<Entity> m_children;
-	std::vector<Component> m_components;
+	std::vector<Entity*> m_children;
+	std::vector<Component*> m_components;
 private:
 };
 

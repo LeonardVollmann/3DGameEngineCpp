@@ -18,10 +18,15 @@
 #define SHADER_H
 
 #include "../core/math.h"
+#include "../core/transform.h"
+//#include "rendering_engine.h"
+#include "camera.h"
 
 #include <string>
 #include <map>
 #include <GL/glew.h>
+
+class RenderingEngine;
 
 class Shader
 {
@@ -32,14 +37,16 @@ public:
     
     Shader(const std::string &fileName);
     virtual ~Shader();
+
+	virtual void updateUniforms(const Transform &transform, const RenderingEngine &renderingEngine, const Camera &camera) const {}
     
     void bind() const;
 
-    void addUniform(const std::string &uniform);
-    void setUniformInteger(const std::string &uniform, int value);
-    void setUniformFloat(const std::string &uniform, float value);
-    void setUniformVector3f(const std::string &uniform, const Vector3f &value);
-    void setUniformMatrix4f(const std::string &uniform, const Matrix4f &value);
+    void addUniform(const std::string &uniform) const;
+    void setUniformInteger(const std::string &uniform, int value) const;
+    void setUniformFloat(const std::string &uniform, float value) const;
+    void setUniformVector3f(const std::string &uniform, const Vector3f &value) const;
+    void setUniformMatrix4f(const std::string &uniform, const Matrix4f &value) const;
 protected:
 private:
     static const unsigned int NUM_SHADERS = 2;
@@ -47,7 +54,7 @@ private:
     GLuint m_program;
     GLuint m_shaders[NUM_SHADERS];
 
-    std::map<std::string, GLint> m_uniforms;
+    mutable std::map<std::string, GLint> m_uniforms;
 };
 
 #endif

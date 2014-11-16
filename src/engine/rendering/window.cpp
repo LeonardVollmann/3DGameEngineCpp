@@ -41,6 +41,8 @@ Window::Window(const std::string &title, unsigned int width, unsigned int height
     // SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
     // SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
 
+
+
     m_window = SDL_CreateWindow(title.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_OPENGL);
     m_glContext = SDL_GL_CreateContext(m_window);
     m_closed = false;

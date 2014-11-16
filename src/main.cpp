@@ -22,8 +22,9 @@
 int main(int argc, const char * argv[]) {
     Window window = Window("3D Game Engine", 800, 600);
     RenderingEngine renderingEngine = RenderingEngine();
-	TestGame game = TestGame();
+	TestGame game;
     CoreEngine engine = CoreEngine(60, &window, &renderingEngine, &game);
+    game.init();
     engine.start();
-    return 0;
+    return 0;	
 }

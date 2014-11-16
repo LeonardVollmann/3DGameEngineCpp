@@ -18,16 +18,14 @@
 #include "../core/transform.h"
 #include "../core/math.h"
 
-RenderingEngine::RenderingEngine() :
-    m_basicShader("basicShader")
+RenderingEngine::RenderingEngine()
 {
 	m_basicShader.addUniform("uniformFloat");
 	m_basicShader.addUniform("transform");
 	m_basicShader.addUniform("viewProjection");
 }
 
-void RenderingEngine::render(const Mesh &mesh)
+void RenderingEngine::render(const Entity &object) const
 {
-	m_basicShader.bind();
-    mesh.draw();
+	object.renderAll(m_basicShader, *this, *m_camera);
 }

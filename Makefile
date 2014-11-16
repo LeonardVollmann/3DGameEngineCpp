@@ -114,6 +114,30 @@ depend:
 	$(MAKE) -f CMakeFiles/3D_Game_Engine.dir/build.make CMakeFiles/3D_Game_Engine.dir/build
 .PHONY : 3D_Game_Engine/fast
 
+src/engine/components/mesh_renderer.o: src/engine/components/mesh_renderer.cpp.o
+.PHONY : src/engine/components/mesh_renderer.o
+
+# target to build an object file
+src/engine/components/mesh_renderer.cpp.o:
+	$(MAKE) -f CMakeFiles/3D_Game_Engine.dir/build.make CMakeFiles/3D_Game_Engine.dir/src/engine/components/mesh_renderer.cpp.o
+.PHONY : src/engine/components/mesh_renderer.cpp.o
+
+src/engine/components/mesh_renderer.i: src/engine/components/mesh_renderer.cpp.i
+.PHONY : src/engine/components/mesh_renderer.i
+
+# target to preprocess a source file
+src/engine/components/mesh_renderer.cpp.i:
+	$(MAKE) -f CMakeFiles/3D_Game_Engine.dir/build.make CMakeFiles/3D_Game_Engine.dir/src/engine/components/mesh_renderer.cpp.i
+.PHONY : src/engine/components/mesh_renderer.cpp.i
+
+src/engine/components/mesh_renderer.s: src/engine/components/mesh_renderer.cpp.s
+.PHONY : src/engine/components/mesh_renderer.s
+
+# target to generate assembly for a file
+src/engine/components/mesh_renderer.cpp.s:
+	$(MAKE) -f CMakeFiles/3D_Game_Engine.dir/build.make CMakeFiles/3D_Game_Engine.dir/src/engine/components/mesh_renderer.cpp.s
+.PHONY : src/engine/components/mesh_renderer.cpp.s
+
 src/engine/core/core_engine.o: src/engine/core/core_engine.cpp.o
 .PHONY : src/engine/core/core_engine.o
 
@@ -209,6 +233,30 @@ src/engine/core/math.s: src/engine/core/math.cpp.s
 src/engine/core/math.cpp.s:
 	$(MAKE) -f CMakeFiles/3D_Game_Engine.dir/build.make CMakeFiles/3D_Game_Engine.dir/src/engine/core/math.cpp.s
 .PHONY : src/engine/core/math.cpp.s
+
+src/engine/rendering/basic_shader.o: src/engine/rendering/basic_shader.cpp.o
+.PHONY : src/engine/rendering/basic_shader.o
+
+# target to build an object file
+src/engine/rendering/basic_shader.cpp.o:
+	$(MAKE) -f CMakeFiles/3D_Game_Engine.dir/build.make CMakeFiles/3D_Game_Engine.dir/src/engine/rendering/basic_shader.cpp.o
+.PHONY : src/engine/rendering/basic_shader.cpp.o
+
+src/engine/rendering/basic_shader.i: src/engine/rendering/basic_shader.cpp.i
+.PHONY : src/engine/rendering/basic_shader.i
+
+# target to preprocess a source file
+src/engine/rendering/basic_shader.cpp.i:
+	$(MAKE) -f CMakeFiles/3D_Game_Engine.dir/build.make CMakeFiles/3D_Game_Engine.dir/src/engine/rendering/basic_shader.cpp.i
+.PHONY : src/engine/rendering/basic_shader.cpp.i
+
+src/engine/rendering/basic_shader.s: src/engine/rendering/basic_shader.cpp.s
+.PHONY : src/engine/rendering/basic_shader.s
+
+# target to generate assembly for a file
+src/engine/rendering/basic_shader.cpp.s:
+	$(MAKE) -f CMakeFiles/3D_Game_Engine.dir/build.make CMakeFiles/3D_Game_Engine.dir/src/engine/rendering/basic_shader.cpp.s
+.PHONY : src/engine/rendering/basic_shader.cpp.s
 
 src/engine/rendering/camera.o: src/engine/rendering/camera.cpp.o
 .PHONY : src/engine/rendering/camera.o
@@ -387,6 +435,9 @@ help:
 	@echo "... 3D_Game_Engine"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... src/engine/components/mesh_renderer.o"
+	@echo "... src/engine/components/mesh_renderer.i"
+	@echo "... src/engine/components/mesh_renderer.s"
 	@echo "... src/engine/core/core_engine.o"
 	@echo "... src/engine/core/core_engine.i"
 	@echo "... src/engine/core/core_engine.s"
@@ -399,6 +450,9 @@ help:
 	@echo "... src/engine/core/math.o"
 	@echo "... src/engine/core/math.i"
 	@echo "... src/engine/core/math.s"
+	@echo "... src/engine/rendering/basic_shader.o"
+	@echo "... src/engine/rendering/basic_shader.i"
+	@echo "... src/engine/rendering/basic_shader.s"
 	@echo "... src/engine/rendering/camera.o"
 	@echo "... src/engine/rendering/camera.i"
 	@echo "... src/engine/rendering/camera.s"

@@ -23,7 +23,7 @@
 class Camera
 {
 public:
-	Camera(const Vector3f &pos = Vector3f(0.0f, 0.0f, 0.0f), const Vector3f &forward = Vector3f(0.0f, 0.0f, 1.0f), const Vector3f &up = Vector3f(0.0f, 1.0f, 0.0f), float fov = 70.0f, float aspect = 1.0f, float zNear = 0.1f, float zFar = 1000.0f);
+	Camera(const Vector3f &pos, const Vector3f &forward, const Vector3f &up, float fov, float aspect, float zNear, float zFar);
 
 	void processInput(Input &input);
 

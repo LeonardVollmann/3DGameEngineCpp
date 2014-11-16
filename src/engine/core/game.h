@@ -18,6 +18,7 @@
 #define GAME_H
 
 #include "entity.h"
+#include "transform.h"
 #include "../rendering/camera.h"
 #include "../rendering/rendering_engine.h"
 
@@ -26,13 +27,14 @@ class CoreEngine;
 class Game
 {
 public:
-	Game() {}
+    Game() {}
+    virtual ~Game() {}
 
 	virtual void processInput(Input &input) = 0;
 	virtual void update() = 0;
 	virtual void render(RenderingEngine *renderingEngine) = 0;
 
-	inline void add(Entity entity)
+	virtual inline void add(Entity *entity)
 	{
 		m_root.addChild(entity);
 	}
@@ -41,7 +43,7 @@ public:
 protected:
 	CoreEngine *m_engine;
 
-	Camera m_camera;
+	Camera *m_camera;
 	Entity m_root;
 private:
 };
