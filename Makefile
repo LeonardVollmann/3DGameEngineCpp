@@ -354,6 +354,30 @@ src/engine/rendering/shader.cpp.s:
 	$(MAKE) -f CMakeFiles/3D_Game_Engine.dir/build.make CMakeFiles/3D_Game_Engine.dir/src/engine/rendering/shader.cpp.s
 .PHONY : src/engine/rendering/shader.cpp.s
 
+src/engine/rendering/texture.o: src/engine/rendering/texture.cpp.o
+.PHONY : src/engine/rendering/texture.o
+
+# target to build an object file
+src/engine/rendering/texture.cpp.o:
+	$(MAKE) -f CMakeFiles/3D_Game_Engine.dir/build.make CMakeFiles/3D_Game_Engine.dir/src/engine/rendering/texture.cpp.o
+.PHONY : src/engine/rendering/texture.cpp.o
+
+src/engine/rendering/texture.i: src/engine/rendering/texture.cpp.i
+.PHONY : src/engine/rendering/texture.i
+
+# target to preprocess a source file
+src/engine/rendering/texture.cpp.i:
+	$(MAKE) -f CMakeFiles/3D_Game_Engine.dir/build.make CMakeFiles/3D_Game_Engine.dir/src/engine/rendering/texture.cpp.i
+.PHONY : src/engine/rendering/texture.cpp.i
+
+src/engine/rendering/texture.s: src/engine/rendering/texture.cpp.s
+.PHONY : src/engine/rendering/texture.s
+
+# target to generate assembly for a file
+src/engine/rendering/texture.cpp.s:
+	$(MAKE) -f CMakeFiles/3D_Game_Engine.dir/build.make CMakeFiles/3D_Game_Engine.dir/src/engine/rendering/texture.cpp.s
+.PHONY : src/engine/rendering/texture.cpp.s
+
 src/engine/rendering/window.o: src/engine/rendering/window.cpp.o
 .PHONY : src/engine/rendering/window.o
 
@@ -426,6 +450,30 @@ src/main.cpp.s:
 	$(MAKE) -f CMakeFiles/3D_Game_Engine.dir/build.make CMakeFiles/3D_Game_Engine.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+src/static_libs/stb_image.o: src/static_libs/stb_image.c.o
+.PHONY : src/static_libs/stb_image.o
+
+# target to build an object file
+src/static_libs/stb_image.c.o:
+	$(MAKE) -f CMakeFiles/3D_Game_Engine.dir/build.make CMakeFiles/3D_Game_Engine.dir/src/static_libs/stb_image.c.o
+.PHONY : src/static_libs/stb_image.c.o
+
+src/static_libs/stb_image.i: src/static_libs/stb_image.c.i
+.PHONY : src/static_libs/stb_image.i
+
+# target to preprocess a source file
+src/static_libs/stb_image.c.i:
+	$(MAKE) -f CMakeFiles/3D_Game_Engine.dir/build.make CMakeFiles/3D_Game_Engine.dir/src/static_libs/stb_image.c.i
+.PHONY : src/static_libs/stb_image.c.i
+
+src/static_libs/stb_image.s: src/static_libs/stb_image.c.s
+.PHONY : src/static_libs/stb_image.s
+
+# target to generate assembly for a file
+src/static_libs/stb_image.c.s:
+	$(MAKE) -f CMakeFiles/3D_Game_Engine.dir/build.make CMakeFiles/3D_Game_Engine.dir/src/static_libs/stb_image.c.s
+.PHONY : src/static_libs/stb_image.c.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -465,6 +513,9 @@ help:
 	@echo "... src/engine/rendering/shader.o"
 	@echo "... src/engine/rendering/shader.i"
 	@echo "... src/engine/rendering/shader.s"
+	@echo "... src/engine/rendering/texture.o"
+	@echo "... src/engine/rendering/texture.i"
+	@echo "... src/engine/rendering/texture.s"
 	@echo "... src/engine/rendering/window.o"
 	@echo "... src/engine/rendering/window.i"
 	@echo "... src/engine/rendering/window.s"
@@ -474,6 +525,9 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/static_libs/stb_image.o"
+	@echo "... src/static_libs/stb_image.i"
+	@echo "... src/static_libs/stb_image.s"
 .PHONY : help
 
 

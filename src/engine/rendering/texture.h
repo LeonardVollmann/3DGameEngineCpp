@@ -13,14 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
-#version 120
 
-uniform sampler2D texture;
+#ifndef TEXTURE_H
+#define TEXTURE_H
 
-varying vec2 texCoord0;
+#include <string>
+#include <GL/glew.h>
 
-void main()
+class Texture
 {
-    gl_FragColor = texture2D(texture, texCoord0);
-}
+public:
+	Texture(const std::string &fileName);
+	virtual ~Texture();
+
+	void bind(unsigned int unit);
+protected:
+private:
+	GLuint m_texture;
+};
+
+#endif

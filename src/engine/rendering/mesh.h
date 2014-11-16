@@ -23,23 +23,36 @@
 #include <GL/glew.h>
 #include <vector>
 
+class Vertex
+{
+public:
+    Vertex(const Vector3f &position, const Vector2f &texCoord) :
+        m_position(position),
+        m_texCoord(texCoord) {}
+
+    inline const Vector3f &getPosition() const { return m_position; }
+    inline const Vector2f &getTexCoord() const { return m_texCoord; }
+protected:
+private:
+    Vector3f m_position;
+    Vector2f m_texCoord;
+};
+
 class IndexedModel
 {
 public:
-    IndexedModel(const std::vector<Vector3f> &vertices = std::vector<Vector3f>(), const std::vector<unsigned int> &indices = std::vector<unsigned int>());
+    IndexedModel(const std::vector<Vertex> &vertices = std::vector<Vertex>(), const std::vector<unsigned int> &indices = std::vector<unsigned int>());
     
-    void addVertex(const Vector3f &vertex);
+    void addVertex(const Vertex &vertex);
     void addFace(const Vector3i &indices);
     
-    inline const std::vector<Vector3f> &getVertices()    const { return m_vertices; }
+    inline const std::vector<Vertex> &getVertices()      const { return m_vertices; }
     inline const std::vector<unsigned int> &getIndices() const { return m_indices; }
-    inline const Vector3f *getVerticesByPointer()        const { return &m_vertices[0]; }
-    inline const unsigned int *getIndicesByPointer() 	 const { return &m_indices[0]; }
     inline unsigned int getNumVertices()                 const { return m_numVertices; }
     inline unsigned int getNumIndices()                  const { return m_numIndices; }
 protected:
 private:
-    std::vector<Vector3f> m_vertices;
+    std::vector<Vertex> m_vertices;
     std::vector<unsigned int> m_indices;
     
     unsigned int m_numVertices;
@@ -61,6 +74,7 @@ protected:
 private:
     enum {
         BUFFER_VERTEX,
+        BUFFER_TEXCOORD,
         BUFFER_INDEX,
         
         NUM_BUFFERS

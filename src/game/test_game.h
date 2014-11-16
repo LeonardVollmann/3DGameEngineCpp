@@ -24,6 +24,7 @@
 #include "../engine/rendering/camera.h"
 #include "../engine/rendering/mesh.h"
 #include "../engine/rendering/rendering_engine.h"
+#include "../engine/rendering/texture.h"
 
 class TestGame : public Game
 {
@@ -38,8 +39,8 @@ public:
 	virtual void render(RenderingEngine *renderingEngine);
 protected:
 private:
-	Mesh m_testMesh;
-	Transform m_testTransform;
-	
+	Mesh m_mesh;
+	Entity *m_object;
+	Texture m_texture;
 };
 #endif

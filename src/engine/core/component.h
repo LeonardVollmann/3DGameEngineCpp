@@ -36,6 +36,7 @@ public:
 	virtual void render(const Shader &shader, const RenderingEngine &renderingEngine, const Camera &camera) {};
 
 	inline const Transform &getTransform() const { return m_parent->getTransform(); }
+	// inline Transform *getTransform() { return m_parent->getTransform(); }
 
 	inline void setParent(Entity *parent) { m_parent = parent; }
 	inline void setEngine(CoreEngine *engine) { m_engine = engine; }

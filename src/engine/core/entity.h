@@ -47,6 +47,7 @@ public:
 	void setEngine(CoreEngine *engine);
 
 	inline const Transform &getTransform() const { return m_transform; }
+	inline Transform &getTransform() { return m_transform; }
 	// inline Transform *getTransform() { return &m_transform; }
 protected:
 	void processInput(const Input &input) {}
