@@ -16,6 +16,7 @@
 
 #include "mesh_renderer.h"
 #include "../core/entity.h"
+#include <iostream>
 
 MeshRenderer::MeshRenderer(const Mesh &mesh) :
 	m_mesh(mesh) {}

@@ -114,6 +114,78 @@ depend:
 	$(MAKE) -f CMakeFiles/3D_Game_Engine.dir/build.make CMakeFiles/3D_Game_Engine.dir/build
 .PHONY : 3D_Game_Engine/fast
 
+src/engine/components/camera_component.o: src/engine/components/camera_component.cpp.o
+.PHONY : src/engine/components/camera_component.o
+
+# target to build an object file
+src/engine/components/camera_component.cpp.o:
+	$(MAKE) -f CMakeFiles/3D_Game_Engine.dir/build.make CMakeFiles/3D_Game_Engine.dir/src/engine/components/camera_component.cpp.o
+.PHONY : src/engine/components/camera_component.cpp.o
+
+src/engine/components/camera_component.i: src/engine/components/camera_component.cpp.i
+.PHONY : src/engine/components/camera_component.i
+
+# target to preprocess a source file
+src/engine/components/camera_component.cpp.i:
+	$(MAKE) -f CMakeFiles/3D_Game_Engine.dir/build.make CMakeFiles/3D_Game_Engine.dir/src/engine/components/camera_component.cpp.i
+.PHONY : src/engine/components/camera_component.cpp.i
+
+src/engine/components/camera_component.s: src/engine/components/camera_component.cpp.s
+.PHONY : src/engine/components/camera_component.s
+
+# target to generate assembly for a file
+src/engine/components/camera_component.cpp.s:
+	$(MAKE) -f CMakeFiles/3D_Game_Engine.dir/build.make CMakeFiles/3D_Game_Engine.dir/src/engine/components/camera_component.cpp.s
+.PHONY : src/engine/components/camera_component.cpp.s
+
+src/engine/components/free_look.o: src/engine/components/free_look.cpp.o
+.PHONY : src/engine/components/free_look.o
+
+# target to build an object file
+src/engine/components/free_look.cpp.o:
+	$(MAKE) -f CMakeFiles/3D_Game_Engine.dir/build.make CMakeFiles/3D_Game_Engine.dir/src/engine/components/free_look.cpp.o
+.PHONY : src/engine/components/free_look.cpp.o
+
+src/engine/components/free_look.i: src/engine/components/free_look.cpp.i
+.PHONY : src/engine/components/free_look.i
+
+# target to preprocess a source file
+src/engine/components/free_look.cpp.i:
+	$(MAKE) -f CMakeFiles/3D_Game_Engine.dir/build.make CMakeFiles/3D_Game_Engine.dir/src/engine/components/free_look.cpp.i
+.PHONY : src/engine/components/free_look.cpp.i
+
+src/engine/components/free_look.s: src/engine/components/free_look.cpp.s
+.PHONY : src/engine/components/free_look.s
+
+# target to generate assembly for a file
+src/engine/components/free_look.cpp.s:
+	$(MAKE) -f CMakeFiles/3D_Game_Engine.dir/build.make CMakeFiles/3D_Game_Engine.dir/src/engine/components/free_look.cpp.s
+.PHONY : src/engine/components/free_look.cpp.s
+
+src/engine/components/free_move.o: src/engine/components/free_move.cpp.o
+.PHONY : src/engine/components/free_move.o
+
+# target to build an object file
+src/engine/components/free_move.cpp.o:
+	$(MAKE) -f CMakeFiles/3D_Game_Engine.dir/build.make CMakeFiles/3D_Game_Engine.dir/src/engine/components/free_move.cpp.o
+.PHONY : src/engine/components/free_move.cpp.o
+
+src/engine/components/free_move.i: src/engine/components/free_move.cpp.i
+.PHONY : src/engine/components/free_move.i
+
+# target to preprocess a source file
+src/engine/components/free_move.cpp.i:
+	$(MAKE) -f CMakeFiles/3D_Game_Engine.dir/build.make CMakeFiles/3D_Game_Engine.dir/src/engine/components/free_move.cpp.i
+.PHONY : src/engine/components/free_move.cpp.i
+
+src/engine/components/free_move.s: src/engine/components/free_move.cpp.s
+.PHONY : src/engine/components/free_move.s
+
+# target to generate assembly for a file
+src/engine/components/free_move.cpp.s:
+	$(MAKE) -f CMakeFiles/3D_Game_Engine.dir/build.make CMakeFiles/3D_Game_Engine.dir/src/engine/components/free_move.cpp.s
+.PHONY : src/engine/components/free_move.cpp.s
+
 src/engine/components/mesh_renderer.o: src/engine/components/mesh_renderer.cpp.o
 .PHONY : src/engine/components/mesh_renderer.o
 
@@ -257,30 +329,6 @@ src/engine/rendering/basic_shader.s: src/engine/rendering/basic_shader.cpp.s
 src/engine/rendering/basic_shader.cpp.s:
 	$(MAKE) -f CMakeFiles/3D_Game_Engine.dir/build.make CMakeFiles/3D_Game_Engine.dir/src/engine/rendering/basic_shader.cpp.s
 .PHONY : src/engine/rendering/basic_shader.cpp.s
-
-src/engine/rendering/camera.o: src/engine/rendering/camera.cpp.o
-.PHONY : src/engine/rendering/camera.o
-
-# target to build an object file
-src/engine/rendering/camera.cpp.o:
-	$(MAKE) -f CMakeFiles/3D_Game_Engine.dir/build.make CMakeFiles/3D_Game_Engine.dir/src/engine/rendering/camera.cpp.o
-.PHONY : src/engine/rendering/camera.cpp.o
-
-src/engine/rendering/camera.i: src/engine/rendering/camera.cpp.i
-.PHONY : src/engine/rendering/camera.i
-
-# target to preprocess a source file
-src/engine/rendering/camera.cpp.i:
-	$(MAKE) -f CMakeFiles/3D_Game_Engine.dir/build.make CMakeFiles/3D_Game_Engine.dir/src/engine/rendering/camera.cpp.i
-.PHONY : src/engine/rendering/camera.cpp.i
-
-src/engine/rendering/camera.s: src/engine/rendering/camera.cpp.s
-.PHONY : src/engine/rendering/camera.s
-
-# target to generate assembly for a file
-src/engine/rendering/camera.cpp.s:
-	$(MAKE) -f CMakeFiles/3D_Game_Engine.dir/build.make CMakeFiles/3D_Game_Engine.dir/src/engine/rendering/camera.cpp.s
-.PHONY : src/engine/rendering/camera.cpp.s
 
 src/engine/rendering/mesh.o: src/engine/rendering/mesh.cpp.o
 .PHONY : src/engine/rendering/mesh.o
@@ -483,6 +531,15 @@ help:
 	@echo "... 3D_Game_Engine"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... src/engine/components/camera_component.o"
+	@echo "... src/engine/components/camera_component.i"
+	@echo "... src/engine/components/camera_component.s"
+	@echo "... src/engine/components/free_look.o"
+	@echo "... src/engine/components/free_look.i"
+	@echo "... src/engine/components/free_look.s"
+	@echo "... src/engine/components/free_move.o"
+	@echo "... src/engine/components/free_move.i"
+	@echo "... src/engine/components/free_move.s"
 	@echo "... src/engine/components/mesh_renderer.o"
 	@echo "... src/engine/components/mesh_renderer.i"
 	@echo "... src/engine/components/mesh_renderer.s"
@@ -501,9 +558,6 @@ help:
 	@echo "... src/engine/rendering/basic_shader.o"
 	@echo "... src/engine/rendering/basic_shader.i"
 	@echo "... src/engine/rendering/basic_shader.s"
-	@echo "... src/engine/rendering/camera.o"
-	@echo "... src/engine/rendering/camera.i"
-	@echo "... src/engine/rendering/camera.s"
 	@echo "... src/engine/rendering/mesh.o"
 	@echo "... src/engine/rendering/mesh.i"
 	@echo "... src/engine/rendering/mesh.s"

@@ -31,15 +31,15 @@ public:
 	Component() {}
 	virtual ~Component() {}
 	
-	virtual void processInput(const Input &input) {};
-	virtual void update(float delta) {};
-	virtual void render(const Shader &shader, const RenderingEngine &renderingEngine, const Camera &camera) {};
+	virtual void processInput(const Input &input) {}
+	virtual void update(float delta) {}
+	virtual void render(const Shader &shader, const RenderingEngine &renderingEngine, const Camera &camera) {}
 
 	inline const Transform &getTransform() const { return m_parent->getTransform(); }
-	// inline Transform *getTransform() { return m_parent->getTransform(); }
+	inline Transform &getTransform() { return m_parent->getTransform(); }
 
-	inline void setParent(Entity *parent) { m_parent = parent; }
-	inline void setEngine(CoreEngine *engine) { m_engine = engine; }
+	virtual inline void setParent(Entity *parent) { m_parent = parent; }
+	virtual inline void setEngine(CoreEngine *engine) { m_engine = engine; }
 protected:
 	Entity *m_parent;
 	CoreEngine *m_engine;

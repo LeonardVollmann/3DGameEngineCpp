@@ -814,6 +814,11 @@ public:
         *this = this->operator*(r);
         return *this;
     }
+
+    inline Quaternion rotate(const Quaternion &r) const
+    {
+        return r * (*this) * r.conjugate();
+    }
     
     inline Matrix3f toRotationMatrix() const
     {
@@ -829,6 +834,13 @@ public:
         
         return m;
     }
+
+    inline Vector3f getForward()  const { return Vector3f( 0.0f,  0.0f,  1.0f).rotate(*this); }
+    inline Vector3f getBackward() const { return Vector3f( 0.0f,  0.0f, -1.0f).rotate(*this); }
+    inline Vector3f getRight()    const { return Vector3f( 1.0f,  0.0f,  0.0f).rotate(*this); }
+    inline Vector3f getLeft()     const { return Vector3f(-1.0f,  0.0f,  0.0f).rotate(*this); }
+    inline Vector3f getUp()       const { return Vector3f( 0.0f,  1.0f,  0.0f).rotate(*this); }
+    inline Vector3f getDown()     const { return Vector3f( 0.0f, -1.0f,  0.0f).rotate(*this); }
 protected:
 private:
 };

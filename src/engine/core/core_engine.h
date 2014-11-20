@@ -18,8 +18,9 @@
 #define CORE_ENGINE_H
 
 #include "../rendering/window.h"
-#include "../rendering/rendering_engine.h"
-#include "game.h"
+
+class RenderingEngine;
+class Game;
 
 class CoreEngine
 {
@@ -36,6 +37,7 @@ private:
     double m_frameTime;
     
     bool m_running;
+    float m_delta;
     
     Window *m_window;
     RenderingEngine *m_renderingEngine;

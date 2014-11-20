@@ -14,22 +14,25 @@
  * limitations under the License.
  */
 
-#include "rendering_engine.h"
-#include "../core/transform.h"
-#include "../core/math.h"
-#include "basic_shader.h"
+#include "free_move.h"
 
-RenderingEngine::RenderingEngine()
+void FreeMove::processInput(const Input &input)
 {
-	m_basicShader = new BasicShader();
+	if (input.getKey(Input::KEY_W)) {
+		move(getTransform().getRotation().getForward(), m_speed);
+	}
+	if (input.getKey(Input::KEY_S)) {
+		move(getTransform().getRotation().getBackward(), m_speed);
+	}
+	if (input.getKey(Input::KEY_A)) {
+		move(getTransform().getRotation().getLeft(), m_speed);
+	}
+	if (input.getKey(Input::KEY_D)) {
+		move(getTransform().getRotation().getRight(), m_speed);
+	}
 }
 
-RenderingEngine::~RenderingEngine()
+void FreeMove::move(const Vector3f &direction, float amount)
 {
-	delete m_basicShader;
-}
-
-void RenderingEngine::render(const Entity &object) const
-{
-	object.renderAll(*m_basicShader, *this, *m_camera);
+	getTransform().setTranslation(getTransform().getTranslation() + direction * amount);
 }

@@ -45,9 +45,6 @@ Mesh::Mesh(IndexedModel indexedModel) :
     std::vector<Vector3f> positions;
     std::vector<Vector2f> texCoords;
 
-    positions.reserve(m_model.getNumVertices());
-    texCoords.reserve(m_model.getNumVertices());
-
     for (Vertex vertex : m_model.getVertices()) {
         positions.push_back(vertex.getPosition());
         texCoords.push_back(vertex.getTexCoord());
@@ -83,6 +80,7 @@ Mesh::Mesh(IndexedModel indexedModel) :
 void Mesh::draw() const
 {
     glBindVertexArray(m_vertexArrayObject);
+
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_vertexArrayBuffers[BUFFER_INDEX]);
 	glDrawElements(GL_TRIANGLES, m_model.getNumIndices(), GL_UNSIGNED_INT, 0);
 }

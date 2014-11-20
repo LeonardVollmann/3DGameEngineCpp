@@ -18,6 +18,7 @@
 #define WINDOW_H
 
 #include "../core/input.h"
+#include "../core/math.h"
 
 #include <string>
 #include <SDL2/SDL.h>
@@ -37,6 +38,7 @@ public:
     inline const std::string &getTitle() const { return m_title; }
     inline unsigned int getWidth()       const { return m_width; }
     inline unsigned int getHeight()      const { return m_height; }
+    inline Vector2f getCenter()          const { return Vector2f(m_width / 2.0f, m_height / 2.0f); }
     inline float getAspectRatio()        const { return (float)m_width / (float)m_height; }
     inline SDL_Window *getWindow()       const { return m_window; }
     inline Input &getInput()       		 { return m_input; }

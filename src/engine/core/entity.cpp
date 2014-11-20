@@ -94,5 +94,9 @@ void Entity::setEngine(CoreEngine *engine)
 		child->setEngine(engine);
 	}
 
+	for (Component *component : m_components) {
+		component->setEngine(engine);
+	}
+
 	m_engine = engine;
 }

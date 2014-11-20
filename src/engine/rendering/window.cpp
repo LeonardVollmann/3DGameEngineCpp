@@ -74,34 +74,36 @@ void Window::update()
     
     SDL_Event e;
     while (SDL_PollEvent(&e)) {
-        if (e.type == SDL_QUIT) {
+        if(e.type == SDL_QUIT) {
             m_closed = true;
-        } else if (e.type == SDL_KEYDOWN) {
-            int key = e.key.keysym.scancode;
-            
-            m_input.setKeyDown(key, true);
-            m_input.setKeyUp(key, false);
-            m_input.setKey(key, true);
-        } else if (e.type == SDL_KEYUP) {
-            int key = e.key.keysym.scancode;
-            
-            m_input.setKeyDown(key, false);
-            m_input.setKeyUp(key, true);
-            m_input.setKey(key, false);
-        } else if (e.type == SDL_MOUSEBUTTONDOWN) {
-            int button = e.button.button;
-            
-            m_input.setMouseDown(button, true);
-            m_input.setMouseUp(button, false);
-            m_input.setMouseButton(button, true);
-        } else if (e.type == SDL_MOUSEBUTTONUP) {
-            int button = e.button.button;
-            
-            m_input.setMouseDown(button, false);
-            m_input.setMouseUp(button, true);
-            m_input.setMouseButton(button, false);
-        } else if (e.type == SDL_MOUSEMOTION) {
+        }
+
+        if(e.type == SDL_MOUSEMOTION) {
             m_input.setMousePosition(e.motion.x, e.motion.y);
+        }
+        if(e.type == SDL_MOUSEBUTTONDOWN) {
+            int value = e.button.button;
+
+            m_input.setMouseButton(value, true);
+            m_input.setMouseDown(value, true);
+        }
+        if(e.type == SDL_MOUSEBUTTONUP) {
+            int value = e.button.button;
+
+            m_input.setMouseButton(value, false);
+            m_input.setMouseUp(value, true);
+        }
+        if(e.type == SDL_KEYDOWN) {
+            int value = e.key.keysym.scancode;
+
+            m_input.setKey(value, true);
+            m_input.setKeyDown(value, true);
+        }
+        if(e.type == SDL_KEYUP) {
+            int value = e.key.keysym.scancode;
+
+            m_input.setKey(value, false);
+            m_input.setKeyUp(value, true);
         }
     }
 }

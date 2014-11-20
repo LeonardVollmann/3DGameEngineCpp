@@ -34,13 +34,12 @@ public:
 
 	void init();
 	
-	virtual void processInput(Input &input);
-	virtual void update();
+	virtual void update(float delta);
 	virtual void render(RenderingEngine *renderingEngine);
 protected:
 private:
-	Mesh m_mesh;
-	Entity *m_object;
+	Entity *m_object0;
+	Entity *m_object1;
 	Texture m_texture;
 };
 #endif

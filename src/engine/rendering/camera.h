@@ -19,42 +19,30 @@
 
 #include "../core/math.h"
 #include "../core/input.h"
+#include "../core/core_engine.h"
 
 class Camera
 {
 public:
-	Camera(const Vector3f &pos, const Vector3f &forward, const Vector3f &up, float fov, float aspect, float zNear, float zFar);
+	Camera(const Matrix4f &projection) :
+		m_projection(projection) {}
 
-	void processInput(Input &input);
-
-	const Matrix4f getViewProjection() const;
-
-	void move(const Vector3f &direction, float amount);
-	void rotate(const Vector3f &angle, float axis);
+	inline const Matrix4f getViewProjection() const
+	{
+		Matrix4f view = Matrix4f().initView(m_transform->getTranslation(), m_transform->getRotation().getForward(), m_transform->getRotation().getUp());
+		return m_projection * view;
+	}
 
 	inline const Matrix4f &getProjection() const { return m_projection; }
-	inline const Vector3f &getPos() const { return m_pos; }
-	inline const Vector3f &getForward() const { return m_forward; }
-	inline const Vector3f &getUp() const { return m_up; }
-	inline const Vector3f getBackward() const { return m_forward * -1.0f; }
-	inline const Vector3f getDown() const { return m_up * -1.0f; }
-	inline const Vector3f getRight() const { return m_forward.cross(m_up); }
-	inline const Vector3f getLeft() const { return m_up.cross(m_forward); }
+	inline const Transform &getTransform() const { return *m_transform; }
+	inline Transform *getTransform() { return m_transform; }
 
 	inline void setProjection(float fov, float aspect, float zNear, float zFar) { m_projection = Matrix4f().initProjection(fov, aspect, zNear, zFar); }
+	inline void setTransform(Transform *transform) { m_transform = transform; }
 protected:
 private:
-	constexpr static float CAM_SPEED = 0.2f;
-	constexpr static float MOUSE_SENSITIVITY = 0.2f;
-
-	Vector3f m_pos;
-	Vector3f m_forward;
-	Vector3f m_up;
-
-	bool m_mouseLocked;
-	Vector2f m_windowCenter;
-
 	Matrix4f m_projection;
+	Transform *m_transform;
 };
 
 #endif

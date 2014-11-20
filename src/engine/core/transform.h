@@ -35,7 +35,7 @@ public:
 
 		return rotation * translation * scale;
 	}
-
+	
 	inline const Vector3f &getScale() const { return m_scale; }
 	inline const Vector3f &getTranslation() const { return m_translation; }
 	inline const Quaternion &getRotation() const { return m_rotation; }

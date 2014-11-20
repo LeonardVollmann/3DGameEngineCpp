@@ -17,17 +17,21 @@
 #include "core_engine.h"
 #include "time.h"
 #include "math.h"
+#include "game.h"
+#include "../rendering/rendering_engine.h"
 
 #include <iostream>
 
 CoreEngine::CoreEngine(double fps, Window *window, RenderingEngine *renderingEngine, Game *game) :
     m_frameTime(1.0 / fps),
     m_running(false),
+    m_delta(0),
     m_window(window),
     m_renderingEngine(renderingEngine),
 	m_game(game)
 {
 	m_game->setEngine(this);
+    m_game->init();
 }
 
 void CoreEngine::start()
@@ -68,6 +72,8 @@ void CoreEngine::start()
         
         render();
         frames++;
+
+        m_delta = delta;
     }
 }
 
@@ -79,7 +85,7 @@ void CoreEngine::stop()
 void CoreEngine::update()
 {
 	m_game->processInput(m_window->getInput());
-    m_game->update();
+    m_game->update(m_delta);
 }
 
 void CoreEngine::render()

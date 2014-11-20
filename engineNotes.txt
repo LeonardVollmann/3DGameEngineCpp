@@ -1,7 +1,3 @@
-# Notes
-- some getters and setters return pointers -> not const
-- move constructors that only initialized to the header
-
 # Future Features
 - easier vector construction + defaults (1, 0, xAxis, yAxis, zAxis)
 - matrix defaults (identity...)

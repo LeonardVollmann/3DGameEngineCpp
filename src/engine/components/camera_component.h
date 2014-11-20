@@ -14,22 +14,31 @@
  * limitations under the License.
  */
 
-#include "rendering_engine.h"
+#ifndef CAMERA_COMPONENT_H
+#define CAMERA_COMPONENT_H
+
+#include "../core/component.h"
 #include "../core/transform.h"
-#include "../core/math.h"
-#include "basic_shader.h"
+#include "../rendering/camera.h"
 
-RenderingEngine::RenderingEngine()
+class CameraComponent : public Component
 {
-	m_basicShader = new BasicShader();
-}
+public:
+	CameraComponent(const Vector3f &pos, const Vector3f &forward, const Vector3f &up, float fov, float aspect, float zNear, float zFar);
 
-RenderingEngine::~RenderingEngine()
-{
-	delete m_basicShader;
-}
+	virtual void update(float delta);
 
-void RenderingEngine::render(const Entity &object) const
-{
-	object.renderAll(*m_basicShader, *this, *m_camera);
-}
+	virtual void setParent(Entity *parent);
+	virtual void setEngine(CoreEngine *engine);
+
+	const Matrix4f getViewProjection() const;
+protected:
+private:
+	Camera m_camera;
+
+	Vector3f m_pos;
+	Vector3f m_forward;
+	Vector3f m_up;
+};
+
+#endif

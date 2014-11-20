@@ -29,10 +29,23 @@ class Game
 public:
     Game() {}
     virtual ~Game() {}
+    
+    virtual void init() = 0;
 
-	virtual void processInput(Input &input) = 0;
-	virtual void update() = 0;
-	virtual void render(RenderingEngine *renderingEngine) = 0;
+	virtual void processInput(Input &input)
+	{
+		m_root.processInputAll(input);
+	}
+
+	virtual void update(float delta)
+	{
+		m_root.updateAll(delta);
+	}
+
+	virtual void render(RenderingEngine *renderingEngine)
+	{
+		renderingEngine->render(m_root);
+	}
 
 	virtual inline void add(Entity *entity)
 	{
@@ -43,7 +56,6 @@ public:
 protected:
 	CoreEngine *m_engine;
 
-	Camera *m_camera;
 	Entity m_root;
 private:
 };

@@ -14,22 +14,27 @@
  * limitations under the License.
  */
 
-#include "rendering_engine.h"
-#include "../core/transform.h"
+#ifndef FREE_LOOK_H
+#define FREE_LOOK_H
+
+#include "../core/component.h"
 #include "../core/math.h"
-#include "basic_shader.h"
 
-RenderingEngine::RenderingEngine()
+class FreeLook : public Component
 {
-	m_basicShader = new BasicShader();
-}
+public:
+	FreeLook(const Vector2f &windowCenter, float sensitivity) :
+		m_windowCenter(windowCenter),
+		m_sensitivity(sensitivity),
+		m_mouseLocked(false) {}
+	
+	virtual void processInput(const Input &input);
+	void rotate(const Vector3f &axis, float angle);
+protected:
+private:
+	Vector2f m_windowCenter;
+	float m_sensitivity;
+	bool m_mouseLocked;
+};
 
-RenderingEngine::~RenderingEngine()
-{
-	delete m_basicShader;
-}
-
-void RenderingEngine::render(const Entity &object) const
-{
-	object.renderAll(*m_basicShader, *this, *m_camera);
-}
+#endif

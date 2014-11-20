@@ -14,22 +14,25 @@
  * limitations under the License.
  */
 
-#include "rendering_engine.h"
-#include "../core/transform.h"
+#ifndef FREE_MOVE_H
+#define FREE_MOVE_H
+
+#include "../core/component.h"
+#include "../core/input.h"
 #include "../core/math.h"
-#include "basic_shader.h"
 
-RenderingEngine::RenderingEngine()
+class FreeMove : public Component
 {
-	m_basicShader = new BasicShader();
-}
+public:
+	FreeMove(float speed) :
+		m_speed(speed) {}
+	
+	virtual void processInput(const Input &input);
 
-RenderingEngine::~RenderingEngine()
-{
-	delete m_basicShader;
-}
+	void move(const Vector3f &direction, float amount);
+protected:
+private:
+	float m_speed;
+};
 
-void RenderingEngine::render(const Entity &object) const
-{
-	object.renderAll(*m_basicShader, *this, *m_camera);
-}
+#endif

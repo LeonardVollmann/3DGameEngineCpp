@@ -20,13 +20,16 @@
 #include "transform.h"
 //#include "core_engine.h"
 #include "input.h"
+// #include "component.h"
 //#include "../rendering/rendering_engine.h"
-#include "../rendering/shader.h"
+//#include "../rendering/shader.h"
 
 #include <vector>
 
 class CoreEngine;
 class RenderingEngine;
+class Shader;
+class Camera;
 class Component;
 
 class Entity
@@ -48,7 +51,7 @@ public:
 
 	inline const Transform &getTransform() const { return m_transform; }
 	inline Transform &getTransform() { return m_transform; }
-	// inline Transform *getTransform() { return &m_transform; }
+	inline void setTransform(const Transform &transform) { m_transform = transform; }
 protected:
 	void processInput(const Input &input) {}
 	void update(float delta) {}
