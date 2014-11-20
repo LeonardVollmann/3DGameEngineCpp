@@ -48,6 +48,7 @@ void FreeLook::processInput(const Input &input)
 void FreeLook::rotate(const Vector3f &axis, float angle)
 {
 	Quaternion rot = getTransform().getRotation();
-	Quaternion newRot = rot.rotate(Quaternion().initFromAxisAngle(axis, angle));
+	// Quaternion newRot = rot.rotate(Quaternion().initFromAxisAngle(axis, angle));
+	Quaternion newRot = Quaternion().initFromAxisAngle(axis, angle).rotate(rot);
 	getTransform().setRotation(newRot);
 }

@@ -27,7 +27,6 @@ CameraComponent::CameraComponent(const Vector3f &pos, const Vector3f &forward, c
 
 void CameraComponent::update(float delta)
 {
-	getTransform() = Transform(Vector3f(1.0f, 1.0f, 1.0f), m_pos, Quaternion(Matrix3f().initRotationFromDirectionVectors(Vector3f(1.0f, 0.0f, 0.0f), m_up, m_forward)));
 	m_engine->getRenderingEngine()->setCamera(&m_camera);
 }
 
