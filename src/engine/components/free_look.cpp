@@ -28,14 +28,26 @@ void FreeLook::processInput(const Input &input)
 		Vector2f mouseDistance = input.getMousePosition() - m_windowCenter;
 
 		if (mouseDistance.getY() != 0) {
-			rotate(Vector3f(1.0f, 0.0f, 0.0f).normalized(), mouseDistance.getY() * m_sensitivity);
+			getTransform().rotate(getTransform().getRotation().getRight(), toRadians(mouseDistance.getY()) * m_sensitivity);
 		}
 
 		if (mouseDistance.getX() != 0) {
-			rotate(Vector3f(0.0f, 1.0f, 0.0f).normalized(), mouseDistance.getX() * m_sensitivity);
+			getTransform().rotate(Vector3f(0.0f, 1.0f, 0.0f), toRadians(mouseDistance.getX()) * m_sensitivity);
 		}
 
 		input.warpMouse(m_windowCenter);
+	} else {
+		if (input.getKey(Input::KEY_LEFT)) {
+			getTransform().rotate(Vector3f(0.0f, 1.0f, 0.0f), (m_sensitivity));
+		} else if (input.getKey(Input::KEY_RIGHT)) {
+			getTransform().rotate(Vector3f(0.0f, 1.0f, 0.0f), -(m_sensitivity));
+		}
+
+		if (input.getKey(Input::KEY_UP)) {
+			getTransform().rotate(getTransform().getRotation().getRight(), (m_sensitivity));
+		} else if (input.getKey(Input::KEY_DOWN)) {
+			getTransform().rotate(getTransform().getRotation().getRight(), -(m_sensitivity));
+		}
 	}
 
 	if (input.getMouseButton(Input::MOUSE_LEFT_BUTTON)) {
@@ -43,12 +55,4 @@ void FreeLook::processInput(const Input &input)
 		input.setMouseVisible(false);
 		input.warpMouse(m_windowCenter);
 	}
-}
-
-void FreeLook::rotate(const Vector3f &axis, float angle)
-{
-	Quaternion rot = getTransform().getRotation();
-	// Quaternion newRot = rot.rotate(Quaternion().initFromAxisAngle(axis, angle));
-	Quaternion newRot = Quaternion().initFromAxisAngle(axis, angle).rotate(rot);
-	getTransform().setRotation(newRot);
 }

@@ -589,6 +589,7 @@ public:
     
     inline Matrix3<T> initRotation(const Vector3<T> &v, float angle)
     {
+        // TODO: FIX!
         const float sinAngle = sinf(angle);
         const float cosAngle = cosf(angle);
         
@@ -677,7 +678,7 @@ public:
         }
     }
 
-    inline Matrix4f initProjection(float fov, float aspect, float zNear, float zFar)
+    inline Matrix4f initPerspective(float fov, float aspect, float zNear, float zFar)
     {
         float tanHalfFOV = tanf(toRadians(fov) / 2);
         float zRange = zNear - zFar;
@@ -695,14 +696,14 @@ public:
 
     inline Matrix4f initView(const Vector3f &pos, const Vector3f &forward, const Vector3f &up)
     {
-		Vector3f f = forward;
-		Vector3f r = up.cross(forward);
-		Vector3f u = f.cross(r);
+		Vector3f f = forward.normalized();
+		Vector3f r = up.cross(forward).normalized();
+		Vector3f u = f.cross(r).normalized();
 		
         Matrix4f translation = Matrix4f().initTranslation(pos * -1);
         Matrix4f rotation = Matrix4f(Matrix3f().initRotationFromDirectionVectors(r, u, f));
 
-		return translation * rotation;
+        return rotation * translation;
     }
 protected:
 private:
@@ -730,9 +731,14 @@ public:
         this->setZ(z);
         this->setW(w);
     }
-    
-    Quaternion(const Vector3f &v, float w) :
-        Quaternion(v.getX(), v.getY(), v.getZ(), w) {}
+
+    Quaternion(const Vector<float, 4U> &r)
+    {
+        this->setX(r[0]);
+        this->setY(r[1]);
+        this->setZ(r[2]);
+        this->setW(r[3]);
+    }
     
     Quaternion(const Matrix3f &m)
     {
@@ -771,8 +777,8 @@ public:
             (*this)[k] = (m[k][i] + m[i][k]) * t;
         }
     }
-    
-    inline Quaternion initFromAxisAngle(const Vector3f axis, float angle)
+
+    Quaternion(const Vector3f axis, float angle)
     {
         const float sinHalfAngle = sinf(angle / 2);
         const float cosHalfAngle = cosf(angle / 2);
@@ -781,8 +787,6 @@ public:
         (*this)[1] = axis.getY() * sinHalfAngle;
         (*this)[2] = axis.getZ() * sinHalfAngle;
         (*this)[3] = cosHalfAngle;
-        
-        return *this;
     }
     
     inline Vector3f getXYZ() const { return Vector3f((*this)[0], (*this)[1], (*this)[2]); }
@@ -813,11 +817,6 @@ public:
     {
         *this = this->operator*(r);
         return *this;
-    }
-
-    inline Quaternion rotate(const Quaternion &r) const
-    {
-        return r * (*this) * r.conjugate();
     }
     
     inline Matrix3f toRotationMatrix() const

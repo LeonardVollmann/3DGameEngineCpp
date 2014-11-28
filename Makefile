@@ -306,6 +306,30 @@ src/engine/core/math.cpp.s:
 	$(MAKE) -f CMakeFiles/3D_Game_Engine.dir/build.make CMakeFiles/3D_Game_Engine.dir/src/engine/core/math.cpp.s
 .PHONY : src/engine/core/math.cpp.s
 
+src/engine/core/transform.o: src/engine/core/transform.cpp.o
+.PHONY : src/engine/core/transform.o
+
+# target to build an object file
+src/engine/core/transform.cpp.o:
+	$(MAKE) -f CMakeFiles/3D_Game_Engine.dir/build.make CMakeFiles/3D_Game_Engine.dir/src/engine/core/transform.cpp.o
+.PHONY : src/engine/core/transform.cpp.o
+
+src/engine/core/transform.i: src/engine/core/transform.cpp.i
+.PHONY : src/engine/core/transform.i
+
+# target to preprocess a source file
+src/engine/core/transform.cpp.i:
+	$(MAKE) -f CMakeFiles/3D_Game_Engine.dir/build.make CMakeFiles/3D_Game_Engine.dir/src/engine/core/transform.cpp.i
+.PHONY : src/engine/core/transform.cpp.i
+
+src/engine/core/transform.s: src/engine/core/transform.cpp.s
+.PHONY : src/engine/core/transform.s
+
+# target to generate assembly for a file
+src/engine/core/transform.cpp.s:
+	$(MAKE) -f CMakeFiles/3D_Game_Engine.dir/build.make CMakeFiles/3D_Game_Engine.dir/src/engine/core/transform.cpp.s
+.PHONY : src/engine/core/transform.cpp.s
+
 src/engine/rendering/basic_shader.o: src/engine/rendering/basic_shader.cpp.o
 .PHONY : src/engine/rendering/basic_shader.o
 
@@ -555,6 +579,9 @@ help:
 	@echo "... src/engine/core/math.o"
 	@echo "... src/engine/core/math.i"
 	@echo "... src/engine/core/math.s"
+	@echo "... src/engine/core/transform.o"
+	@echo "... src/engine/core/transform.i"
+	@echo "... src/engine/core/transform.s"
 	@echo "... src/engine/rendering/basic_shader.o"
 	@echo "... src/engine/rendering/basic_shader.i"
 	@echo "... src/engine/rendering/basic_shader.s"

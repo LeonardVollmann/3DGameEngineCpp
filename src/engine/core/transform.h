@@ -27,14 +27,10 @@ public:
 		m_translation(translation),
 		m_rotation(rotation) {}
 
-	inline Matrix4f getTransformation() const
-	{
-		Matrix4f scale = Matrix4f().initScale(m_scale);
-		Matrix4f translation = Matrix4f().initTranslation(m_translation);
-		Matrix4f rotation = m_rotation.toRotationMatrix();
-
-		return rotation * translation * scale;
-	}
+	Matrix4f getTransformation() const;
+	void rotate(const Quaternion &rotation);
+	void rotate(const Vector3f &axis, float angle);
+	void translate(const Vector3f &translation);
 	
 	inline const Vector3f &getScale() const { return m_scale; }
 	inline const Vector3f &getTranslation() const { return m_translation; }

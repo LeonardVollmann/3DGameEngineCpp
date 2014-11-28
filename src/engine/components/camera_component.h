@@ -24,7 +24,7 @@
 class CameraComponent : public Component
 {
 public:
-	CameraComponent(const Vector3f &pos, const Vector3f &forward, const Vector3f &up, float fov, float aspect, float zNear, float zFar);
+	CameraComponent(float fov, float aspect, float zNear, float zFar);
 
 	virtual void update(float delta);
 
@@ -35,10 +35,6 @@ public:
 protected:
 private:
 	Camera m_camera;
-
-	Vector3f m_pos;
-	Vector3f m_forward;
-	Vector3f m_up;
 };
 
 #endif

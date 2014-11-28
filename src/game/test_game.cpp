@@ -103,9 +103,9 @@ void TestGame::init()
 	// m_object1 = (new Entity())->addComponent(new MeshRenderer(mesh1));
 	// add(m_object1);
 
-	add((new Entity())->addComponent(new CameraComponent(Vector3f(0.0f, 0.0f, -3.0f), Vector3f(0.0f, 0.0f, 1.0f), Vector3f(0.0f, 1.0f, 0.0f), 70.0f, m_engine->getWindow()->getAspectRatio(), 0.1f, 1000.0f))
-		->addComponent(new FreeMove(0.2f)));
-		// ->addComponent(new FreeLook(m_engine->getWindow()->getCenter(), 0.02f)));
+	add((new Entity())->addComponent(new CameraComponent(70.0f, m_engine->getWindow()->getAspectRatio(), 0.1f, 1000.0f))
+		->addComponent(new FreeMove(0.2f))
+		->addComponent(new FreeLook(m_engine->getWindow()->getCenter(), 0.2f)));
 }
 
 float counter = 0.0f;
@@ -120,7 +120,8 @@ void TestGame::update(float delta)
 	sinCounter = sinf(counter);
 	cosCounter = cosf(counter);
 
-	m_object0->getTransform().setRotation(Quaternion().initFromAxisAngle(Vector3f(0.0f, 1.0f, 0.0f).normalized(), counter));
+	// m_object0->getTransform().setRotation(Quaternion(Vector3f(0.0f, 1.0f, 0.0f), counter));
+	m_object0->getTransform().rotate(Vector3f(0.0f, 1.0f, 0.0f), 0.02f);
 }
 
 void TestGame::render(RenderingEngine *renderingEngine)

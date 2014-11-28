@@ -16,14 +16,9 @@
 
 #include "camera_component.h"
 
-CameraComponent::CameraComponent(const Vector3f &pos, const Vector3f &forward, const Vector3f &up, float fov, float aspect, float zNear, float zFar) :
-	m_camera(Matrix4f().initProjection(fov, aspect, zNear, zFar)),
-	m_pos(pos),
-	m_forward(forward),
-	m_up(up)
-{
-	m_camera.setTransform(&getTransform());
-}
+CameraComponent::CameraComponent(float fov, float aspect, float zNear, float zFar) :
+	m_camera(Matrix4f().initPerspective(fov, aspect, zNear, zFar))
+	{}
 
 void CameraComponent::update(float delta)
 {
@@ -33,7 +28,6 @@ void CameraComponent::update(float delta)
 void CameraComponent::setParent(Entity *parent)
 {
 	m_parent = parent;
-	getTransform() = Transform(Vector3f(1.0f, 1.0f, 1.0f), m_pos, Quaternion(Matrix3f().initRotationFromDirectionVectors(Vector3f(1.0f, 0.0f, 0.0f), m_up, m_forward)));
 	m_camera.setTransform(&getTransform());
 }
 
