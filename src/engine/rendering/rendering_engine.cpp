@@ -21,7 +21,8 @@
 #include "phong_shader.h"
 
 RenderingEngine::RenderingEngine() :
-    m_ambientLight(1.0f, 1.0f, 1.0f)
+    m_ambientLight(1.0f, 1.0f, 1.0f),
+    m_directionalLight(Light(Vector3f(1.0f, 1.0f, 1.0f), 0.0f), Vector3f(0.0f, 0.0f, 0.0f))
 {
 	m_basicShader = new BasicShader();
     m_phongShader = new PhongShader();

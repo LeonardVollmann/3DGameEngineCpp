@@ -87,6 +87,8 @@ Shader::Shader(const std::string &fileName)
     m_program = glCreateProgram();
     
     glBindAttribLocation(m_program, 0, "position");
+    glBindAttribLocation(m_program, 1, "texCoord");
+    glBindAttribLocation(m_program, 2, "normal");
     
     m_shaders[0] = createShader(loadShader("./res/shaders/" + fileName + ".vs"), GL_VERTEX_SHADER);
     m_shaders[1] = createShader(loadShader("./res/shaders/" + fileName + ".fs"), GL_FRAGMENT_SHADER);

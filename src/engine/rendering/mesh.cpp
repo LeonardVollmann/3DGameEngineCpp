@@ -23,20 +23,40 @@ IndexedModel::IndexedModel(const std::vector<Vertex> &vertices, const std::vecto
     m_numIndices(0)
 {}
 
-void IndexedModel::addVertex(const Vertex &vertex)
+void IndexedModel::addVertices(const std::vector<Vertex> &vertices, const std::vector<unsigned int> &indices, bool calcNormals)
 {
-    m_vertices.push_back(vertex);
+    m_numVertices += vertices.size();
+    m_numIndices += indices.size();
     
-    m_numVertices++;
+    for (auto it = vertices.begin(); it != vertices.end(); it++) {
+        m_vertices.push_back(*it);
+    }
+    
+    for (auto it = indices.begin(); it != indices.end(); it++) {
+        m_indices.push_back(*it);
+    }
+    
+    if (calcNormals) {
+        calculateNormals();
+    }
 }
 
-void IndexedModel::addFace(const Vector3i &indices)
+void IndexedModel::calculateNormals()
 {
-    m_indices.push_back(indices[0]);
-    m_indices.push_back(indices[1]);
-    m_indices.push_back(indices[2]);
-    
-    m_numIndices += 3;
+    for (unsigned int i = 0; i < m_indices.size(); i += 3) {
+        unsigned int i0 = m_indices[i];
+        unsigned int i1 = m_indices[i + 1];
+        unsigned int i2 = m_indices[i + 2];
+        
+        Vector3f v0 = m_vertices[i0].getPosition() - m_vertices[i1].getPosition();
+        Vector3f v1 = m_vertices[i2].getPosition() - m_vertices[i0].getPosition();
+        
+        Vector3f normal = v0.cross(v1).normalized();
+        
+        m_vertices[i0].setNormal((m_vertices[i0].getNormal() + normal).normalized());
+        m_vertices[i1].setNormal((m_vertices[i1].getNormal() + normal).normalized());
+        m_vertices[i2].setNormal((m_vertices[i2].getNormal() + normal).normalized());
+    }
 }
 
 Mesh::Mesh(IndexedModel indexedModel) :
@@ -44,10 +64,12 @@ Mesh::Mesh(IndexedModel indexedModel) :
 {
     std::vector<Vector3f> positions;
     std::vector<Vector2f> texCoords;
+    std::vector<Vector3f> normals;
 
     for (Vertex vertex : m_model.getVertices()) {
         positions.push_back(vertex.getPosition());
         texCoords.push_back(vertex.getTexCoord());
+        normals.push_back(vertex.getNormal());
     }
 
     glGenVertexArrays(1, &m_vertexArrayObject);
@@ -66,6 +88,12 @@ Mesh::Mesh(IndexedModel indexedModel) :
 
     glEnableVertexAttribArray(1);
     glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, (void *)0);
+    
+    glBindBuffer(GL_ARRAY_BUFFER, m_vertexArrayBuffers[BUFFER_NORMAL]);
+    glBufferData(GL_ARRAY_BUFFER, m_model.getNumVertices() * sizeof(Vector3f), &normals[0], GL_STATIC_DRAW);
+    
+    glEnableVertexAttribArray(2);
+    glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 0, (void *)0);
 
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_vertexArrayBuffers[BUFFER_INDEX]);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, m_model.getNumIndices() * sizeof(unsigned int), &(m_model.getIndices()[0]), GL_STATIC_DRAW);

@@ -16,15 +16,48 @@
  
 #version 120
 
+varying vec2 texCoord0;
+varying vec3 normal0;
+
+struct Light
+{
+    vec3 color;
+    float intensity;
+};
+
+struct DirectionalLight
+{
+    Light light;
+    vec3 direction;
+};
+
 uniform sampler2D texture;
 uniform vec3 ambientLight;
+uniform DirectionalLight directionalLight;
 
-varying vec2 texCoord0;
+vec4 calculateLight(Light light, vec3 direction, vec3 normal)
+{
+    float diffuseFactor = dot(normal, -direction);
+    vec4 diffuseColor = vec4(0, 0, 0, 0);
+    
+    if (diffuseFactor > 0) {
+        diffuseColor = vec4(light.color, 1) * light.intensity * diffuseFactor;
+    }
+    
+    return diffuseColor;
+}
+
+vec4 calculateDirectionalLight(DirectionalLight directionalLight, vec3 normal)
+{
+    return calculateLight(directionalLight.light, -directionalLight.direction, normal);
+}
 
 void main()
 {
     vec4 textureColor =  texture2D(texture, texCoord0);
     vec4 totalLight = vec4(ambientLight, 1);
+    
+    totalLight += calculateDirectionalLight(directionalLight, normal0);
     
     gl_FragColor = textureColor * totalLight;
 }

@@ -18,6 +18,9 @@
 #define PHONG_SHADER_H
 
 #include "shader.h"
+#include "lighting.h"
+
+#include <string>
 
 class PhongShader : public Shader
 {
@@ -27,7 +30,8 @@ public:
     virtual void updateUniforms(const Transform &transform, const RenderingEngine &renderingEngine, const Camera &camera) const;
 protected:
 private:
+    void setUniformLight(const std::string &uniform, const Light &light) const;
+    void setUniformDirectionalLight(const std::string &uniform, const DirectionalLight &directionalLight) const;
 };
-
 
 #endif

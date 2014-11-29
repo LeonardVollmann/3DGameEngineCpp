@@ -20,6 +20,7 @@
 #include "mesh.h"
 #include "shader.h"
 #include "camera.h"
+#include "lighting.h"
 #include "../core/entity.h"
 
 class BasicShader;
@@ -34,15 +35,18 @@ public:
 	void render(const Entity &object) const;
 
     inline const Vector3f &getAmbientLight() const { return m_ambientLight; }
+    inline const DirectionalLight &getDirectionalLight() const { return m_directionalLight; }
     
 	inline void setCamera(Camera *camera) { m_camera = camera; }
     inline void setAmbientLight(const Vector3f &ambientLight) { m_ambientLight = ambientLight; }
+    inline void setDirectionalLight(const DirectionalLight &directionalLight) { m_directionalLight = directionalLight; }
 protected:
 private:
     BasicShader *m_basicShader;
     PhongShader *m_phongShader;
     
     Vector3f m_ambientLight;
+    DirectionalLight m_directionalLight;
 	
     Camera *m_camera;
 };

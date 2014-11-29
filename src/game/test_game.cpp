@@ -17,6 +17,7 @@
 #include "test_game.h"
 
 #include "../engine/rendering/camera.h"
+#include "../engine/rendering/mesh.h"
 #include "../engine/core/component.h"
 #include "../engine/components/mesh_renderer.h"
 #include "../engine/components/camera_component.h"
@@ -24,9 +25,10 @@
 #include "../engine/components/free_look.h"
 
 #include <cmath>
+#include <vector>
 
 TestGame::TestGame() : 
-	m_texture("default.png") {}
+	m_texture("default_large.png") {}
 
 TestGame::~TestGame() {}
 
@@ -35,54 +37,100 @@ void TestGame::init()
 	m_root.setEngine(m_engine);
 
 	IndexedModel model = IndexedModel();
+    std::vector<Vertex> vertices;
+    std::vector<unsigned int> indices;
 
-	model.addVertex(Vertex(Vector3f(-1, -1, -1), Vector2f(1, 0)));
-	model.addVertex(Vertex(Vector3f(-1,  1, -1), Vector2f(0, 0)));
-	model.addVertex(Vertex(Vector3f( 1,  1, -1), Vector2f(0, 1)));
-	model.addVertex(Vertex(Vector3f( 1, -1, -1), Vector2f(1, 1)));
-        
-	model.addVertex(Vertex(Vector3f(-1, -1, 1), Vector2f(1, 0)));
-	model.addVertex(Vertex(Vector3f(-1,  1, 1), Vector2f(0, 0)));
-	model.addVertex(Vertex(Vector3f( 1,  1, 1), Vector2f(0, 1)));
-	model.addVertex(Vertex(Vector3f( 1, -1, 1), Vector2f(1, 1)));
-        
-	model.addVertex(Vertex(Vector3f(-1, -1, -1), Vector2f(0, 1)));
-	model.addVertex(Vertex(Vector3f(-1, -1,  1), Vector2f(1, 1)));
-	model.addVertex(Vertex(Vector3f( 1, -1,  1), Vector2f(1, 0)));
-	model.addVertex(Vertex(Vector3f( 1, -1, -1), Vector2f(0, 0)));
-        
-	model.addVertex(Vertex(Vector3f(-1, 1, -1), Vector2f(0, 1)));
-	model.addVertex(Vertex(Vector3f(-1, 1,  1), Vector2f(1, 1)));
-	model.addVertex(Vertex(Vector3f( 1, 1,  1), Vector2f(1, 0)));
-	model.addVertex(Vertex(Vector3f( 1, 1, -1), Vector2f(0, 0)));
-        
-	model.addVertex(Vertex(Vector3f(-1, -1, -1), Vector2f(1, 1)));
-	model.addVertex(Vertex(Vector3f(-1, -1,  1), Vector2f(1, 0)));
-	model.addVertex(Vertex(Vector3f(-1,  1,  1), Vector2f(0, 0)));
-	model.addVertex(Vertex(Vector3f(-1,  1, -1), Vector2f(0, 1)));
-        
-	model.addVertex(Vertex(Vector3f(1, -1, -1), Vector2f(1, 1)));
-	model.addVertex(Vertex(Vector3f(1, -1,  1), Vector2f(1, 0)));
-	model.addVertex(Vertex(Vector3f(1,  1,  1), Vector2f(0, 0)));
-	model.addVertex(Vertex(Vector3f(1,  1, -1), Vector2f(0, 1)));
-
-	model.addFace(Vector3i(2, 1, 0));
-    model.addFace(Vector3i(3, 2, 0));
-        
-    model.addFace(Vector3i(4, 5, 6));
-	model.addFace(Vector3i(4, 6, 7));
-        
-	model.addFace(Vector3i(8, 9, 10));
-	model.addFace(Vector3i(8, 10, 11));
-        
-	model.addFace(Vector3i(14, 13, 12));
-	model.addFace(Vector3i(15, 14, 12));
-        
-	model.addFace(Vector3i(18, 17, 16));
-	model.addFace(Vector3i(19, 18, 16));
-        
-	model.addFace(Vector3i(20, 21, 22));
-	model.addFace(Vector3i(20, 22, 23));
+//	vertices.push_back(Vertex(Vector3f(-1, -1, -1), Vector2f(1, 0)));
+//	vertices.push_back(Vertex(Vector3f(-1,  1, -1), Vector2f(0, 0)));
+//	vertices.push_back(Vertex(Vector3f( 1,  1, -1), Vector2f(0, 1)));
+//	vertices.push_back(Vertex(Vector3f( 1, -1, -1), Vector2f(1, 1)));
+//        
+//	vertices.push_back(Vertex(Vector3f(-1, -1, 1), Vector2f(1, 0)));
+//	vertices.push_back(Vertex(Vector3f(-1,  1, 1), Vector2f(0, 0)));
+//	vertices.push_back(Vertex(Vector3f( 1,  1, 1), Vector2f(0, 1)));
+//	vertices.push_back(Vertex(Vector3f( 1, -1, 1), Vector2f(1, 1)));
+//        
+//	vertices.push_back(Vertex(Vector3f(-1, -1, -1), Vector2f(0, 1)));
+//	vertices.push_back(Vertex(Vector3f(-1, -1,  1), Vector2f(1, 1)));
+//	vertices.push_back(Vertex(Vector3f( 1, -1,  1), Vector2f(1, 0)));
+//	vertices.push_back(Vertex(Vector3f( 1, -1, -1), Vector2f(0, 0)));
+//        
+//	vertices.push_back(Vertex(Vector3f(-1, 1, -1), Vector2f(0, 1)));
+//	vertices.push_back(Vertex(Vector3f(-1, 1,  1), Vector2f(1, 1)));
+//	vertices.push_back(Vertex(Vector3f( 1, 1,  1), Vector2f(1, 0)));
+//	vertices.push_back(Vertex(Vector3f( 1, 1, -1), Vector2f(0, 0)));
+//        
+//	vertices.push_back(Vertex(Vector3f(-1, -1, -1), Vector2f(1, 1)));
+//	vertices.push_back(Vertex(Vector3f(-1, -1,  1), Vector2f(1, 0)));
+//	vertices.push_back(Vertex(Vector3f(-1,  1,  1), Vector2f(0, 0)));
+//	vertices.push_back(Vertex(Vector3f(-1,  1, -1), Vector2f(0, 1)));
+//        
+//	vertices.push_back(Vertex(Vector3f(1, -1, -1), Vector2f(1, 1)));
+//	vertices.push_back(Vertex(Vector3f(1, -1,  1), Vector2f(1, 0)));
+//	vertices.push_back(Vertex(Vector3f(1,  1,  1), Vector2f(0, 0)));
+//	vertices.push_back(Vertex(Vector3f(1,  1, -1), Vector2f(0, 1)));
+//    
+//    indices.push_back(2);
+//    indices.push_back(1);
+//    indices.push_back(0);
+//    indices.push_back(3);
+//    indices.push_back(2);
+//    indices.push_back(0);
+//    
+//    indices.push_back(4);
+//    indices.push_back(5);
+//    indices.push_back(6);
+//    indices.push_back(4);
+//    indices.push_back(6);
+//    indices.push_back(7);
+//    
+//    indices.push_back(8);
+//    indices.push_back(9);
+//    indices.push_back(10);
+//    indices.push_back(8);
+//    indices.push_back(10);
+//    indices.push_back(11);
+//    
+//    indices.push_back(14);
+//    indices.push_back(13);
+//    indices.push_back(12);
+//    indices.push_back(15);
+//    indices.push_back(14);
+//    indices.push_back(12);
+//    
+//    indices.push_back(18);
+//    indices.push_back(17);
+//    indices.push_back(16);
+//    indices.push_back(19);
+//    indices.push_back(18);
+//    indices.push_back(16);
+//    
+//    indices.push_back(20);
+//    indices.push_back(21);
+//    indices.push_back(22);
+//    indices.push_back(20);
+//    indices.push_back(22);
+//    indices.push_back(23);
+    
+    vertices.push_back(Vertex(Vector3f(-1.0f, -1.0f, 0.5773f), Vector2f(0.0f, 0.0f)));
+    vertices.push_back(Vertex(Vector3f(0.0f, -1.0f, -1.15475f), Vector2f(0.5f, 0.0f)));
+    vertices.push_back(Vertex(Vector3f(1.0f, -1.0f, 0.5773f), Vector2f(1.0f, 0.0f)));
+    vertices.push_back(Vertex(Vector3f(0.0f, 1.0f, 0.0f), Vector2f(0.5f, 1.0f)));
+    
+    indices.push_back(1);
+    indices.push_back(3);
+    indices.push_back(0);
+    indices.push_back(2);
+    indices.push_back(3);
+    indices.push_back(1);
+    indices.push_back(0);
+    indices.push_back(3);
+    indices.push_back(2);
+    indices.push_back(0);
+    indices.push_back(2);
+    indices.push_back(1);
+                       
+    model.addVertices(vertices, indices, true);
 
 	Mesh mesh0 = Mesh(model);
 
@@ -108,6 +156,7 @@ void TestGame::init()
 		->addComponent(new FreeLook(m_engine->getWindow()->getCenter(), 0.2f)));
     
     m_engine->getRenderingEngine()->setAmbientLight(Vector3f(0.1f, 0.1f, 0.1f));
+    m_engine->getRenderingEngine()->setDirectionalLight(DirectionalLight(Light(Vector3f(1.0f, 1.0f, 1.0f), 0.8f), Vector3f(1.0f, 1.0f, 1.0f).normalized()));
 }
 
 float counter = 0.0f;
