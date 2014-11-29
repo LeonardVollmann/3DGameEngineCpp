@@ -1,7 +1,0 @@
-cd ./build
-echo "Moving resource folder to build directory..."
-mv ../res .
-echo "Running the engine..."
-./3D_Game_Engine
-echo "Moving resource folder back..."
-mv ./res ..

@@ -26,7 +26,7 @@
 #include <cmath>
 
 TestGame::TestGame() : 
-	m_texture("bricks.png") {}
+	m_texture("default.png") {}
 
 TestGame::~TestGame() {}
 

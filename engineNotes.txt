@@ -1,9 +1,0 @@
-# Future Features
-- easier vector construction + defaults (1, 0, xAxis, yAxis, zAxis)
-- matrix defaults (identity...)
-- quaternion defaults
-- generic uniforms
-- model loading
-- primitives
-- user Defined data (Mouse sensitivity, etc.)
-- generic Shaders
