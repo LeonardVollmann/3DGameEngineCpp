@@ -16,7 +16,7 @@
 
 #include "math.h"
 
-Vector3f Vector3f::rotate(const Quaternion &rot)
+Vector3f Vector3f::rotate(const Quaternion &rot) const
 {
     Quaternion conj = rot.conjugate();
     Quaternion q = rot * (*this) * conj;

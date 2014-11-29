@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2014 Leonard Vollmann
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,26 +14,20 @@
  * limitations under the License.
  */
 
-#include "rendering_engine.h"
-#include "../core/transform.h"
-#include "../core/math.h"
-#include "basic_shader.h"
 #include "phong_shader.h"
+#include "rendering_engine.h"
 
-RenderingEngine::RenderingEngine() :
-    m_ambientLight(1.0f, 1.0f, 1.0f)
+PhongShader::PhongShader() :
+Shader("phongShader")
 {
-	m_basicShader = new BasicShader();
-    m_phongShader = new PhongShader();
+    addUniform("transform");
+    addUniform("viewProjection");
+    addUniform("ambientLight");
 }
 
-RenderingEngine::~RenderingEngine()
+void PhongShader::updateUniforms(const Transform &transform, const RenderingEngine &renderingEngine, const Camera &camera) const
 {
-	delete m_basicShader;
-    delete m_phongShader;
-}
-
-void RenderingEngine::render(const Entity &object) const
-{
-	object.renderAll(*m_phongShader, *this, *m_camera);
+    setUniformMatrix4f("transform", transform.getTransformation());
+    setUniformMatrix4f("viewProjection", camera.getViewProjection());
+    setUniformVector3f("ambientLight", renderingEngine.getAmbientLight());
 }

@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2014 Leonard Vollmann
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,37 +14,20 @@
  * limitations under the License.
  */
 
-#ifndef RENDERING_ENGINE_H
-#define RENDERING_ENGINE_H
+#ifndef PHONG_SHADER_H
+#define PHONG_SHADER_H
 
-#include "mesh.h"
 #include "shader.h"
-#include "camera.h"
-#include "../core/entity.h"
 
-class BasicShader;
-class PhongShader;
-
-class RenderingEngine
+class PhongShader : public Shader
 {
 public:
-    RenderingEngine();
-    virtual ~RenderingEngine();
-
-	void render(const Entity &object) const;
-
-    inline const Vector3f &getAmbientLight() const { return m_ambientLight; }
+    PhongShader();
     
-	inline void setCamera(Camera *camera) { m_camera = camera; }
-    inline void setAmbientLight(const Vector3f &ambientLight) { m_ambientLight = ambientLight; }
+    virtual void updateUniforms(const Transform &transform, const RenderingEngine &renderingEngine, const Camera &camera) const;
 protected:
 private:
-    BasicShader *m_basicShader;
-    PhongShader *m_phongShader;
-    
-    Vector3f m_ambientLight;
-	
-    Camera *m_camera;
 };
+
 
 #endif

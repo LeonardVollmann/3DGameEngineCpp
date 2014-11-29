@@ -38,15 +38,15 @@ void FreeLook::processInput(const Input &input)
 		input.warpMouse(m_windowCenter);
 	} else {
 		if (input.getKey(Input::KEY_LEFT)) {
-			getTransform().rotate(Vector3f(0.0f, 1.0f, 0.0f), (m_sensitivity));
+			getTransform().rotate(Vector3f(0.0f, -1.0f, 0.0f), m_sensitivity);
 		} else if (input.getKey(Input::KEY_RIGHT)) {
-			getTransform().rotate(Vector3f(0.0f, 1.0f, 0.0f), -(m_sensitivity));
+			getTransform().rotate(Vector3f(0.0f, 1.0f, 0.0f), m_sensitivity);
 		}
 
 		if (input.getKey(Input::KEY_UP)) {
-			getTransform().rotate(getTransform().getRotation().getRight(), (m_sensitivity));
+			getTransform().rotate(getTransform().getRotation().getRight() * -1, (m_sensitivity));
 		} else if (input.getKey(Input::KEY_DOWN)) {
-			getTransform().rotate(getTransform().getRotation().getRight(), -(m_sensitivity));
+			getTransform().rotate(getTransform().getRotation().getRight(),(m_sensitivity));
 		}
 	}
 

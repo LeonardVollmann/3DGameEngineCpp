@@ -27,8 +27,8 @@ Matrix4f Transform::getTransformation() const
 
 void Transform::rotate(const Quaternion &rotation)
 {
-	// m_rotation = Quaternion((m_rotation * rotation).normalized());
-	m_rotation = m_rotation * rotation;
+//    m_rotation = Quaternion((rotation * m_rotation).normalized());
+	m_rotation = Quaternion((m_rotation * rotation).normalized());
 }
 
 void Transform::rotate(const Vector3f &axis, float angle)

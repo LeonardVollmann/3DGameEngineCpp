@@ -106,6 +106,8 @@ void TestGame::init()
 	add((new Entity())->addComponent(new CameraComponent(70.0f, m_engine->getWindow()->getAspectRatio(), 0.1f, 1000.0f))
 		->addComponent(new FreeMove(0.2f))
 		->addComponent(new FreeLook(m_engine->getWindow()->getCenter(), 0.2f)));
+    
+    m_engine->getRenderingEngine()->setAmbientLight(Vector3f(0.1f, 0.1f, 0.1f));
 }
 
 float counter = 0.0f;

@@ -409,7 +409,7 @@ public:
         return result;
     }
     
-    Vector3f rotate(const Quaternion &q);
+    Vector3f rotate(const Quaternion &q) const;
 protected:
 private:
 };

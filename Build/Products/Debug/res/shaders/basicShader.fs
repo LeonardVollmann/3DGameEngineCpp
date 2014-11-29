@@ -13,27 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+ 
+#version 120
 
-#include "rendering_engine.h"
-#include "../core/transform.h"
-#include "../core/math.h"
-#include "basic_shader.h"
-#include "phong_shader.h"
+uniform sampler2D texture;
 
-RenderingEngine::RenderingEngine() :
-    m_ambientLight(1.0f, 1.0f, 1.0f)
+varying vec2 texCoord0;
+
+void main()
 {
-	m_basicShader = new BasicShader();
-    m_phongShader = new PhongShader();
-}
-
-RenderingEngine::~RenderingEngine()
-{
-	delete m_basicShader;
-    delete m_phongShader;
-}
-
-void RenderingEngine::render(const Entity &object) const
-{
-	object.renderAll(*m_phongShader, *this, *m_camera);
+    gl_FragColor = texture2D(texture, texCoord0);
 }
