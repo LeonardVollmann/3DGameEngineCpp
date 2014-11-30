@@ -21,6 +21,7 @@ PhongShader::PhongShader() :
 Shader("phongShader")
 {
     addUniform("transform");
+    addUniform("color");
     addUniform("viewProjection");
     addUniform("ambientLight");
     
@@ -29,9 +30,10 @@ Shader("phongShader")
     addUniform("directionalLight.direction");
 }
 
-void PhongShader::updateUniforms(const Transform &transform, const RenderingEngine &renderingEngine, const Camera &camera) const
+void PhongShader::updateUniforms(const Transform &transform, const RenderingEngine &renderingEngine, const Camera &camera, const Material &material) const
 {
     setUniformMatrix4f("transform", transform.getTransformation());
+    setUniformVector3f("color", material.getColor());
     setUniformMatrix4f("viewProjection", camera.getViewProjection());
     setUniformVector3f("ambientLight", renderingEngine.getAmbientLight());
     setUniformDirectionalLight("directionalLight", renderingEngine.getDirectionalLight());

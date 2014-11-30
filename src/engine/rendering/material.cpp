@@ -14,25 +14,9 @@
  * limitations under the License.
  */
 
-#ifndef PHONG_SHADER_H
-#define PHONG_SHADER_H
-
-#include "shader.h"
-#include "lighting.h"
 #include "material.h"
 
-#include <string>
-
-class PhongShader : public Shader
+void Material::bindTexture(unsigned int unit) const
 {
-public:
-    PhongShader();
-    
-    virtual void updateUniforms(const Transform &transform, const RenderingEngine &renderingEngine, const Camera &camera, const Material &material) const;
-protected:
-private:
-    void setUniformLight(const std::string &uniform, const Light &light) const;
-    void setUniformDirectionalLight(const std::string &uniform, const DirectionalLight &directionalLight) const;
-};
-
-#endif
+    m_texture.bind(unit);
+}

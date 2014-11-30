@@ -18,6 +18,7 @@
 
 #include "../engine/rendering/camera.h"
 #include "../engine/rendering/mesh.h"
+#include "../engine/rendering/material.h"
 #include "../engine/core/component.h"
 #include "../engine/components/mesh_renderer.h"
 #include "../engine/components/camera_component.h"
@@ -131,8 +132,10 @@ void TestGame::init()
     indices.push_back(1);
                        
     model.addVertices(vertices, indices, true);
+    
+    Material material = Material(m_texture, Vector3f(1.0f, 1.0f, 1.0f));
 
-	Mesh mesh0 = Mesh(model);
+	Mesh mesh0 = Mesh(model, material);
 
 	// IndexedModel model1 = IndexedModel();
 	// model1.addVertex(Vertex(Vector3f(-5, -3, -5), Vector2f(0, 1)));
@@ -177,6 +180,6 @@ void TestGame::update(float delta)
 
 void TestGame::render(RenderingEngine *renderingEngine)
 {
-	m_texture.bind(0);
+//	m_texture.bind(0);
 	renderingEngine->render(m_root);
 }

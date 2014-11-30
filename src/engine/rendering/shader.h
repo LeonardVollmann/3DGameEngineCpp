@@ -21,6 +21,7 @@
 #include "../core/transform.h"
 //#include "rendering_engine.h"
 #include "camera.h"
+#include "material.h"
 
 #include <string>
 #include <map>
@@ -38,7 +39,7 @@ public:
     Shader(const std::string &fileName);
     virtual ~Shader();
 
-	virtual void updateUniforms(const Transform &transform, const RenderingEngine &renderingEngine, const Camera &camera) const {}
+	virtual void updateUniforms(const Transform &transform, const RenderingEngine &renderingEngine, const Camera &camera, const Material &material) const {}
     
     void bind() const;
 

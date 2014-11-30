@@ -22,13 +22,16 @@ attribute vec3 normal;
 
 varying vec2 texCoord0;
 varying vec3 normal0;
+varying vec3 color0;
 
 uniform mat4 transform;
+uniform vec3 color;
 uniform mat4 viewProjection;
 
 void main()
 {
 	texCoord0 = texCoord;
     normal0 = (transform * vec4(normal, 0.0)).xyz;
+    color0 = color;
     gl_Position = viewProjection * transform * vec4(position, 1.0);
 }

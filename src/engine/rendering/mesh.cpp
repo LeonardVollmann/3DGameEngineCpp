@@ -59,8 +59,9 @@ void IndexedModel::calculateNormals()
     }
 }
 
-Mesh::Mesh(IndexedModel indexedModel) :
-    m_model(indexedModel)
+Mesh::Mesh(const IndexedModel &indexedModel, const Material &material) :
+    m_model(indexedModel),
+    m_material(material)
 {
     std::vector<Vector3f> positions;
     std::vector<Vector2f> texCoords;

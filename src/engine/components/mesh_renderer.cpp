@@ -22,7 +22,8 @@ MeshRenderer::MeshRenderer(const Mesh &mesh) :
 
 void MeshRenderer::render(const Shader &shader, const RenderingEngine &renderingEngine, const Camera &camera)
 {
-	shader.updateUniforms(getTransform(), renderingEngine, camera);
+    shader.updateUniforms(getTransform(), renderingEngine, camera, m_mesh.getMaterial());
 	shader.bind();
+    m_mesh.getMaterial().bindTexture(0);
 	m_mesh.draw();
 }

@@ -19,6 +19,7 @@
 
 #include "shader.h"
 #include "camera.h"
+#include "material.h"
 #include "../core/transform.h"
 
 class RenderingEngine;
@@ -28,7 +29,7 @@ class BasicShader : public Shader
 public:
 	BasicShader();
 	
-	virtual void updateUniforms(const Transform &transform, const RenderingEngine &renderingEngine, const Camera &camera) const;
+	virtual void updateUniforms(const Transform &transform, const RenderingEngine &renderingEngine, const Camera &camera, const Material &material) const;
 protected:
 private:
 };

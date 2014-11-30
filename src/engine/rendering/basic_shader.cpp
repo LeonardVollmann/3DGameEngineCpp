@@ -24,7 +24,7 @@ BasicShader::BasicShader() :
 	addUniform("viewProjection");
 }
 
-void BasicShader::updateUniforms(const Transform &transform, const RenderingEngine &renderingEngine, const Camera &camera) const
+void BasicShader::updateUniforms(const Transform &transform, const RenderingEngine &renderingEngine, const Camera &camera, const Material &material) const
 {
 	setUniformMatrix4f("transform", transform.getTransformation());
 	setUniformMatrix4f("viewProjection", camera.getViewProjection());

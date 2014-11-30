@@ -19,6 +19,7 @@
 
 #include "../core/math.h"
 #include "shader.h"
+#include "material.h"
 
 #include <GL/glew.h>
 #include <vector>
@@ -68,14 +69,16 @@ private:
 class Mesh
 {
 public:
-    Mesh(IndexedModel model = IndexedModel());
+    Mesh(const IndexedModel &indexedModel, const Material &material);
     // virtual ~Mesh();
     
     void draw() const;
     
-    inline const IndexedModel &getModel() { return m_model; }
+    inline const IndexedModel &getModel() const { return m_model; }
+    inline const Material &getMaterial() const { return m_material; }
 
     inline void setModel(const IndexedModel &model) { m_model = model; }
+    inline void setMaterial(const Material &material) { m_material = material; }
 protected:
 private:
     enum {
@@ -91,6 +94,7 @@ private:
     GLuint m_vertexArrayBuffers[NUM_BUFFERS];
     
     IndexedModel m_model;
+    Material m_material;
 };
 
 #endif

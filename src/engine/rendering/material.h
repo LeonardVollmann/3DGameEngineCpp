@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2014 Leonard Vollmann
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,32 +14,30 @@
  * limitations under the License.
  */
 
-#ifndef TEST_GAME_H
-#define TEST_GAME_H
+#ifndef MATERIAL_H
+#define MATERIAL_H
 
-#include "../engine/core/game.h"
-#include "../engine/core/core_engine.h"
-#include "../engine/core/entity.h"
-#include "../engine/core/input.h"
-#include "../engine/rendering/camera.h"
-#include "../engine/rendering/mesh.h"
-#include "../engine/rendering/rendering_engine.h"
-#include "../engine/rendering/texture.h"
+#include "texture.h"
+#include "../core/math.h"
 
-class TestGame : public Game
+class Material
 {
 public:
-	TestGame();
-	virtual ~TestGame();
-
-	void init();
-	
-	virtual void update(float delta);
-	virtual void render(RenderingEngine *renderingEngine);
+    Material(const Texture &texture, const Vector3f &color) :
+        m_texture(texture),
+        m_color(color) {}
+    
+    void bindTexture(unsigned int unit) const;
+    
+    inline const Texture &getTexture() const { return m_texture; }
+    inline const Vector3f &getColor() const { return m_color; }
+    
+    inline void setTexture(const Texture &texture) { m_texture = texture; }
+    inline void setColor(const Vector3f &color) { m_color = color; }
 protected:
 private:
-	Entity *m_object0;
-	Entity *m_object1;
-	Texture m_texture;
+    Texture m_texture;
+    Vector3f m_color;
 };
+
 #endif

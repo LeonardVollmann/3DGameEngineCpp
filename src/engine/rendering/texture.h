@@ -26,7 +26,7 @@ public:
 	Texture(const std::string &fileName);
 	virtual ~Texture();
 
-	void bind(unsigned int unit);
+	void bind(unsigned int unit) const;
 protected:
 private:
 	GLuint m_texture;
