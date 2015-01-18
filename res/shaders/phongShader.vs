@@ -14,24 +14,23 @@
  * limitations under the License.
  */
  
-#version 120
+#version 330 core
 
-attribute vec3 position;
-attribute vec2 texCoord;
-attribute vec3 normal;
+layout(location = 0) in vec3 position;
+layout(location = 1) in vec2 texCoord;
+layout(location = 2) in vec3 normal;
 
-varying vec2 texCoord0;
-varying vec3 normal0;
-varying vec3 color0;
+out vec3 position0;
+out vec2 texCoord0;
+out vec3 normal0;
 
 uniform mat4 transform;
-uniform vec3 color;
 uniform mat4 viewProjection;
 
 void main()
 {
 	texCoord0 = texCoord;
     normal0 = (transform * vec4(normal, 0.0)).xyz;
-    color0 = color;
+    position0 = (transform * vec4(position, 1.0)).xyz;
     gl_Position = viewProjection * transform * vec4(position, 1.0);
 }

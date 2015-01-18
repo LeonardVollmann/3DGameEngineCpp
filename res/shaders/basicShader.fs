@@ -14,13 +14,15 @@
  * limitations under the License.
  */
  
-#version 120
+#version 330 core
 
-uniform sampler2D texture;
+in vec2 texCoord0;
 
-varying vec2 texCoord0;
+out vec4 fragColor;
+
+uniform sampler2D sampler;
 
 void main()
 {
-    gl_FragColor = texture2D(texture, texCoord0);
+    fragColor = texture(sampler, texCoord0);
 }

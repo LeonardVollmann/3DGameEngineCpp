@@ -23,6 +23,11 @@ Shader("phongShader")
     addUniform("transform");
     addUniform("color");
     addUniform("viewProjection");
+
+    addUniform("specularIntensity");
+    addUniform("specularExponent");
+    addUniform("cameraPos");
+    
     addUniform("ambientLight");
     
     addUniform("directionalLight.light.color");
@@ -35,6 +40,11 @@ void PhongShader::updateUniforms(const Transform &transform, const RenderingEngi
     setUniformMatrix4f("transform", transform.getTransformation());
     setUniformVector3f("color", material.getColor());
     setUniformMatrix4f("viewProjection", camera.getViewProjection());
+    
+    setUniformFloat("specularIntensity", material.getSpecularIntensity());
+    setUniformFloat("specularExponent", material.getSpecularExponent());
+    setUniformVector3f("cameraPos", camera.getTransform().getTranslation());
+    
     setUniformVector3f("ambientLight", renderingEngine.getAmbientLight());
     setUniformDirectionalLight("directionalLight", renderingEngine.getDirectionalLight());
 }

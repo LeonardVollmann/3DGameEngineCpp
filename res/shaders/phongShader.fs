@@ -14,11 +14,7 @@
  * limitations under the License.
  */
  
-#version 120
-
-varying vec2 texCoord0;
-varying vec3 normal0;
-varying vec3 color0;
+#version 330 core
 
 struct Light
 {
@@ -32,34 +28,57 @@ struct DirectionalLight
     vec3 direction;
 };
 
-uniform sampler2D texture;
+in vec3 position0;
+in vec2 texCoord0;
+in vec3 normal0;
+
+out vec4 fragColor;
+
+uniform vec3 color;
+uniform vec3 cameraPos;
+uniform sampler2D sampler;
+
+uniform float specularIntensity;
+uniform float specularExponent;
+
 uniform vec3 ambientLight;
 uniform DirectionalLight directionalLight;
 
 vec4 calculateLight(Light light, vec3 direction, vec3 normal)
 {
-    float diffuseFactor = dot(normal, -direction);
+    float diffuseFactor = dot(normal, direction);
+    
     vec4 diffuseColor = vec4(0, 0, 0, 0);
+    vec4 specularColor = vec4(0, 0, 0, 0);
     
     if (diffuseFactor > 0) {
-        diffuseColor = vec4(light.color, 1) * light.intensity * diffuseFactor;
+        diffuseColor = vec4(light.color, 1.0) * light.intensity * diffuseFactor;
+        
+        vec3 directionToCamera = normalize(cameraPos - position0);
+        vec3 reflectDirection = normalize(reflect(direction, normal));
+        
+        float specularFactor = dot(directionToCamera, reflectDirection);
+        specularFactor = pow(specularFactor, specularExponent);
+        
+        if (specularFactor > 0) {
+            specularColor = vec4(light.color, 1.0) * specularIntensity * specularFactor;
+        }
     }
     
-    return diffuseColor;
+    return diffuseColor;// + specularColor;
 }
 
 vec4 calculateDirectionalLight(DirectionalLight directionalLight, vec3 normal)
 {
-    return calculateLight(directionalLight.light, -directionalLight.direction, normal);
+    return calculateLight(directionalLight.light, directionalLight.direction, normal);
 }
 
 void main()
 {
-    vec4 textureColor =  texture2D(texture, texCoord0);
-    vec4 color = vec4(color0, 1.0) * textureColor;
-    vec4 totalLight = vec4(ambientLight, 1);
+    vec4 textureColor =  texture(sampler, texCoord0);
+    vec4 totalLight = vec4(ambientLight, 1.0);
     
     totalLight += calculateDirectionalLight(directionalLight, normal0);
     
-    gl_FragColor = color * totalLight;
+    fragColor = vec4(color, 1.0) * textureColor * totalLight;
 }

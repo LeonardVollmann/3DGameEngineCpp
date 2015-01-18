@@ -71,69 +71,69 @@ void TestGame::init()
 //	vertices.push_back(Vertex(Vector3f(1,  1,  1), Vector2f(0, 0)));
 //	vertices.push_back(Vertex(Vector3f(1,  1, -1), Vector2f(0, 1)));
 //    
-//    indices.push_back(2);
+//    indices.push_back(0);
 //    indices.push_back(1);
-//    indices.push_back(0);
-//    indices.push_back(3);
 //    indices.push_back(2);
 //    indices.push_back(0);
+//    indices.push_back(2);
+//    indices.push_back(3);
 //    
-//    indices.push_back(4);
+//    indices.push_back(6);
 //    indices.push_back(5);
+//    indices.push_back(4);
+//    indices.push_back(7);
 //    indices.push_back(6);
 //    indices.push_back(4);
-//    indices.push_back(6);
-//    indices.push_back(7);
 //    
-//    indices.push_back(8);
+//    indices.push_back(10);
 //    indices.push_back(9);
+//    indices.push_back(8);
+//    indices.push_back(11);
 //    indices.push_back(10);
 //    indices.push_back(8);
-//    indices.push_back(10);
-//    indices.push_back(11);
 //    
-//    indices.push_back(14);
+//    indices.push_back(12);
 //    indices.push_back(13);
-//    indices.push_back(12);
-//    indices.push_back(15);
 //    indices.push_back(14);
 //    indices.push_back(12);
+//    indices.push_back(14);
+//    indices.push_back(15);
 //    
-//    indices.push_back(18);
+//    indices.push_back(16);
 //    indices.push_back(17);
-//    indices.push_back(16);
-//    indices.push_back(19);
 //    indices.push_back(18);
 //    indices.push_back(16);
+//    indices.push_back(18);
+//    indices.push_back(19);
 //    
-//    indices.push_back(20);
+//    indices.push_back(22);
 //    indices.push_back(21);
+//    indices.push_back(20);
+//    indices.push_back(23);
 //    indices.push_back(22);
 //    indices.push_back(20);
-//    indices.push_back(22);
-//    indices.push_back(23);
     
     vertices.push_back(Vertex(Vector3f(-1.0f, -1.0f, 0.5773f), Vector2f(0.0f, 0.0f)));
     vertices.push_back(Vertex(Vector3f(0.0f, -1.0f, -1.15475f), Vector2f(0.5f, 0.0f)));
     vertices.push_back(Vertex(Vector3f(1.0f, -1.0f, 0.5773f), Vector2f(1.0f, 0.0f)));
     vertices.push_back(Vertex(Vector3f(0.0f, 1.0f, 0.0f), Vector2f(0.5f, 1.0f)));
     
-    indices.push_back(1);
-    indices.push_back(3);
-    indices.push_back(0);
-    indices.push_back(2);
-    indices.push_back(3);
-    indices.push_back(1);
     indices.push_back(0);
     indices.push_back(3);
+    indices.push_back(1);
+    indices.push_back(1);
+    indices.push_back(3);
+    indices.push_back(2);
+    indices.push_back(2);
+    indices.push_back(3);
+    indices.push_back(0);
+    indices.push_back(1);
     indices.push_back(2);
     indices.push_back(0);
-    indices.push_back(2);
-    indices.push_back(1);
-                       
+    
     model.addVertices(vertices, indices, true);
     
-    Material material = Material(m_texture, Vector3f(1.0f, 1.0f, 1.0f));
+    Material material = Material(m_texture, Vector3f(1.0f, 1.0f, 1.0f), 2.0f, 32.0f);
 
 	Mesh mesh0 = Mesh(model, material);
 
@@ -150,6 +150,7 @@ void TestGame::init()
 
 	m_object0 = (new Entity())->addComponent(new MeshRenderer(mesh0));
 	add(m_object0);
+    m_object0->getTransform().setRotation(Quaternion(Vector3f(1.0f, 0.0f, 1.0f).normalized(), MATH_PI));
 
 	// m_object1 = (new Entity())->addComponent(new MeshRenderer(mesh1));
 	// add(m_object1);
@@ -159,7 +160,7 @@ void TestGame::init()
 		->addComponent(new FreeLook(m_engine->getWindow()->getCenter(), 0.2f)));
     
     m_engine->getRenderingEngine()->setAmbientLight(Vector3f(0.1f, 0.1f, 0.1f));
-    m_engine->getRenderingEngine()->setDirectionalLight(DirectionalLight(Light(Vector3f(1.0f, 1.0f, 1.0f), 0.8f), Vector3f(1.0f, 1.0f, 1.0f).normalized()));
+    m_engine->getRenderingEngine()->setDirectionalLight(DirectionalLight(Light(Vector3f(1.0f, 1.0f, 1.0f), 0.8f), Vector3f(0.0f, 1.0f, 0.0f).normalized()));
 }
 
 float counter = 0.0f;
@@ -174,7 +175,7 @@ void TestGame::update(float delta)
 	sinCounter = sinf(counter);
 	cosCounter = cosf(counter);
 
-	// m_object0->getTransform().setRotation(Quaternion(Vector3f(0.0f, 1.0f, 0.0f), counter));
+//	 m_object0->getTransform().setRotation(Quaternion(Vector3f(0.0f, 1.0f, 0.0f), cosCounter));
 	m_object0->getTransform().rotate(Vector3f(0.0f, 1.0f, 0.0f), 0.02f);
 }
 

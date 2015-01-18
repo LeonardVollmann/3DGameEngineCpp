@@ -23,21 +23,29 @@
 class Material
 {
 public:
-    Material(const Texture &texture, const Vector3f &color) :
+    Material(const Texture &texture, const Vector3f &color, float specularIntensity, float specularExponent) :
         m_texture(texture),
-        m_color(color) {}
+        m_color(color),
+        m_specularIntensity(specularIntensity),
+        m_specularExponent(specularExponent) {}
     
     void bindTexture(unsigned int unit) const;
     
     inline const Texture &getTexture() const { return m_texture; }
     inline const Vector3f &getColor() const { return m_color; }
+    inline float getSpecularIntensity() const { return m_specularIntensity; }
+    inline float getSpecularExponent() const { return m_specularExponent; }
     
     inline void setTexture(const Texture &texture) { m_texture = texture; }
     inline void setColor(const Vector3f &color) { m_color = color; }
+    inline void setSpecularIntensity(float specularIntensity) { m_specularIntensity = specularIntensity; }
+    inline void setSpecularExponent(float specularExponent) { m_specularExponent = specularExponent; }
 protected:
 private:
     Texture m_texture;
     Vector3f m_color;
+    float m_specularIntensity;
+    float m_specularExponent;
 };
 
 #endif

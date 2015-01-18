@@ -41,7 +41,7 @@ public:
     inline Vector2f getCenter()          const { return Vector2f(m_width / 2.0f, m_height / 2.0f); }
     inline float getAspectRatio()        const { return (float)m_width / (float)m_height; }
     inline SDL_Window *getWindow()       const { return m_window; }
-    inline Input &getInput()       		 { return m_input; }
+    inline Input &getInput()                   { return m_input; }
 protected:
 private:
     std::string  m_title;

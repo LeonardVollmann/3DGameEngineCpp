@@ -29,14 +29,14 @@ public:
 
 	inline const Matrix4f getViewProjection() const
 	{
-		Matrix4f view = Matrix4f().initView(m_transform->getTranslation(), m_transform->getRotation().getForward(), Vector3f(0.0f, 1.0f, 0.0f));//m_transform->getRotation().getUp());
+		Matrix4f view = Matrix4f().initView(m_transform->getTranslation(), m_transform->getRotation().getForward(), Vector3f(0.0f, 1.0f, 0.0f)); //m_transform->getRotation().getUp());
 
 		return m_projection * view;
 	}
 
 	inline const Matrix4f &getProjection() const { return m_projection; }
 	inline const Transform &getTransform() const { return *m_transform; }
-	inline Transform *getTransform() { return m_transform; }
+	inline Transform *getTransform()             { return m_transform; }
 
 	inline void setProjection(float fov, float aspect, float zNear, float zFar) { m_projection = Matrix4f().initPerspective(fov, aspect, zNear, zFar); }
 	inline void setTransform(Transform *transform) { m_transform = transform; }

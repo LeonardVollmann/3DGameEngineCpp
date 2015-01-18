@@ -100,8 +100,8 @@ Shader::Shader(const std::string &fileName)
     glLinkProgram(m_program);
     checkShaderError(m_program, GL_LINK_STATUS, true, "Error: Shader linking failed: ");
     
-   glValidateProgram(m_program);
-   checkShaderError(m_program, GL_VALIDATE_STATUS, true, "Error: Shader validation failed: ");
+    glValidateProgram(m_program);
+    checkShaderError(m_program, GL_VALIDATE_STATUS, true, "Error: Shader validation failed: ");
 }
 
 Shader::~Shader()

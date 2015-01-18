@@ -48,14 +48,18 @@ void IndexedModel::calculateNormals()
         unsigned int i1 = m_indices[i + 1];
         unsigned int i2 = m_indices[i + 2];
         
-        Vector3f v0 = m_vertices[i0].getPosition() - m_vertices[i1].getPosition();
+        Vector3f v0 = m_vertices[i1].getPosition() - m_vertices[i0].getPosition();
         Vector3f v1 = m_vertices[i2].getPosition() - m_vertices[i0].getPosition();
         
         Vector3f normal = v0.cross(v1).normalized();
         
-        m_vertices[i0].setNormal((m_vertices[i0].getNormal() + normal).normalized());
-        m_vertices[i1].setNormal((m_vertices[i1].getNormal() + normal).normalized());
-        m_vertices[i2].setNormal((m_vertices[i2].getNormal() + normal).normalized());
+        m_vertices[i0].setNormal((m_vertices[i0].getNormal() + normal));
+        m_vertices[i1].setNormal((m_vertices[i1].getNormal() + normal));
+        m_vertices[i2].setNormal((m_vertices[i2].getNormal() + normal));
+    }
+    
+    for (unsigned int i = 0; i < m_vertices.size(); i++) {
+        m_vertices[i].setNormal(m_vertices[i].getNormal().normalized());
     }
 }
 
@@ -79,19 +83,19 @@ Mesh::Mesh(const IndexedModel &indexedModel, const Material &material) :
     glGenBuffers(NUM_BUFFERS, m_vertexArrayBuffers);
     
     glBindBuffer(GL_ARRAY_BUFFER, m_vertexArrayBuffers[BUFFER_VERTEX]);
-    glBufferData(GL_ARRAY_BUFFER, m_model.getNumVertices() * sizeof(Vector3f), &positions[0], GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, m_model.getNumVertices() * sizeof(Vector3f), positions.data(), GL_STATIC_DRAW);
 
     glEnableVertexAttribArray(0);
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void *)0);
     
     glBindBuffer(GL_ARRAY_BUFFER, m_vertexArrayBuffers[BUFFER_TEXCOORD]);
-    glBufferData(GL_ARRAY_BUFFER, m_model.getNumVertices() * sizeof(Vector2f), &texCoords[0], GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, m_model.getNumVertices() * sizeof(Vector2f), texCoords.data(), GL_STATIC_DRAW);
 
     glEnableVertexAttribArray(1);
     glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, (void *)0);
     
     glBindBuffer(GL_ARRAY_BUFFER, m_vertexArrayBuffers[BUFFER_NORMAL]);
-    glBufferData(GL_ARRAY_BUFFER, m_model.getNumVertices() * sizeof(Vector3f), &normals[0], GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, m_model.getNumVertices() * sizeof(Vector3f), normals.data(), GL_STATIC_DRAW);
     
     glEnableVertexAttribArray(2);
     glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 0, (void *)0);
@@ -108,7 +112,7 @@ Mesh::Mesh(const IndexedModel &indexedModel, const Material &material) :
 
 void Mesh::draw() const
 {
-    glBindVertexArray(m_vertexArrayObject);
+//    glBindVertexArray(m_vertexArrayObject);
 
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_vertexArrayBuffers[BUFFER_INDEX]);
 	glDrawElements(GL_TRIANGLES, m_model.getNumIndices(), GL_UNSIGNED_INT, 0);
