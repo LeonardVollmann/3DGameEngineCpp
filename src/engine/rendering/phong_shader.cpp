@@ -18,7 +18,7 @@
 #include "rendering_engine.h"
 
 PhongShader::PhongShader() :
-Shader("phongShader")
+Shader("phongShader", false)
 {
     addUniform("transform");
     addUniform("color");

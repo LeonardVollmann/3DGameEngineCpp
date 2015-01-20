@@ -18,7 +18,7 @@
 #include "rendering_engine.h"
 
 BasicShader::BasicShader() :
-	Shader("basicShader")
+	Shader("basicShader", false)
 {
 	addUniform("transform");
 	addUniform("viewProjection");

@@ -82,7 +82,7 @@ GLuint Shader::createShader(const std::string &text, GLenum shaderType)
     return shader;
 }
 
-Shader::Shader(const std::string &fileName)
+Shader::Shader(const std::string &fileName, bool geometryShader)
 {
     m_program = glCreateProgram();
     
@@ -90,11 +90,14 @@ Shader::Shader(const std::string &fileName)
     glBindAttribLocation(m_program, 1, "texCoord");
     glBindAttribLocation(m_program, 2, "normal");
     
-    m_shaders[0] = createShader(loadShader("./res/shaders/" + fileName + ".vs"), GL_VERTEX_SHADER);
-    m_shaders[1] = createShader(loadShader("./res/shaders/" + fileName + ".fs"), GL_FRAGMENT_SHADER);
+    m_numShaders = geometryShader ? 3 : 2;
     
-    for (unsigned int i = 0; i < NUM_SHADERS; i++) {
-        glAttachShader(m_program, m_shaders[i]);
+    addVertexShader(fileName);
+    addFragmentShader(fileName);
+    
+    if (geometryShader
+        ) {
+        addGeometryShader(fileName);
     }
     
     glLinkProgram(m_program);
@@ -106,7 +109,7 @@ Shader::Shader(const std::string &fileName)
 
 Shader::~Shader()
 {
-    for (unsigned int i = 0; i < NUM_SHADERS; i++) {
+    for (unsigned int i = 0; i < m_numShaders; i++) {
         glDetachShader(m_program, m_shaders[i]);
         glDeleteShader(m_shaders[i]);
     }
@@ -151,4 +154,25 @@ void Shader::setUniformMatrix4f(const std::string &uniform, const Matrix4f &valu
     }
 
     glUniformMatrix4fv(m_uniforms[uniform], 1, true, matrix);
+}
+
+void Shader::addVertexShader(const std::string &fileName)
+{
+    GLuint shader = createShader(loadShader("./res/shaders/" + fileName + ".vs"), GL_VERTEX_SHADER);
+    glAttachShader(m_program, shader);
+    m_shaders[0] = shader;
+}
+
+void Shader::addFragmentShader(const std::string &fileName)
+{
+    GLuint shader = createShader(loadShader("./res/shaders/" + fileName + ".fs"), GL_FRAGMENT_SHADER);
+    glAttachShader(m_program, shader);
+    m_shaders[1] = shader;
+}
+
+void Shader::addGeometryShader(const std::string &fileName)
+{
+    GLuint shader = createShader(loadShader("./res/shaders/" + fileName + ".gs"), GL_GEOMETRY_SHADER);
+    glAttachShader(m_program, shader);
+    m_shaders[2] = shader;
 }

@@ -36,7 +36,7 @@ public:
     static void checkShaderError(GLuint shader, GLuint flag, bool isProgram, const std::string &errorMessage);
     static GLuint createShader(const std::string &text, GLenum shaderType);
     
-    Shader(const std::string &fileName);
+    Shader(const std::string &fileName, bool geometryShader);
     virtual ~Shader();
 
 	virtual void updateUniforms(const Transform &transform, const RenderingEngine &renderingEngine, const Camera &camera, const Material &material) const {}
@@ -50,12 +50,16 @@ public:
     void setUniformMatrix4f(const std::string &uniform, const Matrix4f &value) const;
 protected:
 private:
-    static const unsigned int NUM_SHADERS = 2;
-
+    int m_numShaders;
+    
     GLuint m_program;
-    GLuint m_shaders[NUM_SHADERS];
+    GLuint m_shaders[3];
 
     mutable std::map<std::string, GLint> m_uniforms;
+    
+    void addVertexShader(const std::string &fileName);
+    void addFragmentShader(const std::string &fileName);
+    void addGeometryShader(const std::string &fileName);
 };
 
 #endif
